@@ -22,9 +22,9 @@
             </a>
             
             <form class="input-group" action="books.html">
-                <input class="form-control" type="search" placeholder="Search title, author or ISBN" aria-label="Search">
+                <input class="form-control" type="search" id="search_form" placeholder="Search title, author or ISBN" aria-label="Search">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-success form-control" type="submit">Search</button>
+                    <button class="btn btn-outline-success form-control" type="button" onclick="search()">Search</button>
                 </div>
             </form>
             
@@ -54,8 +54,14 @@
         </nav>
         
         <main class="container">
-            <h1 class="text-center">Welcome!</h1>
+            <h1 class="text-center" id="search_result">Welcome!</h1>
         </main>
 
     </body>
+<script>
+    function search() {
+        document.getElementById("search_result").innerHTML = "You searched for keyword: " + document.getElementById("search_form").value;
+        document.getElementById("search_form").value = "";
+    }
+</script>
 </html>
