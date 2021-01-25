@@ -44,3 +44,7 @@ main {
     50% {background-color: #7f7;}
     to {background-color: #d00;}
 }
+
+.book-card {
+    margin: 0.5rem 0.05rem;
+}
