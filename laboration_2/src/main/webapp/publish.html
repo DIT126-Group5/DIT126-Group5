@@ -2,17 +2,17 @@
 <html>
     <head>
         <title>TODO supply a title</title>
-        
+
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+
         <!-- Bootstrap -->
         <link href="css/bootstrap.css" rel="stylesheet">
         <script src="js/bootstrap.min.js"></script>
-        
+
         <!-- jQuery -->
         <script src="js/jquery-3.5.1.min.js"></script>
-        
+
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
@@ -49,15 +49,66 @@
                 </ul>
             </div>
         </nav>
-        <div>
-            <h1>What literature do you want to sell?</h1>
-            <h2>Add with ISBN-number:</h2>
-            <input class="form-control mr-sm-2" type="search" placeholder="" aria-label="Search">
-            
-            <div>
-                What is ISBN?
+        <main>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm">
+                        <h3><b>What literature do you want to sell?</b></h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <h5>Add with ISBN-number:</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <input class="form-control mr-sm-2" type="search" placeholder="ex. 9783161484100" aria-label="Search">
+                    </div>
+                    <div class="col-sm">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </div>   
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <div class="ISBNExplanationBox">
+                            <h5><b>What is ISBN?</b></h5>
+                            ISBN stands for International Standard Book Number and is usually a 13-digit number that identifies published books. Once assigned to a book, an ISBN can never be reused.
+                            <br>
+                            <br>
+                            There are five parts to an ISBN number – the current prefix of 978 or 979, the registration group (country), the registrant element (publisher), the publication element (title and format) and the check digit.
+                            <br>
+                            <br>
+                            <h5><b>How do I find the number on my book?</b></h5>
+                            
+                            On most books, the ISBN number can be found on the back cover, next to the barcode. If a book doesn't show the ISBN on the back cover, look on the page featuring the copyright and publisher information and the ISBN will be found there.
+                            <br>
+                            <br>
+                            <img src="assets/isbn-location.png" alt="Location of ISBN">
+                            
+                            <br>
+                            <br>
+                            <h5><b>What happens if my book does not have an ISBN?</b></h5>
+                            <div>
+                                <ul>
+                                    <li>
+                                       Unfortunately books without ISBN cannot be sold on our site because our system is built on the basis of ISBN.
+                                    </li>
+                                    <li>
+                                       All books that have been published must have an ISBN.
+                                    </li>
+                                    <li>
+                                       But there are some books that have not been published and therefore lack an ISBN.
+                                    </li>
+                                    <li>
+                                       Books older than 1970 do not have ISBNs.
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-        </div>
+        </main>
     </body>
 </html>
