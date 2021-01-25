@@ -2,10 +2,10 @@
 <html>
     <head>
         <title>TODO supply a title</title>
-        
+
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+
         <!-- Bootstrap -->
         <link href="css/libs/bootstrap.css" rel="stylesheet">
         <script src="js/libs/bootstrap.min.js"></script>
@@ -20,20 +20,20 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-light ">
             <a class="navbar-brand" href="index.html">
-                <img class="header-logo" src="assets/bob_logo.png" alt="Books of Bliss logo">
+                <img class="header-logo" src="assets/images/bob_logo.png" alt="Books of Bliss logo">
             </a>
-            
+
             <form class="input-group" action="books.html">
                 <input class="form-control" type="search" placeholder="Search title, author or ISBN" aria-label="Search">
                 <div class="input-group-append">
                     <button class="btn btn-outline-success form-control" type="submit">Search</button>
                 </div>
             </form>
-            
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto me-4">
                     <li class="nav-item">
@@ -48,26 +48,29 @@
                     <li class="nav-item">
                         <a class="nav-link" href="publish.html">Sell Literature</a>
                     </li>
-					<li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" href="contact.html">Contact</a>
                     </li>
                 </ul>
             </div>
         </nav>
-        <div>
-            <h1>Have any questions? Contact us!</h1>
-			<form action=”mailto:support@booksofbliss.com" method="post" enctype="text/plain">
-            <label for="name">Name</label><br>
-            <input id=name type="text" placeholder="Your name">
-            <br>
-			<label for="name">Subject</label><br>
-            <input id=name type="text" placeholder="Write a subject">
-			<br>
-			<label for="name">Message</label><br>	
-            <input id=name type="text" style="height:150px; width:300px" placeholder="Write a message">
-			<br>
-			<input type="submit" value="Send">
-			</form>
-        </div>
+        <main class="container">
+            <div>
+
+                <h1>Have any questions? Contact us!</h1>
+                <form action=”mailto:support@booksofbliss.com" method="post" enctype="text/plain">
+                    <label for="name">Name</label><br>
+                    <input id=name type="text" placeholder="Your name">
+                    <br>
+                    <label for="name">Subject</label><br>
+                    <input id=name type="text" placeholder="Write a subject">
+                    <br>
+                    <label for="name">Message</label><br>	
+                    <input id=name type="text" style="height:150px; width:300px" placeholder="Write a message">
+                    <br>
+                    <input type="submit" value="Send">
+                </form>
+            </div>
+        </main>
     </body>
 </html>
