@@ -7,13 +7,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <!-- Bootstrap -->
-        <link href="css/bootstrap.css" rel="stylesheet">
-        <script src="js/bootstrap.min.js"></script>
+        <link href="css/libs/bootstrap.css" rel="stylesheet">
+        <script src="js/libs/bootstrap.min.js"></script>
         
         <!-- jQuery -->
-        <script src="js/jquery-3.5.1.min.js"></script>
+        <script src="js/libs/jquery-3.5.1.min.js"></script>
+        <!-- self-made scripts-->
+        <script src="js/main.js"></script>
         
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light ">
@@ -58,10 +60,4 @@
         </main>
 
     </body>
-<script>
-    function search() {
-        document.getElementById("search_result").innerHTML = "You searched for keyword: " + document.getElementById("search_form").value;
-        document.getElementById("search_form").value = "";
-    }
-</script>
 </html>
