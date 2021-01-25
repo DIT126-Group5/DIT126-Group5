@@ -16,18 +16,24 @@
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="index.html">Books of Bliss</a>
-            <img src="assets/bob_logo.png" alt="Books of Bliss logo">
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search title, author or ISBN" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <nav class="navbar navbar-expand-lg navbar-light ">
+            <a class="navbar-brand" href="index.html">
+                <img class="header-logo" src="assets/bob_logo.png" alt="Books of Bliss logo">
+            </a>
+            
+            <form class="input-group" action="books.html">
+                <input class="form-control" type="search" placeholder="Search title, author or ISBN" aria-label="Search">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-success form-control" type="submit">Search</button>
+                </div>
             </form>
+            
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav ms-auto me-4">
                     <li class="nav-item">
                         <a class="nav-link disabled" href="#">Register</a>
                     </li>
