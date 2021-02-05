@@ -15,18 +15,33 @@ import javax.persistence.criteria.Root;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public abstract class AbstractDAO<T> {
-    private final Class<T> entityType;
+public abstract class AbstractDAO<T,P> {
+    protected final Class<T> entityType;
     protected abstract EntityManager getEntityManager();
     protected JPAQueryFactory getQueryFactory() {
         return (new JPAQueryFactory(getEntityManager()));
     }
+
+    //Insert
     public void create(T entity) {
         getEntityManager().persist(entity);
     }
+    
+    //Update
+    public void update(T entity) {
+        getEntityManager().merge(entity);
+    }
+    
+    //Delete
     public void remove(T entity) {
         getEntityManager().remove(getEntityManager().merge(entity));
     }
+    
+    //Find by primary key
+    public T findByPrimaryKey(Class<T> entityClass, P primaryKey) {
+        return getEntityManager().find(entityClass, primaryKey);
+    }
+    
     public List<T> findAll() {
         final CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityType));
@@ -41,5 +56,4 @@ public abstract class AbstractDAO<T> {
         final Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult());
     }
-
 }

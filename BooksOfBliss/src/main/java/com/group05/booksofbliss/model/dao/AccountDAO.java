@@ -16,7 +16,7 @@ import lombok.Getter;
  */
 
 @Stateless
-public class AccountDAO extends AbstractDAO<Account> {
+public class AccountDAO extends AbstractDAO<Account, String> {
     @Getter @PersistenceContext (unitName = "bobDB")
     private EntityManager entityManager;
 

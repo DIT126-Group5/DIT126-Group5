@@ -26,11 +26,10 @@ public class AccountDAOTest {
     }
     @EJB
     private AccountDAO accountDAO;
-    private Account account = new Account();
+    private Account account = new Account("firstName", "lastName", "username", "Password123!", "Sannegarden", 500.0);
+    
     @Before
     public void init() {
-        account.setName("testName");
-        account.setUsername("username");
         accountDAO.create(account);
         //accountDAO.create(new Account("testUser","testName2"));
     }
@@ -39,13 +38,11 @@ public class AccountDAOTest {
         accountDAO.remove(account);
     }
 
+    //Checks if the Username is correct.
     @Test
     public void checkThatFindUsersMatchingNameMatchesCorrectly() {
-        Assert.assertTrue(accountDAO
-                .findByUsername(account
-                .getUsername()).getUsername()
-                .equals(account
-                .getUsername()));
+        Assert.assertEquals(accountDAO
+                .findByUsername(account.getUsername()).getUsername()
+                , account.getUsername());
     }
-    
 }
