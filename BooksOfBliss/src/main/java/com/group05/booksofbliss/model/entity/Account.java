@@ -8,6 +8,7 @@ package com.group05.booksofbliss.model.entity;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,4 +22,8 @@ public class Account implements Serializable{
     private String name;
     //private String password;
     //private String address;
+    //private double balance;
 }
+
+
+ 

@@ -1,7 +1,6 @@
 
 import com.group05.booksofbliss.model.dao.AccountDAO;
 import com.group05.booksofbliss.model.entity.Account;
-import java.util.List;
 import javax.ejb.EJB;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -42,8 +41,11 @@ public class AccountDAOTest {
 
     @Test
     public void checkThatFindUsersMatchingNameMatchesCorrectly() {
-        Assert.assertTrue(true);
-        //List<Account> accountList = accountDAO.findAll();
-        
+        Assert.assertTrue(accountDAO
+                .findByUsername(account
+                .getUsername()).getUsername()
+                .equals(account
+                .getUsername()));
     }
+    
 }
