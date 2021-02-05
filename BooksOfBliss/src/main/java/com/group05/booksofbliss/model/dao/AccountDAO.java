@@ -1,6 +1,6 @@
 package com.group05.booksofbliss.model.dao;
 
-import com.group05.booksofbliss.model.entity.User;
+import com.group05.booksofbliss.model.entity.Account;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -14,13 +14,16 @@ import lombok.Getter;
  */
 
 @Stateless
-public class UserDAO extends AbstractDAO<User> {
-    @Getter @PersistenceContext (unitName = "mainDB")
+public class AccountDAO extends AbstractDAO<Account> {
+    @Getter @PersistenceContext (unitName = "bobDB")
     private EntityManager entityManager;
-    public UserDAO() {
-        super(User.class);
+    public AccountDAO() {
+        super(Account.class);
     }
-    public List<User> findUsersMatchingName() {
+    public List<Account> findUsersMatchingName() {
+    throw new UnsupportedOperationException("Not yet implemented");
+    }
+    public Account findByUsername() {
     throw new UnsupportedOperationException("Not yet implemented");
     }
 }

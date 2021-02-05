@@ -16,9 +16,9 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class User implements Serializable{
+public class Account implements Serializable{
     @Id private String username;
     private String name;
-    private String password;
-    private String address;
+    //private String password;
+    //private String address;
 }

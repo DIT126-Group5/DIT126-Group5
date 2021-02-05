@@ -30,6 +30,7 @@ public abstract class AbstractDAO<T> {
         return getEntityManager().createQuery(cq).getResultList();
     }
     public long count() {
+        //queryDSL
         final CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
         final CriteriaQuery cq = builder.createQuery();
         final Root<T> rt = cq.from(entityType);
