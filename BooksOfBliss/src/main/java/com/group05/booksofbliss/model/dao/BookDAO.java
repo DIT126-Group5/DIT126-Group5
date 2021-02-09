@@ -23,12 +23,6 @@ public class BookDAO extends AbstractDAO<Book, String> {
     }
     
     public Book findByISBN(String isbn) {
-        Book book = getQueryFactory()
-                        .select(QBook.book)
-                        .from(QBook.book)
-                        .where(QBook.book.isbn.eq(isbn))
-                        .fetchOne();
-        
-        return book;
+        return findByPrimaryKey(isbn);
     }
 }
