@@ -13,26 +13,27 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-
 @RunWith(Arquillian.class)
 public class AccountDAOTest {
 
     @Deployment
     public static WebArchive createDeployment() {
         return ShrinkWrap.create(WebArchive.class)
-                .addClasses(AccountDAO.class, Account.class)
+                .addPackages(true, "com.group05.booksofbliss")
                 .addAsResource("META-INF/persistence.xml")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
+
     @EJB
     private AccountDAO accountDAO;
+
     private Account account = new Account("firstName", "lastName", "username", "Password123!", "Sannegarden", 500.0);
-    
+
     @Before
     public void init() {
         accountDAO.create(account);
-        //accountDAO.create(new Account("testUser","testName2"));
     }
+
     @After
     public void clean() {
         accountDAO.remove(account);
@@ -42,7 +43,7 @@ public class AccountDAOTest {
     @Test
     public void checkThatFindUsersMatchingNameMatchesCorrectly() {
         Assert.assertEquals(accountDAO
-                .findByUsername(account.getUsername()).getUsername()
-                , account.getUsername());
+                .findByUsername(account.getUsername()).getUsername(),
+                account.getUsername());
     }
 }
