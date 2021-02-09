@@ -27,13 +27,12 @@ public class AuthorDAO extends AbstractDAO<Author, String> {
         throw new UnsupportedOperationException("Not yet implemented");
     }
     
-    public Author findById(String isbn) {
+    public Author findByName(String name) {
         Author author = getQueryFactory()
-                        .select(QAuthor.author)
-                        .from(QAuthor.author)
-                        .where(QAuthor.id.eq(id))
-                        .fetchOne();
-        
+                            .select(QAuthor.author)
+                            .from(QAuthor.author)
+                            .where(QAuthor.author.name.eq(name))
+                            .fetchOne();
         return author;
     }
 }

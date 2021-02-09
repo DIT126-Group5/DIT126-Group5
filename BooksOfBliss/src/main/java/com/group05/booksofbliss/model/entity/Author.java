@@ -26,14 +26,10 @@ import lombok.RequiredArgsConstructor;
 @NoArgsConstructor
 
 public class Author implements Serializable {
-    @Id private String id;
-    private String firstname;
-    private String lastname;
+    @Id private String name;
     
-    public Author(String id, String firstname, String lastname) {
-        this.id = id;
-        this.firstname = firstname;
-        this.lastname = lastname;
+    public Author(String name) {
+        this.name = name;
     }
     
    @JoinTable(name = "author_written_books",
