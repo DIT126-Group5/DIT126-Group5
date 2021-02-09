@@ -14,20 +14,25 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 public class Listing implements Serializable {
-    @Id 
+
+    @Id
     @GeneratedValue
     private int id;
     private Instant date;
     private double price;
     private String description;
-    
+
     @JoinColumn(name = "condition")
     @ManyToOne
     private Condition condition;
-    
+
     @JoinColumn(name = "publishedBy")
     @ManyToOne
     private Account publishedBy;
+
+    @JoinColumn(name = "book")
+    @ManyToOne
+    private Book book;
 
     public Listing(int id, Instant date, double price, String description) {
         this.id = id;
