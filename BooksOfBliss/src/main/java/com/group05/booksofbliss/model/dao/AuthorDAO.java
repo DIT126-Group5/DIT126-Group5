@@ -1,5 +1,6 @@
 package com.group05.booksofbliss.model.dao;
 import com.group05.booksofbliss.model.entity.Author;
+import com.group05.booksofbliss.model.entity.QAuthor;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import java.util.List;
 import javax.ejb.Stateless;
