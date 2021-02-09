@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.group05.booksofbliss.model.dao;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -15,7 +10,7 @@ import javax.persistence.criteria.Root;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public abstract class AbstractDAO<T,P> {
+public abstract class AbstractDAO<T, P> {
     protected final Class<T> entityType;
     
     protected abstract EntityManager getEntityManager();
