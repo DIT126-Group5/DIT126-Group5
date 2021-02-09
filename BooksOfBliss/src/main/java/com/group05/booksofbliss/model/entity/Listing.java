@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -29,14 +30,13 @@ public class Listing implements Serializable {
     @JoinColumn(name = "publishedBy")
     @ManyToOne
     private Account publishedBy;
-    
-    @JoinColumn(name = "purchase")
-    @ManyToOne
-    private Account purchase;
 
     @JoinColumn(name = "book")
     @ManyToOne
     private Book book;
+
+    @OneToOne(mappedBy = "listing")
+    private Purchase purchase;
 
     public Listing(int id, Instant date, double price, String description) {
         this.id = id;
