@@ -17,7 +17,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public abstract class AbstractDAO<T,P> {
     protected final Class<T> entityType;
+    
     protected abstract EntityManager getEntityManager();
+    
     protected JPAQueryFactory getQueryFactory() {
         return (new JPAQueryFactory(getEntityManager()));
     }
@@ -38,8 +40,8 @@ public abstract class AbstractDAO<T,P> {
     }
     
     //Find by primary key
-    public T findByPrimaryKey(Class<T> entityClass, P primaryKey) {
-        return getEntityManager().find(entityClass, primaryKey);
+    public T findByPrimaryKey(P primaryKey) {
+        return getEntityManager().find(entityType, primaryKey);
     }
     
     public List<T> findAll() {
@@ -47,6 +49,7 @@ public abstract class AbstractDAO<T,P> {
         cq.select(cq.from(entityType));
         return getEntityManager().createQuery(cq).getResultList();
     }
+    
     public long count() {
         //queryDSL
         final CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
