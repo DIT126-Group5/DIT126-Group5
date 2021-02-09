@@ -50,6 +50,9 @@ public class Account implements Serializable {
 //    @OneToMany(mappedBy = "reviewee")
 //    private List<UserReview> reviewsReceived;
 
+    @OneToMany(mappedBy = "publishedBy")
+    private List<Listing> listings;
+    
     public Account(String username, String firstname, String lastname, String password, String address, double balance) {
         this.username = username;
         this.firstname = firstname;

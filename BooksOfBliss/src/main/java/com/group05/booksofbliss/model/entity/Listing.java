@@ -2,7 +2,6 @@ package com.group05.booksofbliss.model.entity;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -25,6 +24,10 @@ public class Listing implements Serializable {
     @JoinColumn(name = "condition")
     @ManyToOne
     private Condition condition;
+    
+    @JoinColumn(name = "publishedBy")
+    @ManyToOne
+    private Account publishedBy;
 
     public Listing(int id, Instant date, double price, String description) {
         this.id = id;
