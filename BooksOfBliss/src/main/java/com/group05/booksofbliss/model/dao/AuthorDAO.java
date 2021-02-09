@@ -30,7 +30,7 @@ public class AuthorDAO extends AbstractDAO<Author, String> {
         Author author = getQueryFactory()
                         .select(QAuthor.author)
                         .from(QAuthor.author)
-                        .where(QAuthor.author.isbn.eq(id))
+                        .where(QAuthor.id.eq(id))
                         .fetchOne();
         
         return author;
