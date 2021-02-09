@@ -29,6 +29,9 @@ public class Account implements Serializable {
     @OneToMany(mappedBy = "publishedBy")
     private List<Listing> listings;
     
+    @OneToMany(mappedBy = "purchase")
+    private List<Listing> purchasedListings;
+    
     public Account(String username, String firstname, String lastname, String password, String address, double balance) {
         this.username = username;
         this.firstname = firstname;

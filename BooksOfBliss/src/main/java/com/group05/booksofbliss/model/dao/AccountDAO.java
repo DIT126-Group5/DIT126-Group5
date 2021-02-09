@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import lombok.Getter;
 
-
 @Stateless
 public class AccountDAO extends AbstractDAO<Account, String> {
     @Getter @PersistenceContext (unitName = "bobDB")
@@ -23,12 +22,6 @@ public class AccountDAO extends AbstractDAO<Account, String> {
     }
     
     public Account findByUsername(String username) {
-        Account acc = getQueryFactory()
-                        .select(QAccount.account)
-                        .from(QAccount.account)
-                        .where(QAccount.account.username.eq(username))
-                        .fetchOne();
-        
-        return acc;
+        return findByPrimaryKey(username);
     }
 }

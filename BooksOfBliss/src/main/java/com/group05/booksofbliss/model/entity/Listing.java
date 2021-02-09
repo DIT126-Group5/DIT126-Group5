@@ -29,6 +29,10 @@ public class Listing implements Serializable {
     @JoinColumn(name = "publishedBy")
     @ManyToOne
     private Account publishedBy;
+    
+    @JoinColumn(name = "purchase")
+    @ManyToOne
+    private Account purchase;
 
     @JoinColumn(name = "book")
     @ManyToOne
