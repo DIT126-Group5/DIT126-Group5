@@ -2,31 +2,27 @@ package com.group05.booksofbliss.model.entity;
 
 import com.group05.booksofbliss.model.database.dao.key.UserReviewPK;
 import java.io.Serializable;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Entity
 @NoArgsConstructor
+@Entity
+@IdClass(UserReviewPK.class)
 public class UserReview implements Serializable {
-    @EmbeddedId
-    UserReviewPK id;
-    
+    @Id
     @ManyToOne
-    @MapsId("reviewer")
     @JoinColumn(name = "reviewer")
     private Account reviewer;
 
+    @Id
     @ManyToOne
-    @MapsId("reviewee")
     @JoinColumn(name = "reviewee")
     private Account reviewee;
     
-//    private String comment;
-//    private int rating;
+    private String comment;
+    private int rating;
 }

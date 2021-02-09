@@ -1,54 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.group05.booksofbliss.model.entity;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 @Data
 @Entity
 @NoArgsConstructor
 public class Account implements Serializable {
-    @Id private String username;
+    @Id
+    private String username;
     private String firstname;
     private String lastname;
     private String password;
     private String address;
     private double balance;
     
-    // THIS SHIT IS BROKEN
-    
-//    @JoinTable(name = "UserReview",
-//            joinColumns = @JoinColumn(name = "reviewer"),
-//            inverseJoinColumns = @JoinColumn(name = "reviewee"),
-//            )
-//    @ManyToMany
-//    private List<Account> reviewsGiven;
-//    
-//    @ManyToMany(mappedBy = "reviewsGiven")
-//    private List<Account> reviewsReceived;
-    
-//    @OneToMany(mappedBy = "reviewer")
-//    private List<UserReview> reviewsGiven;
-//
-//    @OneToMany(mappedBy = "reviewee")
-//    private List<UserReview> reviewsReceived;
+    @OneToMany(mappedBy = "reviewer")
+    private List<UserReview> reviewsGiven;
+
+    @OneToMany(mappedBy = "reviewee")
+    private List<UserReview> reviewsReceived;
 
     @OneToMany(mappedBy = "publishedBy")
     private List<Listing> listings;

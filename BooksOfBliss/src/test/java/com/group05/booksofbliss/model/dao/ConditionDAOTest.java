@@ -1,6 +1,6 @@
+package com.group05.booksofbliss.model.dao;
 
-import com.group05.booksofbliss.model.dao.AccountDAO;
-import com.group05.booksofbliss.model.entity.Account;
+import com.group05.booksofbliss.model.entity.Condition;
 import javax.ejb.EJB;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -14,7 +14,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class AccountDAOTest {
+public class ConditionDAOTest {
 
     @Deployment
     public static WebArchive createDeployment() {
@@ -25,25 +25,22 @@ public class AccountDAOTest {
     }
 
     @EJB
-    private AccountDAO accountDAO;
+    private ConditionDAO dao;
 
-    private Account account = new Account("firstName", "lastName", "username", "Password123!", "Sannegarden", 500.0);
+    private Condition condition = new Condition("Legendary");
 
     @Before
     public void init() {
-        accountDAO.create(account);
+        dao.create(condition);
     }
 
     @After
     public void clean() {
-        accountDAO.remove(account);
+        dao.remove(condition);
     }
 
-    //Checks if the Username is correct.
     @Test
-    public void checkThatFindUsersMatchingNameMatchesCorrectly() {
-        Assert.assertEquals(accountDAO
-                .findByUsername(account.getUsername()).getUsername(),
-                account.getUsername());
+    public void checkInsertedEqualsRetrieved() {
+        Assert.assertEquals(condition, dao.findByPrimaryKey(condition.getName()));
     }
 }
