@@ -28,11 +28,6 @@ public class AuthorDAO extends AbstractDAO<Author, String> {
     }
     
     public Author findByName(String name) {
-        Author author = getQueryFactory()
-                            .select(QAuthor.author)
-                            .from(QAuthor.author)
-                            .where(QAuthor.author.name.eq(name))
-                            .fetchOne();
-        return author;
+        return findByPrimaryKey(name);
     }
 }
