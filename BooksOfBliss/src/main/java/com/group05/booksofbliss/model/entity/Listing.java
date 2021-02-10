@@ -2,6 +2,7 @@ package com.group05.booksofbliss.model.entity;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -10,16 +11,25 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Data
 @NoArgsConstructor
 @Entity
+@RequiredArgsConstructor
 public class Listing implements Serializable {
 
     @Id
     @GeneratedValue
+    @NonNull
     private int id;
-    private Instant date;
+    @NonNull
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateTime;
+    @NonNull
     private double price;
     private String description;
 
@@ -38,10 +48,10 @@ public class Listing implements Serializable {
     @OneToOne(mappedBy = "listing")
     private Purchase purchase;
 
-    public Listing(int id, Instant date, double price, String description) {
+    /*public Listing(int id, Date date, double price, String description) {
         this.id = id;
-        this.date = date;
+        this.dateTime = date;
         this.price = price;
         this.description = description;
-    }
+    }*/
 }

@@ -23,6 +23,7 @@ public class AccountDAO extends AbstractDAO<Account, String> {
     }
 
     public Account findByUsername(String username) {
-        return findByPrimaryKey(username);
+        return find(username);
     }
+    
 }

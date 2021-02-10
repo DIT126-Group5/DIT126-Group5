@@ -23,6 +23,6 @@ public class AuthorDAO extends AbstractDAO<Author, String> {
     }
 
     public Author findByName(String name) {
-        return findByPrimaryKey(name);
+        return find(name);
     }
 }

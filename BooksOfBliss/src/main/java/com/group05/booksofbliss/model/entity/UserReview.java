@@ -27,4 +27,8 @@ public class UserReview implements Serializable {
     
     private String comment;
     private int rating;
+    
+    
+    //Kanske inte rätt sätt att modellera detta på
+    //Gav förslag på ISA-relation
 }

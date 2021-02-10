@@ -41,6 +41,6 @@ public class ConditionDAOTest {
 
     @Test
     public void checkInsertedEqualsRetrieved() {
-        Assert.assertEquals(condition, dao.findByPrimaryKey(condition.getName()));
+        Assert.assertEquals(condition, dao.find(condition.getName()));
     }
 }

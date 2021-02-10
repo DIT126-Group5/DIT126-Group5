@@ -23,6 +23,6 @@ public class BookDAO extends AbstractDAO<Book, String> {
     }
     
     public Book findByISBN(String isbn) {
-        return findByPrimaryKey(isbn);
+        return find(isbn);
     }
 }

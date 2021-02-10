@@ -36,7 +36,7 @@ public abstract class AbstractDAO<T, P> {
     }
 
     //Find by primary key
-    public T findByPrimaryKey(P primaryKey) {
+    public T find(P primaryKey) {
         return getEntityManager().find(entityType, primaryKey);
     }
 

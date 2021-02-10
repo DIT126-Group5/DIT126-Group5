@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Condition implements Serializable {
     @Id private String name;
-    
+    //KÖpare kanske ska ha condition också, i purchase
     @OneToMany(mappedBy = "condition")
     private List<Listing> listings;
 

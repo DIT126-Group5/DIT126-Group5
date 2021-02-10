@@ -24,6 +24,6 @@ public class CategoryDAO extends AbstractDAO<Category, String> {
     }
 
     public Category findByName(String name) {
-        return findByPrimaryKey(name);
+        return find(name);
     }
 }

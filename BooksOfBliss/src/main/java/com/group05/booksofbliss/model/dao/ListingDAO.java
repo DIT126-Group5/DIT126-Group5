@@ -20,7 +20,7 @@ public class ListingDAO extends AbstractDAO<Listing, String> {
     }
     
     //Not the best search method
-    private List<Listing> search(String searchInput){
+    public List<Listing> search(String searchInput){
         List<Listing> listings = findAll();
         List<Listing> searchedListings = new ArrayList<>();
         for(Listing listing : listings){
@@ -29,6 +29,9 @@ public class ListingDAO extends AbstractDAO<Listing, String> {
                 searchedListings.add(listing);
         }
         return searchedListings;
+    }
+    public List<Listing> sortListingsByDate(String order) {
+        throw new UnsupportedOperationException("Not yet implemented");
     }
 }
 
