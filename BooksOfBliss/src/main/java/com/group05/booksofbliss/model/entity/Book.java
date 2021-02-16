@@ -10,34 +10,38 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Data
 @Entity
 @NoArgsConstructor
+@RequiredArgsConstructor
 public class Book implements Serializable {
 
     @Id
+    @NonNull
     private String isbn;
+    @NonNull
     private String title;
 
-//    @JoinTable(name = "book_author",
-//            joinColumns = @JoinColumn(name = "book"),
-//            inverseJoinColumns = @JoinColumn(name = "author")
-//            )
-//    @ManyToMany
-//    private List<Author> authors;
+    @JoinTable(name = "book_author",
+            joinColumns = @JoinColumn(name = "book"),
+            inverseJoinColumns = @JoinColumn(name = "author")
+    )
+    @ManyToMany //(cascade = {CascadeType.MERGE})
+    @NonNull
+    private List<Author> authors;
+
     @JoinTable(name = "book_category",
             joinColumns = @JoinColumn(name = "book"),
             inverseJoinColumns = @JoinColumn(name = "category")
     )
     @ManyToMany
+    @NonNull
     private List<Category> categories;
 
     @OneToMany(mappedBy = "book")
     private List<Listing> listings;
 
-    public Book(String isbn, String title) {
-        this.isbn = isbn;
-        this.title = title;
-    }
 }

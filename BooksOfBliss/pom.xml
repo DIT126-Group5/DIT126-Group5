@@ -6,7 +6,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>BooksOfBliss-1.0-SNAPSHOT</name>
-    
+
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -28,6 +28,21 @@
         </dependencies>
     </dependencyManagement>
     <dependencies>
+
+        <!-- PRIMEFACES -->
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>8.0</version>
+        </dependency>
+
+        <!-- OMNIFACES -->
+        <dependency>
+            <groupId>org.omnifaces</groupId>
+            <artifactId>omnifaces</artifactId>
+            <version>3.10.1</version>
+        </dependency>
+
         <!-- PROJECT LOMBOK -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -44,7 +59,7 @@
             <version>${jakartaee}</version>
             <scope>provided</scope>
         </dependency>
-        
+
         <!-- JUNIT -->
         <dependency>
             <groupId>junit</groupId>
@@ -52,7 +67,7 @@
             <version>4.13.1</version>
             <scope>test</scope>
         </dependency>
-        
+
         <!-- QueryDSL -->
         <dependency>
             <groupId>com.querydsl</groupId>
@@ -77,7 +92,6 @@
         <dependency>
             <groupId>org.jboss.arquillian.junit</groupId>
             <artifactId>arquillian-junit-container</artifactId>
-            <version>1.6.0.Final</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -89,7 +103,7 @@
         <dependency>
             <groupId>fish.payara.extras</groupId>
             <artifactId>payara-embedded-all</artifactId>
-            <version>5.194</version>
+            <version>5.181</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

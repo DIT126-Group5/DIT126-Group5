@@ -1,7 +1,6 @@
 package com.group05.booksofbliss.model.entity;
 
 import java.io.Serializable;
-import java.time.Instant;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,12 +8,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Data
 @NoArgsConstructor
@@ -31,16 +30,20 @@ public class Listing implements Serializable {
     private Date dateTime;
     @NonNull
     private double price;
+    @NonNull
     private String description;
 
+    @NonNull
     @JoinColumn(name = "condition")
-    @ManyToOne
+    @ManyToOne //(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Condition condition;
 
+    @NonNull
     @JoinColumn(name = "publishedBy")
     @ManyToOne
     private Account publishedBy;
 
+    @NonNull
     @JoinColumn(name = "book")
     @ManyToOne
     private Book book;

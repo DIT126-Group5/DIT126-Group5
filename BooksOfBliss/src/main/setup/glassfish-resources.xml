@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE resources PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Resource
+Definitions//EN" "http://glassfish.org/dtds/glassfish-resources_1_5.dtd">
+<resources>
+    <jdbc-connection-pool datasource-classname="org.apache.derby.jdbc.ClientDataSource"
+                          name="derby_net_bobDBprod_appPool" res-type="javax.sql.DataSource">
+        <property name="serverName" value="localhost"/>
+        <property name="portNumber" value="1527"/>
+        <property name="databaseName" value="bobDBprod"/>
+        <property name="User" value=""/>
+        <property name="Password" value=""/>
+        <property name="driverClass" value="org.apache.derby.jdbc.ClientDriver"/>
+    </jdbc-connection-pool>
+    <jdbc-resource enabled="true" jndi-name="jdbc/bobDBprod"
+                   object-type="user" pool-name="derby_net_bobDBprod_appPool"/>
+</resources>

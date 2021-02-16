@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,18 +11,15 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @NoArgsConstructor
-
 public class Author implements Serializable {
-    @Id private String name;
-    
+
+    @Id
+    private String name;
+
     public Author(String name) {
         this.name = name;
     }
-    
-   /*@JoinTable(name = "author_written_books",
-            joinColumns = @JoinColumn(name = "author"),
-            inverseJoinColumns = @JoinColumn(name = "book")
-            )*/
-   @ManyToMany
+
+    @ManyToMany(mappedBy = "authors")
     private List<Book> book;
 }
