@@ -51,10 +51,4 @@ public class Listing implements Serializable {
     @OneToOne(mappedBy = "listing")
     private Purchase purchase;
 
-    /*public Listing(int id, Date date, double price, String description) {
-        this.id = id;
-        this.dateTime = date;
-        this.price = price;
-        this.description = description;
-    }*/
 }

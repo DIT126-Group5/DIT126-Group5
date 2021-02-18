@@ -19,7 +19,7 @@ import lombok.Getter;
 @Named
 @ViewScoped
 @Getter
-public class ListingView implements Serializable {
+public class ListingBackingBean implements Serializable {
 
     private List<Listing> listings;
 
