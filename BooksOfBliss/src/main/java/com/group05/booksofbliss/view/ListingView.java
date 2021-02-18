@@ -31,7 +31,7 @@ public class ListingView implements Serializable {
         List<Author> authors = new ArrayList<>();
         Author author = new Author("Mr Bean");
         authors.add(author);
-
+        listings = new ArrayList<>();
         listings.add(new Listing(0,
                 new Date(), 0,
                 "description",
@@ -53,5 +53,7 @@ public class ListingView implements Serializable {
                 acc,
                 (new Book("isbn3", "hoho", authors, Arrays.asList(new Category("Deckkk"))))));
     }
-
+    public List<Listing> getListings() {
+        return new ArrayList<>(listings);
+    }
 }
