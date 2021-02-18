@@ -54,6 +54,6 @@ public class ListingView implements Serializable {
                 (new Book("isbn3", "hoho", authors, Arrays.asList(new Category("Deckkk"))))));
     }
     public List<Listing> getListings() {
-        return new ArrayList<>(listings);
+        return this.listings;
     }
 }
