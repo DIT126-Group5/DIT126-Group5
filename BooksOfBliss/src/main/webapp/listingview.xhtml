@@ -10,8 +10,16 @@
     </h:head>
 
     <h:body> 
-        <ui:repeat var="listing" value="#{listingView.listings[1]}"> 
-            <h1>#{listing}</h1>
+        <ui:repeat var="listing" value="#{listingView.listings[0]}"> 
+            <h1>Titel: #{listing.book.title}</h1>
+            <h1>Forfattare: #{listing.book.authors}</h1>
+            <h1>Kategori: #{listing.book.categories}</h1>
+            <h1>ISBN: #{listing.book.isbn}</h1>
+            <h1>Beskrivning: #{listing.description}</h1>
+            <h1>Pris: #{listing.price}</h1>
         </ui:repeat> 
+<h:form>  
+    <h:commandButton value = "Kop boken" action="purchase.xhtml" /> 
+    </h:form> 
     </h:body>
 </html>

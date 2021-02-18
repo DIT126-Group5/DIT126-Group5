@@ -16,7 +16,7 @@ public class Category implements Serializable {
     @Id private String name;
     
 
-@ManyToMany (mappedBy = "categories") List<Book> books;
+    @ManyToMany (mappedBy = "categories") List<Book> books;
     
 
     public Category(String name) {
