@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:body>
+
+        <ui:composition template="WEB-INF/template/common.xhtml">
+            <ui:define name="title">Checkout</ui:define>
+            <ui:define name="content">
+
+                <style>
+
+                </style>
+
+                <div class="container">
+                    <div class="row justify-content-between mt-5">
+                        <div class="col-7 pt-2 pb-4 shadow bg-white rounded">
+                            <h5>You are about to buy</h5>
+                            <div class="row">
+                                <img src="https://edit.org/images/cat/book-covers-big-2019101610.jpg" alt="Book cover" style="height: 10rem" class="col col-auto" />
+                                <div class="col d-flex flex-column">
+                                    <div><strong>#{checkoutBackingBean.listing.book.title} (1997)</strong></div>
+                                    <small class="text-muted">
+                                        <ui:repeat value="#{checkoutBackingBean.listing.book.authors}" var="author">
+                                            #{author.name}#{not loop.last ? ', ' : ''}
+                                        </ui:repeat></small>
+                                    <small class="text-muted">ISBN: #{checkoutBackingBean.listing.book.isbn}</small>
+                                    <small class="text-muted">Condition: #{checkoutBackingBean.listing.condition.name}</small>
+                                </div>
+                            </div>
+
+                            <h5 class="mt-3">Delivery address</h5>
+                            <div class="form-row">
+                                <div class="col-8 form-group">
+                                    <h:inputText class="form-control" pt:placeholder="Street" value="#{checkoutBackingBean.street}" />
+                                </div>
+                                <div class="col-4 form-group">
+                                    <h:inputText class="form-control" pt:placeholder="Postal code" value="#{checkoutBackingBean.postalCode}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h:inputText class="form-control" pt:placeholder="City" value="#{checkoutBackingBean.city}" />
+                            </div>
+                        </div>
+                        <div class="col-4 pt-2 pb-4 shadow bg-white rounded">
+                            <h5>Sold by</h5>
+                            <div>#{checkoutBackingBean.listing.publishedBy.firstname} #{checkoutBackingBean.listing.publishedBy.lastname}</div>
+                            <div class="text-muted">Reputation: 4.3/5</div>
+                            <div class="text-muted">City: Malmö</div>
+
+                            <h5 class="mt-3">Payment</h5>
+                            <div class="text-muted d-flex justify-content-between"><span>Current balance:</span><span>1400 kr</span></div>
+                            <div class="text-muted d-flex justify-content-between"><span>Price:</span><span>#{checkoutBackingBean.listing.price} kr</span></div>
+
+                            <h:commandButton
+                                value="Confirm Purchase"
+                                type="submit"
+                                action="#{user.goLoginPage}"
+                                class="btn btn-primary d-block mx-auto mt-5" />
+                        </div>
+                    </div>
+                </div>
+
+            </ui:define>
+        </ui:composition>
+
+    </h:body>
+</html>
+
