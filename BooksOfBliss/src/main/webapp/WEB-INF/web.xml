@@ -18,6 +18,10 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>test.xhtml</welcome-file>
+        <welcome-file>test</welcome-file>
     </welcome-file-list>
+    <context-param>
+        <param-name>org.omnifaces.FACES_VIEWS_SCAN_PATHS</param-name>
+        <param-value>/*.xhtml/*</param-value>
+    </context-param>
 </web-app>
