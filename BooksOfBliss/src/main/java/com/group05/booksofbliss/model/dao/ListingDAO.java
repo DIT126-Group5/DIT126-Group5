@@ -9,7 +9,7 @@ import javax.persistence.PersistenceContext;
 import lombok.Getter;
 
 @Stateless
-public class ListingDAO extends AbstractDAO<Listing, Integer> {
+public class ListingDAO extends AbstractDAO<Listing, Long> {
 
     @Getter
     @PersistenceContext(unitName = "bobDB")

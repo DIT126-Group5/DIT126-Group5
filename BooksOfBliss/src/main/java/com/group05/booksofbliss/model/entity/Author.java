@@ -5,20 +5,28 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
-@Data
 @Entity
+@Data
 @NoArgsConstructor
+@RequiredArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(onlyExplicitlyIncluded = true)
 public class Author implements Serializable {
 
     @Id
+    @NonNull
+    @NotNull
+    @EqualsAndHashCode.Include
+    @ToString.Include
     private String name;
-
-    public Author(String name) {
-        this.name = name;
-    }
 
     @ManyToMany(mappedBy = "authors")
     private List<Book> book;
