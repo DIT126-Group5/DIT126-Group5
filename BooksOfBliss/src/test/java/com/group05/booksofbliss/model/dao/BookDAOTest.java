@@ -1,9 +1,5 @@
 package com.group05.booksofbliss.model.dao;
 
-import com.group05.booksofbliss.model.entity.Author;
-import com.group05.booksofbliss.model.entity.Book;
-import com.group05.booksofbliss.model.entity.Category;
-import java.util.Arrays;
 import javax.ejb.EJB;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -23,10 +19,12 @@ public class BookDAOTest {
                 .addAsResource("META-INF/persistence.xml")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
+
     @EJB
     private BookDAO bookDAO;
-    private Book book = new Book("9780007103072", "Bible", Arrays.asList(new Author("AuthorName")),
-            Arrays.asList(new Category("")));
+
+    //private Book book = new Book("9780007103072", "Bible", Arrays.asList(new Author("AuthorName")),
+    //        Arrays.asList(new Category("")));
 
     /*
     @Before

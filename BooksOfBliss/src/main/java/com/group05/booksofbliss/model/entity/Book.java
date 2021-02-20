@@ -8,40 +8,50 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
-@Data
 @Entity
+@Data
 @NoArgsConstructor
 @RequiredArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(onlyExplicitlyIncluded = true)
 public class Book implements Serializable {
 
     @Id
     @NonNull
+    @NotNull
+    @EqualsAndHashCode.Include
+    @ToString.Include
     private String isbn;
+
     @NonNull
+    @NotNull
+    @ToString.Include
     private String title;
 
+    @ToString.Include
     @JoinTable(name = "book_author",
             joinColumns = @JoinColumn(name = "book"),
             inverseJoinColumns = @JoinColumn(name = "author")
     )
     @ManyToMany //(cascade = {CascadeType.MERGE})
-    @NonNull
     private List<Author> authors;
 
+    @ToString.Include
     @JoinTable(name = "book_category",
             joinColumns = @JoinColumn(name = "book"),
             inverseJoinColumns = @JoinColumn(name = "category")
     )
     @ManyToMany
-    @NonNull
     private List<Category> categories;
 
     @OneToMany(mappedBy = "book")
     private List<Listing> listings;
-
 }
