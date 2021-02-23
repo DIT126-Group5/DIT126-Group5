@@ -29,6 +29,13 @@
     </dependencyManagement>
     <dependencies>
 
+        <!-- PRIMEFACES -->
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>8.0</version>
+        </dependency>
+
         <!-- BUTTERFACES -->
         <dependency>
             <!-- Bootstrap 4.6.0, JQuery 3.5.1-->
