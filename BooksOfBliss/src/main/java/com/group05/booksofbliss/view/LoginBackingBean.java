@@ -5,10 +5,6 @@
  */
 package com.group05.booksofbliss.view;
 
-/**
- *
- * @author sophiapham
- */
 public class LoginBackingBean {
 
 }

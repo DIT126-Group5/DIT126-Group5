@@ -26,7 +26,7 @@
                 <h:form>
                     <p:menubar>
                         <p:menuitem value="Search Form">
-                            <p:inputText placeholder="Sök efter titel, författare eller ISBN" id="searchtext" 
+                            <p:inputText placeholder="Sök efter titel, författare eller ISBN" id="searchtext"
                                          value="#{navBar.searchString}" required="true" label="Text 1" style="width: 400px;">
                                 <f:validateLength minimum="2"/>
                             </p:inputText>
@@ -37,7 +37,7 @@
                         </p:menuitem>
 
                         <p:menuitem value="Logga in" url="login.xhtml" style="margin-left:20px"/>
-                        <p:menuitem value="Registrera dig" url="register.xhtml" style="margin-left:20px"/>
+                        <p:menuitem value="Registrera dig" url="signup.xhtml" style="margin-left:20px"/>
                         <p:submenu label="Om oss" style="margin-left:20px">
                             <p:menuitem value="Om oss" url="aboutus.xhtml"/>
                             <p:menuitem value="Kontakt" url="contact.xhtml"/>
@@ -47,7 +47,7 @@
                 </h:form>
             </div>
         </nav>
-        <main>               
+        <main>
             <ui:insert name="content"/>
         </main>
     </h:body>
