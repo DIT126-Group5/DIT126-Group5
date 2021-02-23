@@ -21,9 +21,13 @@
      <b:repeat value="#{browseBackingBean.listings}"
                      var="listing"
                      rendered="true">
-  <div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="resources/assets/images/bible.jpg" alt="Card image cap"></img>
-  <div class="card-body">
+  <div class="card mb-3" style="max-width: 540px;">
+       <div class="row no-gutters">
+    <div class="col-md-4">
+    <img src="resources/assets/images/bible.jpg" class="card-img" alt="Card image cap"></img>
+  </div>
+    <div class="col-md-8">
+    <div class="card-body">
     <h5 class="card-title">#{listing.book.title}</h5>
     <p class="card-text">#{listing.description}</p>
   </div>
@@ -35,7 +39,9 @@
     <li class="list-group-item">Condition: #{listing.condition.name}</li>
   </ul>
   <a href="#" class="btn btn-primary">Buy</a>
-</div>
+   </div>       
+      </div>
+      </div>
          </b:repeat>
 </div>
             </ui:define>
