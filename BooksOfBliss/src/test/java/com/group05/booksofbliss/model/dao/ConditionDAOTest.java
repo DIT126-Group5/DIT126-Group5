@@ -1,7 +1,7 @@
 package com.group05.booksofbliss.model.dao;
 
 import com.group05.booksofbliss.model.entity.Condition;
-import javax.ejb.EJB;
+import javax.inject.Inject;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -24,7 +24,7 @@ public class ConditionDAOTest {
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
-    @EJB
+    @Inject
     private ConditionDAO dao;
 
     private Condition condition = new Condition("Legendary");
