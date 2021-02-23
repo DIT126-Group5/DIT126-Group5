@@ -27,25 +27,12 @@ public class BrowseBackingBean implements Serializable {
 
     @EJB
     private ListingDAO listingDAO;
-    
-    private List<Listing> listings = Arrays.asList(new Listing(
-                new Date(), 100,
-                "description",
-                new Condition("kinda ok"),
-                new Account("username", "firstname", "lastname", "password", "address", 50),
-                (new Book("isbn1", "title"))), new Listing(
-                new Date(), 150,
-                "description",
-                new Condition("kinda ok"),
-                new Account("username", "firstname", "lastname", "password", "address", 50),
-                (new Book("isbn1", "title2"))), new Listing(
-                new Date(), 300,
-                "description",
-                new Condition("kinda ok"),
-                new Account("username", "firstname", "lastname", "password", "address", 50),
-                (new Book("isbn1", "title3"))));
 
     public List<Listing> getListings() {
         return listingDAO.findAll();
+    }
+    
+    public Listing getListing(long id) {
+        return listingDAO.find(id);
     }
 }
