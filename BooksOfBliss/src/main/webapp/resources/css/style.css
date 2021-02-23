@@ -2,3 +2,11 @@ a.custom-card,
 a.custom-card:hover {
   color: inherit;
 }
+
+.container {
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: #8ca0ff;
+  padding: 5px;
+  margin-bottom: 1em;
+}
