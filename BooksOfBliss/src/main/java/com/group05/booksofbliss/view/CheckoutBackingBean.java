@@ -17,7 +17,7 @@ public class CheckoutBackingBean implements Serializable {
 
     @Inject
     @Param(pathIndex = 0)
-    private Integer listingId;
+    private Long listingId;
 
     @EJB
     private ListingDAO listingDAO;
