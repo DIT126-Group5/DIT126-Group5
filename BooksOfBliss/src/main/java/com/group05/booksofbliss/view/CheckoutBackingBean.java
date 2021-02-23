@@ -1,4 +1,4 @@
-package com.group05.booksofbliss.view;
+    package com.group05.booksofbliss.view;
 
 import com.group05.booksofbliss.model.dao.ListingDAO;
 import com.group05.booksofbliss.model.entity.Listing;
