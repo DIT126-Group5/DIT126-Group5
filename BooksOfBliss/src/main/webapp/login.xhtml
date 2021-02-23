@@ -19,16 +19,16 @@ and open the template in the editor.
         <h:form>
             <div  class="centerDiv" style="width: 400px">
                 <p:panel>
-                    <f:facet name="header">Login</f:facet>
+                    <f:facet name="header">Logga in</f:facet>
                     <h:panelGrid columns="2">
-                        Username:
-                        <h:inputText id="loginUsername" value="" required="true" label="login"/>
-                        Password:
-                        <h:inputSecret id="loginPassword" value="" required="true" label="Senha"/>
+                        Användarnamn:
+                        <h:inputText id="loginUsername" value="" required="true" label="loginUsername"/>
+                        Lösenord:
+                        <h:inputSecret id="loginPassword" value="" required="true" label="loginPassword"/>
 
                     </h:panelGrid>
-                    <p:commandButton value="login" ajax="false"/>
-                    <h:button value="sign up" outcome="signup.xhtml"/>
+                    <p:commandButton value="Logga in" ajax="false"/>
+                    <h:button value="Registrera" outcome="signup.xhtml"/>
                 </p:panel>
             </div>
         </h:form>
