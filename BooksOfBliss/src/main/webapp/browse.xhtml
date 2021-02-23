@@ -8,18 +8,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:b="http://butterfaces.org/components">
 
-    <h:head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-        <title><ui:insert name="title" /></title>
-
-        <!-- Custom styles -->
-        <h:outputStylesheet name="css/style.css" />
-
-        <!-- Custom scripts -->
-        <h:outputScript name="js/main.js" />
-    </h:head>
     <h:body>
 
         <ui:composition template="WEB-INF/template/common.xhtml">
@@ -50,10 +39,10 @@
                                                                                           rendered="true"> #{author.name} </b:repeat></li>
                                             <li class="list-group-item">Price: #{listing.price}</li>
                                             <li class="list-group-item">Condition: #{listing.condition.name}</li>
-                                        </ul>   
+                                        </ul>
                                     </div>
                                     <a href="../listingview/#{listing.id}" class="stretched-link"></a>
-                                </div>    
+                                </div>
                             </div>
                         </b:repeat>
                     </ul>
