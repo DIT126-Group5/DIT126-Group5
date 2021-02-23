@@ -29,6 +29,13 @@
     </dependencyManagement>
     <dependencies>
 
+        <!-- PRIMEFACES -->
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>8.0</version>
+        </dependency>
+
         <!-- BUTTERFACES -->
         <dependency>
             <!-- Bootstrap 4.6.0, JQuery 3.5.1-->
@@ -59,6 +66,14 @@
             <artifactId>javaee-api</artifactId>
             <version>${jakartaee}</version>
             <scope>provided</scope>
+        </dependency>
+
+        <!-- JavaMoney Moneta -->
+        <dependency>
+            <groupId>org.javamoney</groupId>
+            <artifactId>moneta</artifactId>
+            <version>1.4.2</version>
+            <type>pom</type>
         </dependency>
 
         <!-- JUNIT -->

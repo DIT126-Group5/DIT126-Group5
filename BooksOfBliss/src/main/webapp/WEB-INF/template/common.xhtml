@@ -1,13 +1,16 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    <h:head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-        <title><ui:insert name="title" /></title>
+    <h:head>
+        <title>Books of Bliss</title>
+        <meta charset="utf-8" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
         <!-- Custom styles -->
         <h:outputStylesheet name="css/style.css" />
@@ -15,13 +18,37 @@
         <!-- Custom scripts -->
         <h:outputScript name="js/main.js" />
     </h:head>
+
+
     <h:body>
         <nav>
-            <!-- Nav here -->
+            <div class="container">
+                <h:form>
+                    <p:menubar>
+                        <p:menuitem value="Search Form">
+                            <p:inputText placeholder="Sök efter titel, författare eller ISBN" id="searchtext"
+                                         value="#{navBar.searchString}" required="true" label="Text 1" style="width: 400px;">
+                                <f:validateLength minimum="2"/>
+                            </p:inputText>
+                        </p:menuitem>
+
+                        <p:menuitem title="clickSearch">
+                            <p:commandButton value="Sök"/>
+                        </p:menuitem>
+
+                        <p:menuitem value="Logga in" url="login.xhtml" style="margin-left:20px"/>
+                        <p:menuitem value="Registrera dig" url="signup.xhtml" style="margin-left:20px"/>
+                        <p:submenu label="Om oss" style="margin-left:20px">
+                            <p:menuitem value="Om oss" url="aboutus.xhtml"/>
+                            <p:menuitem value="Kontakt" url="contact.xhtml"/>
+                        </p:submenu>
+                        <p:menuitem value="Sälj böcker" url="publish.view" style="margin-left:20px"/>
+                    </p:menubar>
+                </h:form>
+            </div>
         </nav>
         <main>
-            <ui:insert name="content" />
+            <ui:insert name="content"/>
         </main>
     </h:body>
 </html>
-

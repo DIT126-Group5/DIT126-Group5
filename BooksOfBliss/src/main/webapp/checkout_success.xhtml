@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:body>
+
+        <ui:composition template="WEB-INF/template/common.xhtml">
+            <ui:define name="title">Köp genomfört</ui:define>
+            <ui:define name="content">
+
+                <div class="container">
+                    <div class="mt-5 py-5 pb-4 shadow bg-white rounded text-center">
+                        <h2>Köp genomfört!</h2>
+                        <h:button outcome="back_home" value="Tillbaka till startsidan"
+                                  class="btn btn-secondary mt-2" />
+                    </div>
+                </div>
+
+            </ui:define>
+        </ui:composition>
+
+    </h:body>
+</html>
+
