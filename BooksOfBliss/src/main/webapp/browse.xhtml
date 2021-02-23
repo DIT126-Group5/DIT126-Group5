@@ -35,15 +35,14 @@
                         <b:repeat value="#{browseBackingBean.listings}"
                                   var="listing"
                                   rendered="true">
-                            <div class="card mb-3" >
+                            <div class="card mb-3" style='max-height: 270px; overflow: hidden;'>
                                 <div class="row no-gutters">
                                     <div class="col-md-4">
-                                        <img src="resources/assets/images/bible.jpg" class="card-img" alt="Card image cap"></img>
+                                        <img src="..\resources\assets\images\bible.jpg" style='width: 100%; object-fit: contain' alt="Card image cap"/>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
                                             <h5 class="card-title">#{listing.book.title}</h5>
-                                            <p class="card-text">#{listing.description}</p>
                                         </div>
                                         <ul class="list-group list-group-flush">
                                             <li class="list-group-item">Author: <b:repeat value="#{listing.book.authors}"
