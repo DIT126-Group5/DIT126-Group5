@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <h:body>
+        <h:form>
+            <div  class="centerDiv" style="width: 400px">
+                <p:panel>
+                    <f:facet name="header">Login</f:facet>
+                    <h:panelGrid columns="2">
+                        Username:
+                        <h:inputText id="loginUsername" value="" required="true" label="login"/>
+                        Password:
+                        <h:inputSecret id="loginPassword" value="" required="true" label="Senha"/>
+
+                    </h:panelGrid>
+                    <p:commandButton value="login" ajax="false"/>
+                    <h:button value="sign up" outcome="signup.xhtml"/>
+                </p:panel>
+            </div>
+        </h:form>
+    </h:body>
+</html>
