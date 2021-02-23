@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://butterfaces.org/components">
+
+    <h:head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+        <title><ui:insert name="title" /></title>
+
+        <!-- Custom styles -->
+        <h:outputStylesheet name="css/style.css" />
+
+        <!-- Custom scripts -->
+        <h:outputScript name="js/main.js" />
+    </h:head>
+    <h:body>
+
+        <ui:composition template="WEB-INF/template/common.xhtml">
+            <ui:define name="title">Browse</ui:define>
+            <ui:define name="content">
+
+                <style>
+
+                </style>
+
+                <div class="container">
+                    <ul class="list-group w-100">
+                        <b:repeat value="#{browseBackingBean.listings}"
+                                  var="listing"
+                                  rendered="true">
+                            <div class="card mb-3" >
+                                <div class="row no-gutters">
+                                    <div class="col-md-4">
+                                        <img src="resources/assets/images/bible.jpg" class="card-img" alt="Card image cap"></img>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">#{listing.book.title}</h5>
+                                            <p class="card-text">#{listing.description}</p>
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">Author: <b:repeat value="#{listing.book.authors}"
+                                                                                          var="author"
+                                                                                          rendered="true"> #{author.name} </b:repeat></li>
+                                            <li class="list-group-item">Price: #{listing.price}</li>
+                                            <li class="list-group-item">Condition: #{listing.condition.name}</li>
+                                        </ul>   
+                                    </div>    
+                                    <a href="#" class="stretched-link"></a>
+                                </div>    
+                            </div>
+                        </b:repeat>
+                    </ul>
+                </div>
+            </ui:define>
+        </ui:composition>
+
+    </h:body>
+</html>
+
