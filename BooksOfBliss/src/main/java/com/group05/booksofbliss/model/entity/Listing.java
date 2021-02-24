@@ -62,6 +62,7 @@ public class Listing implements Serializable {
     @OneToOne(mappedBy = "listing")
     private Purchase purchase;
 
+
     // Special handling of hashCode and equals for entity with generated primary key.
     @Override
     public int hashCode() {

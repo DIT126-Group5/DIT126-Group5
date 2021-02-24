@@ -16,7 +16,7 @@ import org.javamoney.moneta.Money;
 @Named
 @ViewScoped
 @Getter
-public class ListingView implements Serializable {
+public class ListingBackingBean implements Serializable {
 
     private List<Listing> listings;
 
