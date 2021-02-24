@@ -6,40 +6,38 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       >
-    <h:head>
-        <title>Publish a listing</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </h:head>
     <h:body>
         <ui:composition template="WEB-INF/template/common.xhtml">
             <ui:define name="title">Skapa annons</ui:define>
             <ui:define name="content">
 
-                <div class="ui-fluid p-formgrid p-grid">
-                    <div class="p-field p-col-12 p-md-6">
-                        <p:outputLabel for="isbn" value="Skriv in ISBN" />
-                        <p:inputText id="isbn" />
-                    </div>
-                    <div class="p-field p-col-12 p-md-6">
-                        <p:outputLabel for="price" value="Pris" />
-                        <p:inputText id="price" />
-                    </div>
+                <div class="container">
+                    <div class="ui-fluid p-formgrid p-grid">
+                        <div class="p-field p-col-12 p-md-6">
+                            <p:outputLabel for="isbn" value="Skriv in ISBN" />
+                            <p:inputText id="isbn" />
+                        </div>
+                        <div class="p-field p-col-12 p-md-6">
+                            <p:outputLabel for="price" value="Pris" />
+                            <p:inputText id="price" />
+                        </div>
 
-                    <div class="p-field p-col-12 p-md-6">
-                        <p:inputTextarea value="Beskrivning av produkt (valfri)" id="desc" />
-                    </div>
+                        <div class="p-field p-col-12 p-md-6">
+                            <p:inputTextarea value="Beskrivning av produkt (valfri)" id="desc" />
+                        </div>
 
-                    <div class="p-field p-col-12 p-md-3">
-                        <p:selectOneMenu id="cond" value="Condition">
-                            <f:selectItems value="#{publishListingBackingBean.conditions}"/>
-                        </p:selectOneMenu>
+                        <div class="p-field p-col-12 p-md-3">
+                            <p:selectOneMenu id="cond" value="Condition">
+                                <f:selectItems value="#{publishListingBackingBean.conditions}"/>
+                            </p:selectOneMenu>
+                        </div>
+                        <div class="p-field p-col-12 p-md-3">
+                            <p:commandButton value="Publish Listing"
+                                             action="#{publishListingController.publish(price,desc,cond)}"/>
+                        </div>
                     </div>
-                    <div class="p-field p-col-12 p-md-3">
-                        <p:commandButton value="Publish Listing" 
-                                         action="#{publishListingController.publish(price,desc,cond)}"/>
-                    </div>
-
                 </div>
+
             </ui:define>
         </ui:composition>
     </h:body>

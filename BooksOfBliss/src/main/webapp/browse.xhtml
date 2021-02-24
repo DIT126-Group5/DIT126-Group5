@@ -15,19 +15,15 @@
             <ui:define name="title">Bläddra</ui:define>
             <ui:define name="content">
 
-                <style>
-
-                </style>
-
                 <div class="container">
-                    <ul class="list-group w-100">
+                    <ul class="list-group">
                         <b:repeat value="#{browseBackingBean.listings}"
                                   var="listing"
                                   rendered="true">
-                            <div class="card mb-3" style='max-height: 270px; overflow: hidden;'>
+                            <div class="card mb-3" style="max-height: 270px; overflow: hidden;">
                                 <div class="row no-gutters">
                                     <div class="col-md-4">
-                                        <img src="..\resources\assets\images\bible.jpg" style='width: 100%; object-fit: contain' alt="Card image cap"/>
+                                        <h:graphicImage name="assets/images/bible.jpg" style="width: 100%; object-fit: contain" alt="Card image cap" />
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
@@ -35,18 +31,20 @@
                                         </div>
                                         <ul class="list-group list-group-flush">
                                             <li class="list-group-item">Författare: <b:repeat value="#{listing.book.authors}"
-                                                                                          var="author"
-                                                                                          rendered="true"> #{author.name} </b:repeat></li>
+                                                                                              var="author"
+                                                                                              rendered="true"> #{author.name} </b:repeat></li>
                                             <li class="list-group-item">Pris: #{listing.price}</li>
                                             <li class="list-group-item">Skick: #{listing.condition.name}</li>
                                         </ul>
                                     </div>
-                                    <a href="../listingview/#{listing.id}" class="stretched-link"></a>
+                                    <a href="listingview/#{listing.id}" class="stretched-link"></a>
+                                    <!--<h:link outcome="listingview/#{listing.id}" class="stretched-link" />-->
                                 </div>
                             </div>
                         </b:repeat>
                     </ul>
                 </div>
+
             </ui:define>
         </ui:composition>
 

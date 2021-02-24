@@ -15,22 +15,26 @@ and open the template in the editor.
         <ui:composition template="WEB-INF/template/common.xhtml">
             <ui:define name="title">Logga in</ui:define>
             <ui:define name="content">
-                <h:form>
-                    <div  class="centerDiv" style="width: 400px">
-                        <p:panel>
-                            <f:facet name="header">Logga in</f:facet>
-                            <h:panelGrid columns="2">
-                                Användarnamn:
-                                <h:inputText id="loginUsername" value="" required="true" label="loginUsername"/>
-                                Lösenord:
-                                <h:inputSecret id="loginPassword" value="" required="true" label="loginPassword"/>
 
-                            </h:panelGrid>
-                            <p:commandButton value="Logga in" ajax="false"/>
-                            <h:button value="Registrera" outcome="signup.xhtml"/>
-                        </p:panel>
-                    </div>
-                </h:form>
+                <div class="container">
+                    <h:form>
+                        <div  class="centerDiv" style="width: 400px">
+                            <p:panel>
+                                <f:facet name="header">Logga in</f:facet>
+                                <h:panelGrid columns="2">
+                                    Användarnamn:
+                                    <h:inputText id="loginUsername" value="" required="true" label="loginUsername"/>
+                                    Lösenord:
+                                    <h:inputSecret id="loginPassword" value="" required="true" label="loginPassword"/>
+
+                                </h:panelGrid>
+                                <p:commandButton value="Logga in" ajax="false"/>
+                                <h:button value="Registrera" outcome="signup.xhtml"/>
+                            </p:panel>
+                        </div>
+                    </h:form>
+                </div>
+
             </ui:define>
         </ui:composition>
     </h:body>
