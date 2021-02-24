@@ -12,7 +12,7 @@
     <h:body>
 
         <ui:composition template="WEB-INF/template/common.xhtml">
-            <ui:define name="title">Browse</ui:define>
+            <ui:define name="title">Bläddra</ui:define>
             <ui:define name="content">
 
                 <style>
@@ -34,11 +34,11 @@
                                             <h5 class="card-title">#{listing.book.title}</h5>
                                         </div>
                                         <ul class="list-group list-group-flush">
-                                            <li class="list-group-item">Author: <b:repeat value="#{listing.book.authors}"
+                                            <li class="list-group-item">Författare: <b:repeat value="#{listing.book.authors}"
                                                                                           var="author"
                                                                                           rendered="true"> #{author.name} </b:repeat></li>
-                                            <li class="list-group-item">Price: #{listing.price}</li>
-                                            <li class="list-group-item">Condition: #{listing.condition.name}</li>
+                                            <li class="list-group-item">Pris: #{listing.price}</li>
+                                            <li class="list-group-item">Skick: #{listing.condition.name}</li>
                                         </ul>
                                     </div>
                                     <a href="../listingview/#{listing.id}" class="stretched-link"></a>
