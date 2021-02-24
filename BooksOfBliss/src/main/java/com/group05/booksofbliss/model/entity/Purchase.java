@@ -1,7 +1,9 @@
 package com.group05.booksofbliss.model.entity;
 
+import com.group05.booksofbliss.model.entity.attribute.Address;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -48,4 +50,11 @@ public class Purchase implements Serializable {
     //kan vara värt att uppgrade till en senare version av eclipselink för att
     //ha tillgång till LocalDateTime. v 2.7 och uppåt av eclipselink
     //kan skriva över i POM:en
+
+    @NonNull
+    @NotNull
+    @ToString.Include
+    @Embedded
+    private Address deliveryAddress;
+
 }

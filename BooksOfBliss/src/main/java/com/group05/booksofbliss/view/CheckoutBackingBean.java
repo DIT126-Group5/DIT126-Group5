@@ -1,32 +1,30 @@
-    package com.group05.booksofbliss.view;
+package com.group05.booksofbliss.view;
 
-import com.group05.booksofbliss.model.dao.ListingDAO;
 import com.group05.booksofbliss.model.entity.Listing;
+import com.group05.booksofbliss.view.validation.OpenListingValidator;
 import java.io.Serializable;
-import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
+import javax.validation.constraints.NotBlank;
 import lombok.Data;
 import org.omnifaces.cdi.Param;
 
 @Data
-@Named(value = "checkoutBackingBean")
+@Named("checkoutBackingBean")
 @ViewScoped
 public class CheckoutBackingBean implements Serializable {
 
-    @Inject
-    @Param(pathIndex = 0)
-    private Long listingId;
+    @Param(pathIndex = 0, converter = "#{listingConverter}", validatorClasses = {OpenListingValidator.class})
+    private Listing listing;
 
-    @EJB
-    private ListingDAO listingDAO;
-
+    @NotBlank
     private String street;
+    @NotBlank
     private String postalCode;
+    @NotBlank
     private String city;
 
-    public Listing getListing() {
-        return listingDAO.find(listingId);
+    public double getCurrentBalance() {
+        return 100;
     }
 }

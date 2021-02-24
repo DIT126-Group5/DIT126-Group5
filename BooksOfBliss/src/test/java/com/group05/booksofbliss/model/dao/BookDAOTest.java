@@ -1,6 +1,6 @@
 package com.group05.booksofbliss.model.dao;
 
-import javax.ejb.EJB;
+import javax.inject.Inject;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -20,7 +20,7 @@ public class BookDAOTest {
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
-    @EJB
+    @Inject
     private BookDAO bookDAO;
 
     //private Book book = new Book("9780007103072", "Bible", Arrays.asList(new Author("AuthorName")),

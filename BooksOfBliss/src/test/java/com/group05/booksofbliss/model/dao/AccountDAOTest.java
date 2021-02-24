@@ -1,7 +1,9 @@
 
 import com.group05.booksofbliss.model.dao.AccountDAO;
 import com.group05.booksofbliss.model.entity.Account;
-import javax.ejb.EJB;
+import com.group05.booksofbliss.model.entity.attribute.Address;
+import javax.inject.Inject;
+import org.javamoney.moneta.Money;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -24,10 +26,10 @@ public class AccountDAOTest {
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
-    @EJB
+    @Inject
     private AccountDAO accountDAO;
 
-    private Account account = new Account("firstName", "lastName", "username", "Password123!", "Sannegarden", 500.0);
+    private Account account = new Account("firstName", "lastName", "username", "Password123!", new Address("Sannegarden", "45242", "Göteborg"), Money.of(10, "SEK"));
 
     @Before
     public void init() {

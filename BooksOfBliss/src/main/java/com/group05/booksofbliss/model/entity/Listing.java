@@ -2,6 +2,8 @@ package com.group05.booksofbliss.model.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.money.MonetaryAmount;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -33,7 +35,8 @@ public class Listing implements Serializable {
 
     @NonNull
     @NotNull
-    private double price;
+    @Column(precision = 12, scale = 2)
+    private MonetaryAmount price;
 
     @NonNull
     private String description;

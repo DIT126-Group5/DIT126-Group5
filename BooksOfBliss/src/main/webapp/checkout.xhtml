@@ -9,60 +9,59 @@
     <h:body>
 
         <ui:composition template="WEB-INF/template/common.xhtml">
-            <ui:define name="title">Checkout</ui:define>
+            <ui:define name="title">Kassa</ui:define>
             <ui:define name="content">
 
-                <style>
-
-                </style>
-
                 <div class="container">
-                    <div class="row justify-content-between mt-5">
-                        <div class="col-7 pt-2 pb-4 shadow bg-white rounded">
-                            <h5>You are about to buy</h5>
-                            <div class="row">
-                                <img src="https://edit.org/images/cat/book-covers-big-2019101610.jpg" alt="Book cover" style="height: 10rem" class="col col-auto" />
-                                <div class="col d-flex flex-column">
-                                    <div><strong>#{checkoutBackingBean.listing.book.title} (1997)</strong></div>
-                                    <small class="text-muted">
-                                        <ui:repeat value="#{checkoutBackingBean.listing.book.authors}" var="author">
-                                            #{author.name}#{not loop.last ? ', ' : ''}
-                                        </ui:repeat></small>
-                                    <small class="text-muted">ISBN: #{checkoutBackingBean.listing.book.isbn}</small>
-                                    <small class="text-muted">Condition: #{checkoutBackingBean.listing.condition.name}</small>
+                    <h:form>
+                        <div class="row justify-content-between mt-5">
+                            <div class="col-7 pt-2 pb-4 shadow bg-white rounded">
+                                <h5>Du är på väg att köpa</h5>
+                                <div class="row">
+                                    <img src="https://edit.org/images/cat/book-covers-big-2019101610.jpg" alt="Bokomslag" style="height: 10rem" class="col col-auto" />
+                                    <div class="col d-flex flex-column">
+                                        <div><strong>#{checkoutBackingBean.listing.book.title} (1997)</strong></div>
+                                        <small class="text-muted">
+                                            <ui:repeat value="#{checkoutBackingBean.listing.book.authors}" var="author">
+                                                #{author.name}#{not loop.last ? ', ' : ''}
+                                            </ui:repeat></small>
+                                        <small class="text-muted">ISBN: #{checkoutBackingBean.listing.book.isbn}</small>
+                                        <small class="text-muted">Skick: #{checkoutBackingBean.listing.condition.name}</small>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <h5 class="mt-3">Delivery address</h5>
-                            <div class="form-row">
-                                <div class="col-8 form-group">
-                                    <h:inputText class="form-control" pt:placeholder="Street" value="#{checkoutBackingBean.street}" />
+                                <h5 class="mt-3">Leveransadress</h5>
+                                <div class="form-row">
+                                    <div class="col-8 form-group">
+                                        <h:inputText class="form-control" pt:placeholder="Gata" value="#{checkoutBackingBean.street}" />
+                                    </div>
+                                    <div class="col-4 form-group">
+                                        <h:inputText class="form-control" pt:placeholder="Postnummer" value="#{checkoutBackingBean.postalCode}" />
+                                    </div>
                                 </div>
-                                <div class="col-4 form-group">
-                                    <h:inputText class="form-control" pt:placeholder="Postal code" value="#{checkoutBackingBean.postalCode}" />
+                                <div class="form-group">
+                                    <h:inputText class="form-control" pt:placeholder="Stad" value="#{checkoutBackingBean.city}" />
                                 </div>
+                                <h:messages id="messages" />
                             </div>
-                            <div class="form-group">
-                                <h:inputText class="form-control" pt:placeholder="City" value="#{checkoutBackingBean.city}" />
+                            <div class="col-4 pt-2 pb-4 shadow bg-white rounded">
+                                <h5>Säljare</h5>
+                                <div>#{checkoutBackingBean.listing.publishedBy.firstname} #{checkoutBackingBean.listing.publishedBy.lastname}</div>
+                                <div class="text-muted">Omdöme: 4.3/5</div>
+                                <div class="text-muted">Stad: Malmö</div>
+
+                                <h5 class="mt-3">Betalning</h5>
+                                <div class="text-muted d-flex justify-content-between"><span>Nuvarande saldo:</span><span>#{checkoutBackingBean.currentBalance} kr</span></div>
+                                <div class="text-muted d-flex justify-content-between"><span>Pris:</span><span>#{checkoutBackingBean.listing.price} kr</span></div>
+
+                                <h:commandButton
+                                    value="Bekräfta köp"
+                                    action="#{checkoutController.confirmPurchase}"
+                                    class="btn btn-primary d-block mx-auto mt-5">
+                                </h:commandButton>
                             </div>
                         </div>
-                        <div class="col-4 pt-2 pb-4 shadow bg-white rounded">
-                            <h5>Sold by</h5>
-                            <div>#{checkoutBackingBean.listing.publishedBy.firstname} #{checkoutBackingBean.listing.publishedBy.lastname}</div>
-                            <div class="text-muted">Reputation: 4.3/5</div>
-                            <div class="text-muted">City: Malmö</div>
-
-                            <h5 class="mt-3">Payment</h5>
-                            <div class="text-muted d-flex justify-content-between"><span>Current balance:</span><span>1400 kr</span></div>
-                            <div class="text-muted d-flex justify-content-between"><span>Price:</span><span>#{checkoutBackingBean.listing.price} kr</span></div>
-
-                            <h:commandButton
-                                value="Confirm Purchase"
-                                type="submit"
-                                action="#{user.goLoginPage}"
-                                class="btn btn-primary d-block mx-auto mt-5" />
-                        </div>
-                    </div>
+                    </h:form>
                 </div>
 
             </ui:define>

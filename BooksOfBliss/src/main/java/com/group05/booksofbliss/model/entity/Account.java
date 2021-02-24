@@ -1,7 +1,11 @@
 package com.group05.booksofbliss.model.entity;
 
+import com.group05.booksofbliss.model.entity.attribute.Address;
 import java.io.Serializable;
 import java.util.List;
+import javax.money.MonetaryAmount;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -46,12 +50,14 @@ public class Account implements Serializable {
     @NonNull
     @NotNull
     @ToString.Include
-    private String address;
+    @Embedded
+    private Address address;
 
     @NonNull
     @NotNull
     @ToString.Include
-    private double balance;
+    @Column(precision = 12, scale = 2)
+    private MonetaryAmount balance;
 
     @OneToMany(mappedBy = "reviewer")
     private List<UserReview> reviewsGiven;
@@ -109,5 +115,25 @@ public class Account implements Serializable {
             return false;
         }
         return true;
+    }
+
+    public void withdrawFromBalance(MonetaryAmount amount) {
+        if (amount.isNegative()) {
+            throw new IllegalArgumentException("Amount may not be negative");
+        }
+        MonetaryAmount newBalance = getBalance().subtract(amount);
+        if (newBalance.isNegative()) {
+            throw new IllegalStateException("Account balance is too low");
+        }
+
+        balance = newBalance;
+    }
+
+    public void addToBalance(MonetaryAmount amount) {
+        if (amount.isNegative()) {
+            throw new IllegalArgumentException("Amount may not be negative");
+        }
+
+        balance = balance.add(amount);
     }
 }
