@@ -35,7 +35,7 @@
         <from-view-id>/checkout_success.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>back_home</from-outcome>
-            <to-view-id>/test.xhtml</to-view-id>
+            <to-view-id>/browse.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
