@@ -10,7 +10,7 @@ public class AccountBackingBean {
 
     @Inject
     private AccountDAO accountDAO;
-    
+
     private Account account;
 
 }

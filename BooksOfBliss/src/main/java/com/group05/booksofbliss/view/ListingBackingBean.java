@@ -14,4 +14,5 @@ public class ListingBackingBean implements Serializable {
 
     @Param(pathIndex = 0, converter = "#{listingConverter}")
     private Listing listing;
+
 }
