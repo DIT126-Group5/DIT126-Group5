@@ -136,4 +136,11 @@ public class Account implements Serializable {
 
         balance = balance.add(amount);
     }
+
+    public double getReputation() {
+        return reviewsReceived.stream()
+                .mapToDouble(review -> review.getRating())
+                .average()
+                .orElse(0);
+    }
 }

@@ -19,15 +19,11 @@ public class Auth implements Serializable {
     @Inject
     private AccountDAO accountDao;
 
-    private Account account;
-
     public Account getAccount() {
-        if (account == null) {
-            Principal principal = securityContext.getCallerPrincipal();
-            if (principal != null) {
-                account = accountDao.find(principal.getName());
-            }
+        Principal principal = securityContext.getCallerPrincipal();
+        if (principal == null) {
+            return null;
         }
-        return account;
+        return accountDao.find(principal.getName());
     }
 }

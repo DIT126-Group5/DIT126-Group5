@@ -6,7 +6,8 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:b="http://butterfaces.org/components">
+      xmlns:b="http://butterfaces.org/components"
+      xmlns:o="http://omnifaces.org/ui">
 
 
     <h:body>
@@ -30,15 +31,20 @@
                                             <h5 class="card-title">#{listing.book.title}</h5>
                                         </div>
                                         <ul class="list-group list-group-flush">
-                                            <li class="list-group-item">Författare: <b:repeat value="#{listing.book.authors}"
-                                                                                              var="author"
-                                                                                              rendered="true"> #{author.name} </b:repeat></li>
+                                            <li class="list-group-item">
+                                                Författare:
+                                                <ui:repeat value="#{listing.book.authors}" var="author" varStatus="loop">
+                                                    #{author.name}#{not loop.last ? ', ' : ''}
+                                                </ui:repeat>
+                                            </li>
                                             <li class="list-group-item">Pris: #{listing.price}</li>
                                             <li class="list-group-item">Skick: #{listing.condition.name}</li>
                                         </ul>
                                     </div>
-                                    <a href="listingview/#{listing.id}" class="stretched-link"></a>
-                                    <!--<h:link outcome="listingview/#{listing.id}" class="stretched-link" />-->
+                                    <h:link outcome="listing"
+                                            class="stretched-link">
+                                        <o:pathParam value="#{listing.id}" />
+                                    </h:link>
                                 </div>
                             </div>
                         </b:repeat>
