@@ -14,31 +14,19 @@
         <ui:composition template="WEB-INF/template/common.xhtml">
             <ui:define name="title">Skapa annons</ui:define>
             <ui:define name="content">
-
-                <div class="ui-fluid p-formgrid p-grid">
-                    <div class="p-field p-col-12 p-md-6">
-                        <p:outputLabel for="isbn" value="Skriv in ISBN" />
-                        <p:inputText id="isbn" />
+                <div class="container">
+                    <div class="col-7 pt-2 pb-4 shadow bg-white rounded mt-5">
+                        <p:outputLabel value="Vad vill du sälja?" />
+                        <div class="col-7 pt-2 pb-4 shadow bg-white rounded">
+                            <div class="ui-fluid p-formgrid p-grid">
+                                <div class="p-field p-col-12 p-md-6">
+                                    <p:outputLabel for="isbn" value="Skriv in bokens ISBN-nummer" />
+                                    <p:inputText id="isbn" value="#{publishListingBackingBean.isbn}"/>
+                                    <p:commandButton value="Sök" action="#{publishListingBackingBean.getIsbnFromApi}" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="p-field p-col-12 p-md-6">
-                        <p:outputLabel for="price" value="Pris" />
-                        <p:inputText id="price" />
-                    </div>
-
-                    <div class="p-field p-col-12 p-md-6">
-                        <p:inputTextarea value="Beskrivning av produkt (valfri)" id="desc" />
-                    </div>
-
-                    <div class="p-field p-col-12 p-md-3">
-                        <p:selectOneMenu id="cond" value="Condition">
-                            <f:selectItems value="#{publishListingBackingBean.conditions}"/>
-                        </p:selectOneMenu>
-                    </div>
-                    <div class="p-field p-col-12 p-md-3">
-                        <p:commandButton value="Publish Listing" 
-                                         action="#{publishListingController.publish(price,desc,cond)}"/>
-                    </div>
-
                 </div>
             </ui:define>
         </ui:composition>

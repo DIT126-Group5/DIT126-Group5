@@ -17,13 +17,19 @@ public class PublishListingController implements Serializable {
     //anropar create i ListingDAO.
     @Inject
     private PublishListingBackingBean publishListingBackingBean;
-    //private double price;
-    //private String description;
-    //private Condition condition;
+    
+    private double price;
+    private String description;
+    private Condition condition;
     
     public void publish(double price, String description, Condition condition){
         publishListingBackingBean.setPrice(price);
-        publishListingBackingBean.setDescription(description);
+        //publishListingBackingBean.setDescription(description);
         publishListingBackingBean.setCondition(condition);
+    }
+    
+    public void submit() {
+        //result = "Submitted values: " + price + ", " + choice;
+        //System.out.println(result);
     }
 }
