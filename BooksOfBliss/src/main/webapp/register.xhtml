@@ -17,83 +17,68 @@ and open the template in the editor.
             <ui:define name="content">
 
                 <div class="container">
-                    <div class="card">
-                        <h:form>
+                    <h:form>
+                        <div class="card">
+
                             <h5>DINA KUNDUPPGIFTER</h5>
                             <div class="ui-fluid p-formgrid p-grid">
                                 <div class="p-field p-col-12 p-md-6">
                                     <h:outputLabel for="username" value="Användarnamn"/>
-                                    <h:inputText id="username"/>
+                                    <h:inputText id="registerUsername" value="#{registerBackingBean.username}"/>
                                 </div>
                                 <div class="p-field p-col-12 p-md-6">
                                     <h:outputLabel for="firstname" value="Förnamn"/>
-                                    <h:inputText id="firstname"/>
+                                    <h:inputText id="registerFirstname" value="#{registerBackingBean.firstname}"/>
                                 </div>
                                 <div class="p-field p-col-12 p-md-6">
                                     <h:outputLabel for="lastname" value="Efternamn"/>
-                                    <h:inputText id="lastname"/>
+                                    <h:inputText id="registerLastname" value="#{registerBackingBean.lastname}"/>
                                 </div>
 
                                 <div class="p-field p-col-12 p-md-6">
                                     <h:outputLabel for="phonenumber" value="Mobilnummer"/>
-                                    <h:inputText id="phonenumber"/>
+                                    <h:inputText id="registerPhonenumber" value="#{registerBackingBean.phonenumber}"/>
                                 </div>
                                 <div class="p-field p-col-12 p-md-6">
-                                    <h:outputLabel for="e-post" value="E-post"/>
-                                    <h:inputText id="e-post"/>
+                                    <h:outputLabel for="email" value="E-post"/>
+                                    <h:inputText id="registerEmail" value="#{registerBackingBean.email}"/>
                                 </div>
                                 <div>
                                     <h5>Leveransadress</h5>
                                     <div class="p-field p-col-12 p-md-6">
                                         <h:outputLabel for="address" value="Gata"/>
-                                        <h:inputText id="address"/>
+                                        <h:inputText id="registerAddress" value="#{registerBackingBean.street}"/>
                                     </div>
                                     <div class="p-field p-col-12 p-md-6">
                                         <h:outputLabel for="postalcode" value="Postnummer"/>
-                                        <h:inputText id="postalcode"/>
+                                        <h:inputText id="registerPostalCode" value="#{registerBackingBean.postalcode}"/>
                                     </div>
                                     <div class="p-field p-col-12 p-md-6">
                                         <h:outputLabel for="city" value="Stad"/>
-                                        <h:inputText id="city"/>
+                                        <h:inputText id="registerCity" value="#{registerBackingBean.city}"/>
                                     </div>
                                 </div>
                             </div>
-                        </h:form>
-                    </div>
 
-                    <div class="card">
-                        <h5>Krediter</h5>
-                        <div class="p-field p-col-12 p-md-3">
-                            <h:outputLabel for="balance" value="Nuvarande saldo"/>
-                            <h:inputText id="balance"/>
-                            <h:commandButton type="button" value="Köp kredit" />
                         </div>
-                    </div>
-                    <div class="card">
-                        <h:form>
+                        <div class="card">
                             <h5 class="p-mt-0">Lösenord</h5>
                             <div class="p-field p-grid">
                                 <p:outputLabel for="pwd1" styleClass="p-col-fixed" style="width:100px" value="Lösenord"/>
                                 <div class="p-col">
-                                    <p:password id="pwd1" value="#{passwordView.password5}" match="pwd2" label="Password 1" required="true"/>
+                                    <p:password id="pwd1" value="#{registerBackingBean.password}" match="pwd2" label="Password 1" required="true"/>
                                 </div>
                             </div>
 
                             <div class="p-field p-grid">
                                 <p:outputLabel for="pwd2" styleClass="p-col-fixed" style="width:100px" value="Lösenord"/>
                                 <div class="p-col">
-                                    <p:password id="pwd2" value="#{passwordView.password5}" label="Password 2" required="true"/>
+                                    <p:password id="pwd2" label="Password 2" required="true"/>
                                 </div>
                             </div>
-
-                            <p:commandButton update="@form" value="Spara"/>
-                            <!--
-                                            <p:messages id="messages" showDetail="true">
-                                                <p:autoUpdate/>
-                                            </p:messages>
-                            -->
-                        </h:form>
-                    </div>
+                            <h:commandButton action="#{registerController.createAccount()}" value="Skapa Konto"/>
+                        </div>
+                    </h:form>
                 </div>
 
             </ui:define>

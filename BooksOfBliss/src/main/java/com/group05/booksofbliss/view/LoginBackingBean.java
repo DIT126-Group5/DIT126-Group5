@@ -1,10 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.group05.booksofbliss.view;
 
-public class LoginBackingBean {
+import java.io.Serializable;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
+import javax.validation.constraints.NotBlank;
+import lombok.Data;
+
+@Data
+@Named("loginBackingBean")
+@ViewScoped
+public class LoginBackingBean implements Serializable {
+
+    @NotBlank
+    private String username;
+
+    @NotBlank
+    private String password;
 
 }

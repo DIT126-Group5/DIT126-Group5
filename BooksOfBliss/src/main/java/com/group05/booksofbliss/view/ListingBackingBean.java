@@ -24,8 +24,8 @@ public class ListingBackingBean implements Serializable {
     //private ProductService service;
     @PostConstruct
     public void init() {
-        Account acc = new Account("username", "firstname", "lastname", "password", new Address("Street", "45163", "City"), Money
-                .of(50, "SEK")
+        Account acc = new Account("username", "firstName", "lastName", "+46 72 985 32 12", "email@hotmail.com", "Password123!", new Address("Sannegarden", "45242", "Göteborg"),
+                Money.of(10, "SEK")
         );
         List<Author> authors = new ArrayList<>();
         Author author = new Author("Mr Bean");
