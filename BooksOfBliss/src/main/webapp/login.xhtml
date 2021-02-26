@@ -23,13 +23,13 @@ and open the template in the editor.
                                 <f:facet name="header">Logga in</f:facet>
                                 <h:panelGrid columns="2">
                                     Användarnamn:
-                                    <h:inputText id="loginUsername" value="" required="true" label="loginUsername"/>
+                                    <h:inputText id="loginUsername" value="#{loginBackingBean.username}" label="loginUsername"/>
                                     Lösenord:
-                                    <h:inputSecret id="loginPassword" value="" required="true" label="loginPassword"/>
+                                    <h:inputSecret id="loginPassword" value="#{loginBackingBean.password}" label="loginPassword"/>
 
                                 </h:panelGrid>
-                                <p:commandButton value="Logga in" ajax="false"/>
-                                <h:button value="Registrera" outcome="signup.xhtml"/>
+                                <h:commandButton value="Logga in" action="#{loginController.login()}"/>
+                                <h:button value="Registrera dig" outcome="register.xhtml"/>
                             </p:panel>
                         </div>
                     </h:form>

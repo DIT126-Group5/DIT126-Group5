@@ -29,7 +29,7 @@ public class AccountDAOTest {
     @Inject
     private AccountDAO accountDAO;
 
-    private Account account = new Account("firstName", "lastName", "username", "Password123!", new Address("Sannegarden", "45242", "Göteborg"), Money.of(10, "SEK"));
+    private Account account = new Account("username", "firstName", "lastName", "+46 72 985 32 12", "email@hotmail.com", "Password123!", new Address("Sannegarden", "45242", "Göteborg"), Money.of(10, "SEK"));
 
     @Before
     public void init() {
