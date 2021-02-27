@@ -41,6 +41,11 @@ public class Book implements Serializable {
     @ToString.Include
     private int publicationYear;
 
+    @NonNull
+    @NotNull
+    @ToString.Include
+    private String imageUrl;
+
     @ToString.Include
     @JoinTable(name = "book_author",
             joinColumns = @JoinColumn(name = "book"),
