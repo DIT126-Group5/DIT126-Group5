@@ -5,6 +5,7 @@
         <jta-data-source>jdbc/bobDBprod</jta-data-source>
         <properties>
             <property name="javax.persistence.schema-generation.database.action" value="create"/>
+            <property name="eclipselink.cache.shared.default" value="false"/>
         </properties>
     </persistence-unit>
 </persistence>

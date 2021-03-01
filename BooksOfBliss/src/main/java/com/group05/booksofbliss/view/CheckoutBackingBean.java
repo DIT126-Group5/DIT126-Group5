@@ -17,14 +17,10 @@ public class CheckoutBackingBean implements Serializable {
     @Param(pathIndex = 0, converter = "#{listingConverter}", validatorClasses = {OpenListingValidator.class})
     private Listing listing;
 
-    @NotBlank
+    @NotBlank(message = "En gata måste fyllas i")
     private String street;
-    @NotBlank
+    @NotBlank(message = "Ett postnummer måste fyllas i")
     private String postalCode;
-    @NotBlank
+    @NotBlank(message = "En stad måste fyllas i")
     private String city;
-
-    public double getCurrentBalance() {
-        return 100;
-    }
 }

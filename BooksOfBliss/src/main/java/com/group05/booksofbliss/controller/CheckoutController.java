@@ -1,8 +1,8 @@
 package com.group05.booksofbliss.controller;
 
-import com.group05.booksofbliss.model.dao.AccountDAO;
 import com.group05.booksofbliss.model.entity.attribute.Address;
 import com.group05.booksofbliss.model.service.OrderService;
+import com.group05.booksofbliss.security.Auth;
 import com.group05.booksofbliss.view.CheckoutBackingBean;
 import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
@@ -21,15 +21,15 @@ public class CheckoutController implements Serializable {
     @Inject
     private OrderService orderService;
     @Inject
-    private AccountDAO accountDAO;
+    private Auth auth;
 
     public String confirmPurchase() {
-        if (checkoutBackingBean.getListing() == null) {
+        if (checkoutBackingBean.getListing() == null || auth.getAccount() == null) {
             return null;
         }
 
         orderService.orderListing(checkoutBackingBean.getListing(),
-                accountDAO.findAll().get(0),
+                auth.getAccount(),
                 new Address(checkoutBackingBean.getStreet(),
                         checkoutBackingBean.getPostalCode(),
                         checkoutBackingBean.getCity()));
