@@ -43,8 +43,6 @@ public class PublishListingBackingBean implements Serializable {
     private Condition condition;
     private String isbn;
 
-    //https://www.bokhavet.se/api/book?isbn=9780099571698&auth_token=AUTH_TOKEN
-    //9780099571698
     @PostConstruct
     public void init() {
         conditions = new ArrayList();
@@ -70,6 +68,12 @@ public class PublishListingBackingBean implements Serializable {
                     .getJSONObject("volumeInfo")
                     .getString("title");
             
+            String imgLink = jo.getJSONArray("items")
+                    .getJSONObject(0)
+                    .getJSONObject("volumeInfo")
+                    .getJSONObject("imageLinks")
+                    .getString("thumbnail");
+            
             JSONArray jsonAuthors = jo.getJSONArray("items")
                     .getJSONObject(0)
                     .getJSONObject("volumeInfo")
@@ -78,12 +82,11 @@ public class PublishListingBackingBean implements Serializable {
             
             for (Object author : jsonAuthors) {
                 authors.add(author.toString());
-                //authors.add(author.toString());
             }
             
             System.out.println(title);
             System.out.println(authors);
-
+            System.out.println(imgLink);
             //Titel, författare, description? image?
             
         } catch (URISyntaxException ex) {
