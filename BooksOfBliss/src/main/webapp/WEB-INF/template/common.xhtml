@@ -37,19 +37,23 @@
                             <p:commandButton value="Sök"/>
                         </p:menuitem>
 
-                        <p:menuitem value="Logga in" outcome="login.xhtml" style="margin-left:20px"/>
-                        <p:menuitem value="Registrera dig" outcome="signup.xhtml" style="margin-left:20px"/>
-                        <p:submenu label="Om oss" style="margin-left:20px">
-                            <p:menuitem value="Om oss" />
-                            <p:menuitem value="Kontakt" />
+                        <p:menuitem value="Bläddra" outcome="browse" style="margin-left:20px"/>
+                        <p:menuitem value="Sälj en bok" outcome="publish" style="margin-left:20px"/>
+
+                        <p:menuitem value="Logga in" outcome="login" style="margin-left:20px" rendered="#{auth.account == null}" />
+                        <p:menuitem value="Registrera dig" outcome="register" style="margin-left:20px" rendered="#{auth.account == null}" />
+
+                        <p:submenu label="Mina sidor (FIXME)" style="margin-left:20px" rendered="#{auth.account != null}">
+                            <p:menuitem value="Inställningar" />
+                            <p:menuitem value="Sätt in kredit" />
+                            <p:menuitem value="Logga ut" />
                         </p:submenu>
-                        <p:menuitem value="Sälj böcker" outcome="publish.xhtml" style="margin-left:20px"/>
                     </p:menubar>
                 </h:form>
             </div>
         </nav>
         <main>
-            <ui:insert name="content"/>
+            <ui:insert name="content" />
         </main>
     </h:body>
 </html>

@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:o="http://omnifaces.org/ui">
+
+
+    <h:body>
+        <ui:composition template="WEB-INF/template/common.xhtml">
+            <ui:define name="title">Kurslitteratur</ui:define>
+            <ui:define name="content">
+                <div class="container">
+                    <div class="row justify-content-between mt-5">
+                        <div class="col-7 pt-2 pb-4 shadow bg-white rounded">
+                            <h5>#{listingBackingBean.listing.book.title} (#{listingBackingBean.listing.book.publicationYear})</h5>
+                            <div class="row">
+                                <img src="#{listingBackingBean.listing.book.imageUrl}" alt="Book cover" style="height: 10rem" class="col col-auto" />
+                                <div class="col d-flex flex-column">
+                                    <small class="text-muted">
+                                        Författare:
+                                        <ui:repeat value="#{listingBackingBean.listing.book.authors}" var="author" varStatus="loop">
+                                            #{author.name}#{not loop.last ? ', ' : ''}
+                                        </ui:repeat>
+                                    </small>
+                                    <small class="text-muted">ISBN: #{listingBackingBean.listing.book.isbn}</small>
+                                    <small class="text-muted">Skick: #{listingBackingBean.listing.condition.name}</small>
+                                    <small class="text-muted"> Kategorier:
+                                        <ui:repeat value="#{listingBackingBean.listing.book.categories}" var="category" varStatus="loop">
+                                            #{category.name}#{not loop.last ? ', ' : ''}
+                                        </ui:repeat>
+                                    </small>
+                                </div>
+                            </div>
+
+                            <h5 class="mt-3">Beskrivning:</h5>
+                            <p>#{listingBackingBean.listing.description}</p>
+                        </div>
+                        <div class="col-4 pt-2 pb-4 shadow bg-white rounded">
+                            <h5>Säljare</h5>
+                            <div>#{listingBackingBean.listing.publishedBy.firstname} #{listingBackingBean.listing.publishedBy.lastname}</div>
+                            <div class="text-muted">Omdöme: #{listingBackingBean.listing.publishedBy.reputation}/5</div>
+                            <div class="text-muted">Stad: #{listingBackingBean.listing.publishedBy.address.city}</div>
+
+                            <div class="d-flex justify-content-between mt-3"><h5>Pris:</h5><h5>#{listingBackingBean.listing.price}</h5></div>
+
+                            <div class="text-center mt-5">
+                                <h:link outcome="checkout"
+                                        value="Gå vidare till köp"
+                                        class="btn btn-secondary"
+                                        rendered="#{auth.account != null and listingBackingBean.listing.purchase == null}">
+                                    <o:pathParam value="#{listingBackingBean.listing.id}" />
+                                </h:link>
+                                <h6 class="text-danger" jsf:rendered="#{listingBackingBean.listing.purchase != null}">
+                                    Listing has been sold!
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

@@ -9,7 +9,10 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -30,21 +33,34 @@ public class Account implements Serializable {
     @NotNull
     @EqualsAndHashCode.Include
     @ToString.Include
+    @Size(min = 5, message = "Username must have at least 5 characters")
     private String username;
 
     @NonNull
-    @NotNull
+    @NotBlank
     @ToString.Include
     private String firstname;
 
     @NonNull
-    @NotNull
+    @NotBlank
     @ToString.Include
     private String lastname;
 
     @NonNull
-    @NotNull
+    @NotBlank
     @ToString.Include
+    private String phonenumber;
+
+    @NonNull
+    @NotBlank
+    @ToString.Include
+    @Email(message = "Please provide a valid e-mail")
+    private String email;
+
+    @NonNull
+    @NotBlank
+    @ToString.Include
+    @Size(min = 8, message = "Password must have at least 8 characters")
     private String password;
 
     @NonNull
@@ -135,5 +151,12 @@ public class Account implements Serializable {
         }
 
         balance = balance.add(amount);
+    }
+
+    public double getReputation() {
+        return reviewsReceived.stream()
+                .mapToDouble(review -> review.getRating())
+                .average()
+                .orElse(0);
     }
 }
