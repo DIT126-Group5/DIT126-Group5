@@ -30,9 +30,7 @@
                                             <h5 class="card-title">#{listing.book.title}</h5>
                                         </div>
                                         <ul class="list-group list-group-flush">
-                                            <li class="list-group-item">Författare: <b:repeat value="#{listing.book.authors}"
-                                                                                              var="author"
-                                                                                              rendered="true"> #{author.name} </b:repeat></li>
+                                            <li class="list-group-item">Författare: #{browseBackingBean.getAuthorsAsString(listing.book.isbn)}</li>
                                             <li class="list-group-item">Pris: #{listing.price}</li>
                                             <li class="list-group-item">Skick: #{listing.condition.name}</li>
                                         </ul>
