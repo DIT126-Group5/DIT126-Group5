@@ -16,9 +16,11 @@
                         <div class="col-7 pt-2 pb-4 shadow bg-white rounded">
                             <div class="ui-fluid p-formgrid p-grid">
                                 <div class="p-field p-col-12 p-md-6">
-                                    <p:outputLabel for="isbn" value="Skriv in bokens ISBN-nummer" />
-                                    <p:inputText id="isbn" value="#{publishListingBackingBean.isbn}"/>
-                                    <p:commandButton value="Sök" action="#{publishListingBackingBean.getIsbnFromApi}" />
+                                    <h:form>
+                                        <p:outputLabel for="isbn" value="Skriv in bokens ISBN-nummer" />
+                                        <p:inputText id="isbn" value="#{publishListingController.isbn}"/>
+                                        <p:commandButton value="Sök" action="#{publishListingController.searchIsbn}" />
+                                    </h:form>
                                 </div>
                             </div>
                         </div>

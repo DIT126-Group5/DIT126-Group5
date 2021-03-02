@@ -49,49 +49,5 @@ public class PublishListingBackingBean implements Serializable {
         conditions = conditionDAO.findAll();
     }
 
-    public void getIsbnFromApi() throws IOException, InterruptedException {
-        isbn = "9780099571698";
-        String isbnUrl = "https://www.googleapis.com/books/v1/volumes?q=isbn:" + isbn;
 
-        try {
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new URI(isbnUrl))
-                    .GET()
-                    .build();
-            HttpResponse<String> response = HttpClient.newBuilder()
-                    .build()
-                    .send(request, HttpResponse.BodyHandlers.ofString());
-            
-            JSONObject jo = new JSONObject(response.body());
-            String title = jo.getJSONArray("items")
-                    .getJSONObject(0)
-                    .getJSONObject("volumeInfo")
-                    .getString("title");
-            
-            String imgLink = jo.getJSONArray("items")
-                    .getJSONObject(0)
-                    .getJSONObject("volumeInfo")
-                    .getJSONObject("imageLinks")
-                    .getString("thumbnail");
-            
-            JSONArray jsonAuthors = jo.getJSONArray("items")
-                    .getJSONObject(0)
-                    .getJSONObject("volumeInfo")
-                    .getJSONArray("authors");
-            List<String> authors = new ArrayList();
-            
-            for (Object author : jsonAuthors) {
-                authors.add(author.toString());
-            }
-            
-            System.out.println(title);
-            System.out.println(authors);
-            System.out.println(imgLink);
-            //Titel, författare, description? image?
-            
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(PublishListingBackingBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
 }
