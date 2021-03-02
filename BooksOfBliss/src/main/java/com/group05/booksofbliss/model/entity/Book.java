@@ -2,6 +2,7 @@ package com.group05.booksofbliss.model.entity;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -44,6 +45,7 @@ public class Book implements Serializable {
     @NonNull
     @NotNull
     @ToString.Include
+    @Column(length=10000)
     private String imageUrl;
 
     @ToString.Include
