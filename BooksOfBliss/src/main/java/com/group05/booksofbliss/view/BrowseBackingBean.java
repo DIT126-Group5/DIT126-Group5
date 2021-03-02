@@ -27,17 +27,17 @@ import java.lang.StringBuilder;
 @ViewScoped
 public class BrowseBackingBean implements Serializable {
 
-    @EJB
+    @Inject
     private ListingDAO listingDAO;
     
-    @EJB
+    @Inject
     private BookDAO bookDAO;
 
     public List<Listing> getListings() {
         return listingDAO.findAll();
     }
     
-    public Listing getListing(long id) {
+    public Listing getListing(Long id) {
         return listingDAO.find(id);
     }
     

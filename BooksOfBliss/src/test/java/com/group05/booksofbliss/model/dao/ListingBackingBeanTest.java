@@ -1,7 +1,6 @@
 package com.group05.booksofbliss.model.dao;
 
 
-import com.group05.booksofbliss.model.dao.AccountDAO;
 import com.group05.booksofbliss.model.entity.Account;
 import com.group05.booksofbliss.model.entity.Author;
 import com.group05.booksofbliss.model.entity.Book;
@@ -9,9 +8,9 @@ import com.group05.booksofbliss.model.entity.Category;
 import com.group05.booksofbliss.model.entity.Condition;
 import com.group05.booksofbliss.model.entity.Listing;
 import com.group05.booksofbliss.model.entity.attribute.Address;
+import com.group05.booksofbliss.view.BrowseBackingBean;
 import com.group05.booksofbliss.view.ListingBackingBean;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
@@ -37,8 +36,6 @@ public class ListingBackingBeanTest {
                 .addAsResource("META-INF/persistence.xml")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
-
-    private ListingBackingBean listisngBB;
     
     @Inject
     private ListingDAO listingDAO;
@@ -67,6 +64,7 @@ public class ListingBackingBeanTest {
     Book book;
     Condition condition;
     Listing listing;
+    Long listingID;
     
     @Before
     public void init() {
@@ -96,22 +94,29 @@ public class ListingBackingBeanTest {
 
         listing = new Listing(new Date(), Money.of(50, "SEK"),"description",condition,acc,book);
         listingDAO.create(listing);
+        listingID = listing.getId();
     }
 
     @After
     public void clean() {
+        listingDAO.remove(listing);
         accountDAO.remove(acc);
+        bookDAO.remove(book);
+        conditionDAO.remove(condition);
         categoryDAO.remove(category);
         authorDAO.remove(author);
         authorDAO.remove(author2);
-        bookDAO.remove(book);
-        conditionDAO.remove(condition);
-        listingDAO.remove(listing);
+
     }
 
     //Checks if the Username is correct.
     @Test
-    public void checkThatGetAuthorsAsStringWorksCorrectly() {
+    public void getListingsTest() {
+        BrowseBackingBean bbb = new BrowseBackingBean();
+        bbb.setBookDAO(bookDAO);
+        bbb.setListingDAO(listingDAO);
         
+        Assert.assertNotEquals(listingID, null);
+        Assert.assertEquals(bbb.getListing(listingID), listing);
     }
 }
