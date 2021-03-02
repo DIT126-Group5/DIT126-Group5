@@ -79,4 +79,18 @@ public class IsbnApi {
         return imgLink;
     }
 
+    public static List<String> getBookCategories(String isbn) throws IOException, InterruptedException {
+        JSONObject jo = getIsbnFromApi(isbn);
+        JSONArray jsonCategories = jo.getJSONArray("items")
+                .getJSONObject(0)
+                .getJSONObject("volumeInfo")
+                .getJSONArray("categories");
+       
+        List<String> categories = new ArrayList();
+        for (Object category : jsonCategories){
+            categories.add(category.toString());
+        }
+        
+        return categories;
+    }
 }
