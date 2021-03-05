@@ -35,4 +35,24 @@
         <param-name>primefaces.THEME</param-name>
         <param-value>bootstrap</param-value>
     </context-param>
+
+    <!-- Authorization -->
+    <security-role>
+        <description>Any registered and authenticated user</description>
+        <role-name>member</role-name>
+    </security-role>
+    <security-constraint>
+        <display-name>Disallow unauthenticated users to access pages which assume a user is logged in</display-name>
+        <web-resource-collection>
+            <web-resource-name>Members-only pages</web-resource-name>
+            <url-pattern>/buy_credits</url-pattern>
+            <url-pattern>/buy_credits_success</url-pattern>
+            <url-pattern>/checkout/*</url-pattern>
+            <url-pattern>/checkout_success</url-pattern>
+            <url-pattern>/publish</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>member</role-name>
+        </auth-constraint>
+    </security-constraint>
 </web-app>
