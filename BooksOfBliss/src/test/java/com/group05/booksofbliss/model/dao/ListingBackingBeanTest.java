@@ -9,7 +9,6 @@ import com.group05.booksofbliss.model.entity.Condition;
 import com.group05.booksofbliss.model.entity.Listing;
 import com.group05.booksofbliss.model.entity.attribute.Address;
 import com.group05.booksofbliss.view.BrowseBackingBean;
-import com.group05.booksofbliss.view.ListingBackingBean;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
