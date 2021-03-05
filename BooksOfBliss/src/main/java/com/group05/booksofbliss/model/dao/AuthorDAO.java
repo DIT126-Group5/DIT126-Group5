@@ -18,10 +18,6 @@ public class AuthorDAO extends AbstractDAO<Author, String> {
         super(Author.class);
     }
 
-    public List<Author> findBooksMatchingTitle() {
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
-
     public Author findByName(String name) {
         return find(name);
     }
