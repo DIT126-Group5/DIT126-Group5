@@ -19,8 +19,8 @@ public class CategoryDAO extends AbstractDAO<Category, String> {
         super(Category.class);
     }
 
-    public List<Book> findBooksMatchingCategory() {
-        throw new UnsupportedOperationException("Not yet implemented");
+    public List<Book> findBooksMatchingCategory(Category category) {
+        return category.getBooks();
     }
 
     public Category findByName(String name) {
