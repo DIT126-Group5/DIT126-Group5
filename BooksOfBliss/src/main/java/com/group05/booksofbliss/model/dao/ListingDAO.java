@@ -2,6 +2,8 @@ package com.group05.booksofbliss.model.dao;
 
 import com.group05.booksofbliss.model.entity.Listing;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -33,6 +35,13 @@ public class ListingDAO extends AbstractDAO<Listing, Long> {
     }
 
     public List<Listing> sortListingsByDate(String order) {
-        throw new UnsupportedOperationException("Not yet implemented");
+        List<Listing> listings = findAll();
+
+        Collections.sort(listings, new Comparator<Listing>() {
+            public int compare(Listing l1, Listing l2) {
+                return -l1.getDateTime().compareTo(l2.getDateTime());
+            }
+        });
+        return listings;
     }
 }
