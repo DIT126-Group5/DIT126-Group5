@@ -108,7 +108,6 @@ public class ListingBackingBeanTest {
 
     }
 
-    //Checks if the Username is correct.
     @Test
     public void getListingsTest() {
         BrowseBackingBean bbb = new BrowseBackingBean();

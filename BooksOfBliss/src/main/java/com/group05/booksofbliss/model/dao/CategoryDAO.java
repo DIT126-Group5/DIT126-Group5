@@ -19,10 +19,6 @@ public class CategoryDAO extends AbstractDAO<Category, String> {
         super(Category.class);
     }
 
-    public List<Book> findBooksMatchingCategory(Category category) {
-        return category.getBooks();
-    }
-
     public Category findByName(String name) {
         return find(name);
     }
