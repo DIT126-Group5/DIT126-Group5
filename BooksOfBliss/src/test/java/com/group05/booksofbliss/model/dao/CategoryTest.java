@@ -5,7 +5,9 @@ import com.group05.booksofbliss.model.entity.Book;
 import com.group05.booksofbliss.model.entity.Category;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.transaction.UserTransaction;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -36,6 +38,9 @@ public class CategoryTest {
     
     @Inject
     private CategoryDAO categoryDAO;
+    
+    @Resource
+    private UserTransaction trx;  
 
     Category category;
     Category category2;
@@ -49,7 +54,8 @@ public class CategoryTest {
     Book book2;
     
     @Before
-    public void init() {
+    public void init() throws Exception {
+        trx.begin();
         category = new Category("Hållbarhet");
         category2 = new Category("Ekonomi");
         categoryDAO.create(category);
@@ -78,6 +84,7 @@ public class CategoryTest {
         book2.setAuthors(authors2);
         book2.setCategories(categories2);
         bookDAO.create(book2); 
+        trx.commit();
     }
 
     @After
@@ -96,7 +103,7 @@ public class CategoryTest {
         Assert.assertEquals(category2, categoryDAO.findByName(category2.getName()));
     }
     
-    /*
+    
     @Test
     public void checkThatFindBooksMatchingCategoryWorksCorrectly() {
         List<Book> books = new ArrayList<Book>();
@@ -107,5 +114,5 @@ public class CategoryTest {
         Assert.assertArrayEquals(books.toArray(), categoryDAO.findBooksMatchingCategory(category.getName()).toArray());
         Assert.assertArrayEquals(books2.toArray(), categoryDAO.findBooksMatchingCategory(category2.getName()).toArray());
     }
-    */
+    
 }
