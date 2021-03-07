@@ -97,9 +97,9 @@ public class ListingDAOTest {
         listing2 = new Listing(new Date(1615126000000L), Money.of(50, "SEK"), "description", condition, acc, book);
         listing3 = new Listing(new Date(1615125000000L), Money.of(50, "SEK"), "description", condition, acc, book);
 
+        listingDAO.create(listing3);
         listingDAO.create(listing);
         listingDAO.create(listing2);
-        listingDAO.create(listing3);
         listingID = listing.getId();
         listingID2 = listing2.getId();
         listingID3 = listing3.getId();
