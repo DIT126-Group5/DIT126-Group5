@@ -1,6 +1,5 @@
 package com.group05.booksofbliss.model.dao;
 
-
 import com.group05.booksofbliss.model.entity.Account;
 import com.group05.booksofbliss.model.entity.Author;
 import com.group05.booksofbliss.model.entity.Book;
@@ -35,25 +34,25 @@ public class ListingBackingBeanTest {
                 .addAsResource("META-INF/persistence.xml")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
-    
+
     @Inject
     private ListingDAO listingDAO;
-    
+
     @Inject
     private CategoryDAO categoryDAO;
 
     @Inject
     private ConditionDAO conditionDAO;
-    
+
     @Inject
     private AuthorDAO authorDAO;
 
     @Inject
     private BookDAO bookDAO;
-    
+
     @Inject
     private AccountDAO accountDAO;
-    
+
     Account acc;
     Category category;
     List<Category> categories;
@@ -64,22 +63,22 @@ public class ListingBackingBeanTest {
     Condition condition;
     Listing listing;
     Long listingID;
-    
+
     @Before
     public void init() {
         acc = new Account("username", "firstname", "lastname", "0777777777", "namn@mail.se", "password", new Address("Street", "45163", "City"), Money.of(50, "SEK"));
         accountDAO.create(acc);
-        
+
         category = new Category("Hållbarhet");
         categoryDAO.create(category);
         categories = new ArrayList<>();
         categories.add(category);
-        
+
         author = new Author("Håkan Gulliksson");
         author2 = new Author("Ulf Holmgren");
         authorDAO.create(author);
         authorDAO.create(author2);
-        
+
         authors = new ArrayList<Author>();
         authors.add(author);
         authors.add(author2);
@@ -87,11 +86,11 @@ public class ListingBackingBeanTest {
         book.setAuthors(authors);
         book.setCategories(categories);
         bookDAO.create(book);
-                
+
         condition = new Condition("Nyskick");
         conditionDAO.create(condition);
 
-        listing = new Listing(new Date(), Money.of(50, "SEK"),"description",condition,acc,book);
+        listing = new Listing(new Date(), Money.of(50, "SEK"), "description", condition, acc, book);
         listingDAO.create(listing);
         listingID = listing.getId();
     }
@@ -113,7 +112,7 @@ public class ListingBackingBeanTest {
         BrowseBackingBean bbb = new BrowseBackingBean();
         bbb.setBookDAO(bookDAO);
         bbb.setListingDAO(listingDAO);
-        
+
         Assert.assertNotEquals(listingID, null);
         Assert.assertEquals(bbb.getListing(listingID), listing);
     }

@@ -125,7 +125,7 @@ public class ListingDAOTest {
         listings.add(listing2);
         listings.add(listing3);
         List<Listing> sorted = listingDAO.sortListingsByDate("newest");
-        
+
         Assert.assertArrayEquals(listings.toArray(), sorted.toArray());
     }
 }

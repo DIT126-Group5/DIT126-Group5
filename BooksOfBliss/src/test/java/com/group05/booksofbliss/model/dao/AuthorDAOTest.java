@@ -29,9 +29,9 @@ public class AuthorDAOTest {
 
     Author author;
     Author author2;
-    
+
     @Before
-    public void init() {     
+    public void init() {
         author = new Author("Håkan Gulliksson");
         author2 = new Author("Ulf Holmgren");
         authorDAO.create(author);

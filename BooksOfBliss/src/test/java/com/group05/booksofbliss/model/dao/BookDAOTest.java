@@ -33,7 +33,7 @@ public class BookDAOTest {
 
     @Inject
     private BookDAO bookDAO;
-    
+
     @Inject
     private CategoryDAO categoryDAO;
 
@@ -45,19 +45,19 @@ public class BookDAOTest {
     List<Author> authors2;
     Book book;
     Book book2;
-    
+
     @Before
     public void init() {
         category = new Category("Hållbarhet");
         categoryDAO.create(category);
         categories = new ArrayList<>();
         categories.add(category);
-        
+
         author = new Author("Håkan Gulliksson");
         author2 = new Author("Ulf Holmgren");
         authorDAO.create(author);
         authorDAO.create(author2);
-        
+
         authors = new ArrayList<Author>();
         authors2 = new ArrayList<Author>();
         authors.add(author);
@@ -67,11 +67,11 @@ public class BookDAOTest {
         book.setAuthors(authors);
         book.setCategories(categories);
         bookDAO.create(book);
-        
-        book2 = new Book("9789147096978", "Ansvarsfull verksamhetsstyrning", 2011, "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.adlibris.com%2Fse%2Fbok%2Fhallbar-utveckling---livskvalitet-beteende-och-teknik-9789144151458&psig=AOvVaw0m1oxt_x4E6gVfR-KKcUMB&ust=1614764579235000&source=images&cd=vfe&ved=0CA0QjhxqFwoTCJjEkvuoke8CFQAAAAAdAAAAABAJ");        
+
+        book2 = new Book("9789147096978", "Ansvarsfull verksamhetsstyrning", 2011, "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.adlibris.com%2Fse%2Fbok%2Fhallbar-utveckling---livskvalitet-beteende-och-teknik-9789144151458&psig=AOvVaw0m1oxt_x4E6gVfR-KKcUMB&ust=1614764579235000&source=images&cd=vfe&ved=0CA0QjhxqFwoTCJjEkvuoke8CFQAAAAAdAAAAABAJ");
         book2.setAuthors(authors2);
         book2.setCategories(categories);
-        bookDAO.create(book2); 
+        bookDAO.create(book2);
     }
 
     @After
@@ -88,7 +88,7 @@ public class BookDAOTest {
         Assert.assertEquals(book, bookDAO.findByISBN(book.getIsbn()));
         Assert.assertEquals(book2, bookDAO.findByISBN(book2.getIsbn()));
     }
-    
+
     @Test
     public void checkThatFindBooksMatchingTitleWorksCorrectly() {
         List<Book> books = new ArrayList<Book>();
