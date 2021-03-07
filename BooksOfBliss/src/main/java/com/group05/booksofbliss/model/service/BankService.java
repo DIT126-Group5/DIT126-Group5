@@ -27,4 +27,9 @@ public class BankService implements Serializable {
         accountDAO.update(from);
         accountDAO.update(to);
     }
+
+    public void buyCredits(Account account, MonetaryAmount amount) {
+        account.addToBalance(amount);
+        accountDAO.update(account);
+    }
 }

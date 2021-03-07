@@ -1,11 +1,19 @@
 package com.group05.booksofbliss.model.dao;
 
+
+import com.group05.booksofbliss.model.entity.Account;
 import com.group05.booksofbliss.model.entity.Author;
 import com.group05.booksofbliss.model.entity.Book;
 import com.group05.booksofbliss.model.entity.Category;
+import com.group05.booksofbliss.model.entity.Condition;
+import com.group05.booksofbliss.model.entity.Listing;
+import com.group05.booksofbliss.model.entity.attribute.Address;
+import com.group05.booksofbliss.view.BrowseBackingBean;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
+import org.javamoney.moneta.Money;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -18,7 +26,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class BookDAOTest {
+public class ListingBackingBeanTest {
 
     @Deployment
     public static WebArchive createDeployment() {
@@ -27,7 +35,16 @@ public class BookDAOTest {
                 .addAsResource("META-INF/persistence.xml")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
+    
+    @Inject
+    private ListingDAO listingDAO;
+    
+    @Inject
+    private CategoryDAO categoryDAO;
 
+    @Inject
+    private ConditionDAO conditionDAO;
+    
     @Inject
     private AuthorDAO authorDAO;
 
@@ -35,19 +52,24 @@ public class BookDAOTest {
     private BookDAO bookDAO;
     
     @Inject
-    private CategoryDAO categoryDAO;
-
+    private AccountDAO accountDAO;
+    
+    Account acc;
     Category category;
     List<Category> categories;
     Author author;
     Author author2;
     List<Author> authors;
-    List<Author> authors2;
     Book book;
-    Book book2;
+    Condition condition;
+    Listing listing;
+    Long listingID;
     
     @Before
     public void init() {
+        acc = new Account("username", "firstname", "lastname", "0777777777", "namn@mail.se", "password", new Address("Street", "45163", "City"), Money.of(50, "SEK"));
+        accountDAO.create(acc);
+        
         category = new Category("Hållbarhet");
         categoryDAO.create(category);
         categories = new ArrayList<>();
@@ -59,40 +81,41 @@ public class BookDAOTest {
         authorDAO.create(author2);
         
         authors = new ArrayList<Author>();
-        authors2 = new ArrayList<Author>();
         authors.add(author);
         authors.add(author2);
-        authors2.add(author2);
         book = new Book("9789144151458", "Hållbar utveckling", 2021, "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.adlibris.com%2Fse%2Fbok%2Fhallbar-utveckling---livskvalitet-beteende-och-teknik-9789144151458&psig=AOvVaw0m1oxt_x4E6gVfR-KKcUMB&ust=1614764579235000&source=images&cd=vfe&ved=0CA0QjhxqFwoTCJjEkvuoke8CFQAAAAAdAAAAABAJ");
         book.setAuthors(authors);
         book.setCategories(categories);
         bookDAO.create(book);
-        
-        book2 = new Book("9789147096978", "Ansvarsfull verksamhetsstyrning", 2011, "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.adlibris.com%2Fse%2Fbok%2Fhallbar-utveckling---livskvalitet-beteende-och-teknik-9789144151458&psig=AOvVaw0m1oxt_x4E6gVfR-KKcUMB&ust=1614764579235000&source=images&cd=vfe&ved=0CA0QjhxqFwoTCJjEkvuoke8CFQAAAAAdAAAAABAJ");        
-        book2.setAuthors(authors2);
-        book2.setCategories(categories);
-        bookDAO.create(book2); 
+                
+        condition = new Condition("Nyskick");
+        conditionDAO.create(condition);
+
+        listing = new Listing(new Date(), Money.of(50, "SEK"),"description",condition,acc,book);
+        listingDAO.create(listing);
+        listingID = listing.getId();
     }
 
     @After
     public void clean() {
+        listingDAO.remove(listing);
+        accountDAO.remove(acc);
         bookDAO.remove(book);
-        bookDAO.remove(book2);
+        conditionDAO.remove(condition);
         categoryDAO.remove(category);
         authorDAO.remove(author);
         authorDAO.remove(author2);
+
     }
 
+    //Checks if the Username is correct.
     @Test
-    public void checkThatFindByISBNWorksCorrectly() {
-        Assert.assertEquals(book, bookDAO.findByISBN(book.getIsbn()));
-        Assert.assertEquals(book2, bookDAO.findByISBN(book2.getIsbn()));
-    }
-    
-    @Test
-    public void checkThatFindBooksMatchingTitleWorksCorrectly() {
-        List<Book> books = new ArrayList<Book>();
-        books.add(book);
-        Assert.assertArrayEquals(books.toArray(), bookDAO.findBooksMatchingTitle(book.getTitle()).toArray());
+    public void getListingsTest() {
+        BrowseBackingBean bbb = new BrowseBackingBean();
+        bbb.setBookDAO(bookDAO);
+        bbb.setListingDAO(listingDAO);
+        
+        Assert.assertNotEquals(listingID, null);
+        Assert.assertEquals(bbb.getListing(listingID), listing);
     }
 }
