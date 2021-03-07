@@ -41,7 +41,7 @@ public class IsbnApi {
         return null;
     }
 
-    public static String getTitleFromApi(String isbn) throws IOException, InterruptedException {
+    public static String getTitle(String isbn) throws IOException, InterruptedException {
         JSONObject jo = getIsbnFromApi(isbn);
         if (jo != null) {
             String title = jo.getJSONArray("items")
@@ -55,7 +55,7 @@ public class IsbnApi {
 
     }
 
-    public static List<String> getAuthorsFromApi(String isbn) throws IOException, InterruptedException {
+    public static List<String> getAuthors(String isbn) throws IOException, InterruptedException {
         JSONObject jo = getIsbnFromApi(isbn);
         JSONArray jsonAuthors = jo.getJSONArray("items")
                 .getJSONObject(0)
@@ -90,7 +90,17 @@ public class IsbnApi {
         for (Object category : jsonCategories){
             categories.add(category.toString());
         }
-        
+        System.out.println("Categories: " + categories);
         return categories;
+    }
+    public static int getPublishDate(String isbn) throws IOException, InterruptedException {
+        JSONObject jo = getIsbnFromApi(isbn);
+        String publishDate = jo.getJSONArray("items")
+                .getJSONObject(0)
+                .getJSONObject("volumeInfo")
+                .getString("publishedDate");
+        
+        publishDate = publishDate.substring(0,4);
+        return Integer.parseInt(publishDate);
     }
 }

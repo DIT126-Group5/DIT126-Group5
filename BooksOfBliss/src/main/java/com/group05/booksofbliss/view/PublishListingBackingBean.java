@@ -28,6 +28,7 @@ public class PublishListingBackingBean implements Serializable {
     private List<String> authors;
     private String imageUrl;
     private List<String> categories;
+    private int publishDate;
 
     @PostConstruct
     public void init() {

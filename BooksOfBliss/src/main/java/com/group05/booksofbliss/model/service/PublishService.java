@@ -7,7 +7,9 @@ import com.group05.booksofbliss.model.dao.ListingDAO;
 import com.group05.booksofbliss.model.entity.Author;
 import com.group05.booksofbliss.model.entity.Book;
 import com.group05.booksofbliss.model.entity.Category;
+import com.group05.booksofbliss.model.entity.Listing;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -27,23 +29,37 @@ public class PublishService implements Serializable {
     @Inject
     private CategoryDAO categoryDAO;
     
-    private void insertAuthor(String author) {
-        authorDAO.create(new Author(author));
+    private void insertAuthor(Author author) {
+        if (authorDAO.find(author.getName()) == null){
+            authorDAO.create(author);
+        }
     }
-    private void insertBook(String title) {
-        bookDAO.create(new Book());
+    private void insertBook(Book book) {
+        if (bookDAO.find(book.getIsbn()) == null){
+            bookDAO.create(book);  
+        }
+        
     }
-    private void insertCategory(String category) {
-        categoryDAO.create(new Category(category));
+    private void insertCategory(Category category) {
+        if (categoryDAO.find(category.getName()) == null){
+            categoryDAO.create(category);
+        }
     }
-    public void publishListing(String title, List<String> authors, List<String> categories) {
-        //Insert everything required for a listing in the right order.
-        for (String author : authors){
+    public void publishListing(Listing listing) {
+        Book book = listing.getBook();
+        List<Author> authors = book.getAuthors();
+        List<Category> categories = book.getCategories();
+        //Check that everything required for a listing exists in the database,
+        //and inserts it if it doesn't exist.
+        authors.forEach(author -> {
             insertAuthor(author);
-        }
-        for (String category : categories){
+        });
+        categories.forEach(category -> {
             insertCategory(category);
-        }
-        insertBook(title);
+        });
+        insertBook(book);
+        
+        //insertBook(isbn, title);
+        //listingDAO.create(new Listing());
     }
 }
