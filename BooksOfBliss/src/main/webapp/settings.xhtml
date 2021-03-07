@@ -14,47 +14,48 @@ and open the template in the editor.
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
     <h:body>
         <ui:composition template="WEB-INF/template/common.xhtml">
-            <ui:define name="title">Registera dig</ui:define>
+            <ui:define name="title">Inställningar</ui:define>
             <ui:define name="content">
 
 
                 <div class="container">
-                    <h:form>
-                        <div class="mt-5 py-5 pb-4 shadow bg-white rounded">
+
+                    <div class="mt-5 py-5 pb-4 shadow bg-white rounded">
+                        <h:form>
                             <h5 class="text-center mb-3">Dina uppgifter</h5>
 
                             <div class="form-group row px-5">
                                 <h:outputLabel class="col-sm-3 col-form-label" for="username" value="Användarnamn"/>
                                 <div class="col-sm-9">
-                                    <h:inputText class="form-control" id="registerUsername" value="#{registerBackingBean.username}"/>
+                                    <h:inputText disabled="true" class="form-control" id="setUsername" value="#{settingsBackingBean.account.getUsername()}"/>
                                 </div>
                             </div>
 
                             <div class="form-group row px-5">
                                 <h:outputLabel class="col-sm-3 col-form-label" for="firstname" value="Förnamn"/>
                                 <div class="col-sm-9">
-                                    <h:inputText class="form-control" id="registerFirstname" value="#{registerBackingBean.firstname}"/>
+                                    <h:inputText class="form-control" id="setFirstname" value="#{settingsBackingBean.account.firstname}"/>
                                 </div>
                             </div>
 
                             <div class="form-group row px-5">
                                 <h:outputLabel class="col-sm-3 col-form-label" for="lastname" value="Efternamn"/>
                                 <div class="col-sm-9">
-                                    <h:inputText class="form-control" id="registerLastname" value="#{registerBackingBean.lastname}"/>
+                                    <h:inputText class="form-control" id="setLastname" value="#{settingsBackingBean.account.lastname}"/>
                                 </div>
                             </div>
 
                             <div class="form-group row px-5">
                                 <h:outputLabel class="col-sm-3 col-form-label" for="phonenumber" value="Mobilnummer"/>
                                 <div class="col-sm-9">
-                                    <h:inputText class="form-control" id="registerPhonenumber" value="#{registerBackingBean.phonenumber}"/>
+                                    <h:inputText class="form-control" id="setPhonenumber" value="#{settingsBackingBean.account.phonenumber}"/>
                                 </div>
                             </div>
 
                             <div class="form-group row px-5">
                                 <h:outputLabel class="col-sm-3 col-form-label" for="email" value="E-post"/>
                                 <div class="col-sm-9">
-                                    <h:inputText class="form-control" pt:type="email" id="registerEmail" value="#{registerBackingBean.email}"/>
+                                    <h:inputText class="form-control" pt:type="email" id="setEmail" value="#{settingsBackingBean.account.email}"/>
                                 </div>
                             </div>
 
@@ -63,44 +64,59 @@ and open the template in the editor.
                             <div class="form-group row px-5">
                                 <h:outputLabel class="col-sm-3 col-form-label" for="address" value="Gata"/>
                                 <div class="col-sm-9">
-                                    <h:inputText class="form-control" id="registerAddress" value="#{registerBackingBean.street}"/>
+                                    <h:inputText class="form-control" id="setAddress" value="#{settingsBackingBean.account.address.street}"/>
                                 </div>
                             </div>
                             <div class="form-group row px-5">
                                 <h:outputLabel class="col-sm-3 col-form-label" for="postalcode" value="Postnummer"/>
                                 <div class="col-sm-9">
-                                    <h:inputText class="form-control" id="registerPostalCode" value="#{registerBackingBean.postalcode}"/>
+                                    <h:inputText class="form-control" id="setPostalCode" value="#{settingsBackingBean.account.address.postalCode}"/>
                                 </div>
                             </div>
                             <div class="form-group row px-5">
                                 <h:outputLabel class="col-sm-3 col-form-label" for="city" value="Stad"/>
                                 <div class="col-sm-9">
-                                    <h:inputText class="form-control" id="registerCity" value="#{registerBackingBean.city}"/>
+                                    <h:inputText class="form-control" id="setCity" value="#{settingsBackingBean.account.address.city}"/>
                                 </div>
                             </div>
+                            <h:commandButton action="#{settingsController.updateAccount()}" value="Spara Uppgifter" class="btn btn-primary d-block mx-auto mt-5 mb-3"/>
+                            <h:messages id="messages" />
+                        </h:form>
+                    </div>
 
-                            <h5 class="text-center mb-3">Lösenord</h5>
+                    <div class="mt-5 py-5 pb-4 shadow bg-white rounded mb-5">
+                        <h:form>
+                            <h5 class="text-center mb-3">Ändra lösenord</h5>
 
                             <div class="form-group row px-5">
-                                <h:outputLabel class="col-sm-3 col-form-label" for="pwd1" value="Lösenord"/>
+                                <h:outputLabel class="col-sm-3 col-form-label" for="pwd1" value="Nytt lösenord"/>
                                 <div class="col-sm-9">
-                                    <p:password class="form-control" pt:type="password" id="pwd1" value="#{registerBackingBean.password}" match="pwd2" label="Password 1" required="true"/>
+                                    <p:password class="form-control" pt:type="password" id="pwd1" value="#{settingsBackingBean.newPassword}" match="pwd2" label="Password 1" required="true"/>
                                 </div>
                             </div>
                             <div class="form-group row px-5">
-                                <h:outputLabel class="col-sm-3 col-form-label" for="pwd2" value="Lösenord"/>
+                                <h:outputLabel class="col-sm-3 col-form-label" for="pwd2" value="Upprepa lösenord"/>
                                 <div class="col-sm-9">
                                     <p:password class="form-control" pt:type="password" id="pwd2" label="Password 2" required="true"/>
                                 </div>
                             </div>
 
-                            <h:commandButton action="#{registerController.createAccount()}" value="Skapa Konto" class="btn btn-primary d-block mx-auto mt-5"/>
+                            <h5 class="text-center mb-3">Nuvarande lösenord</h5>
+
+                            <div class="form-group row px-5">
+                                <h:outputLabel class="col-sm-3 col-form-label" for="pwd" value="Lösenord"/>
+                                <div class="col-sm-9">
+                                    <p:password class="form-control" pt:type="password" id="pwd" value="#{settingsBackingBean.password}" label="Password 3" required="true"/>
+                                </div>
+                            </div>
+
+                            <h:commandButton action="#{settingsController.changePassword}" value="Ändra lösenord" class="btn btn-primary d-block mx-auto mt-5"/>
                             <h:messages id="messages" />
-
-                        </div>
-
-                    </h:form>
+                        </h:form>
+                    </div>
                 </div>
+
+
 
             </ui:define>
         </ui:composition>

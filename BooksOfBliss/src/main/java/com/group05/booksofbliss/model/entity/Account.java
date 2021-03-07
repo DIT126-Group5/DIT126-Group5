@@ -60,7 +60,6 @@ public class Account implements Serializable {
     @NonNull
     @NotBlank
     @ToString.Include
-    @Size(min = 8, message = "Password must have at least 8 characters")
     private String password;
 
     @NonNull
@@ -92,13 +91,6 @@ public class Account implements Serializable {
             throw new IllegalArgumentException("The username you have written is invalid.");
         }
         this.username = username;
-    }
-
-    public void setPassword(String password) {
-        if (!isValidPassword(password)) {
-            throw new IllegalArgumentException("The password you have written is invalid.");
-        }
-        this.password = password;
     }
 
     /*Username Requirements:

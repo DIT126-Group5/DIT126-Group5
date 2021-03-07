@@ -28,7 +28,7 @@
                     <p:menubar>
                         <p:menuitem value="Search Form">
                             <p:inputText placeholder="Sök efter titel, författare eller ISBN" id="searchtext"
-                                         value="#{navBar.searchString}" required="true" label="Text 1" style="width: 400px;">
+                                         value="Not yet implemented" required="true" label="Text 1" style="width: 400px;">
                                 <f:validateLength minimum="2"/>
                             </p:inputText>
                         </p:menuitem>
@@ -36,17 +36,16 @@
                         <p:menuitem title="clickSearch">
                             <p:commandButton value="Sök"/>
                         </p:menuitem>
-
                         <p:menuitem value="Bläddra" outcome="browse" style="margin-left:20px"/>
                         <p:menuitem value="Sälj en bok" outcome="publish" style="margin-left:20px"/>
 
                         <p:menuitem value="Logga in" outcome="login" style="margin-left:20px" rendered="#{auth.account == null}" />
                         <p:menuitem value="Registrera dig" outcome="register" style="margin-left:20px" rendered="#{auth.account == null}" />
 
-                        <p:submenu label="Mina sidor (FIXME)" style="margin-left:20px" rendered="#{auth.account != null}">
-                            <p:menuitem value="Inställningar" />
+                        <p:submenu label="Mina sidor" style="margin-left:20px" rendered="#{auth.account != null}">
+                            <p:menuitem value="Inställningar" outcome="settings.xhtml"/>
                             <p:menuitem value="Köp kredit" outcome="buy_credits" />
-                            <p:menuitem value="Logga ut" />
+                            <p:menuitem value="Logga ut" action="#{logoutController.logout()}"/>
                         </p:submenu>
                     </p:menubar>
                 </h:form>
