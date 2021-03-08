@@ -9,7 +9,6 @@ import com.group05.booksofbliss.model.entity.Book;
 import com.group05.booksofbliss.model.entity.Category;
 import com.group05.booksofbliss.model.entity.Listing;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -36,6 +35,7 @@ public class PublishService implements Serializable {
     }
     private void insertBook(Book book) {
         if (bookDAO.find(book.getIsbn()) == null){
+            System.out.println("Innan bookDAO.create");
             bookDAO.create(book);  
         }
         
@@ -58,8 +58,8 @@ public class PublishService implements Serializable {
             insertCategory(category);
         });
         insertBook(book);
-        
-        //insertBook(isbn, title);
-        //listingDAO.create(new Listing());
+        System.out.println("Innan listingDAO.create");
+        System.out.println(listing);
+        listingDAO.create(listing);
     }
 }

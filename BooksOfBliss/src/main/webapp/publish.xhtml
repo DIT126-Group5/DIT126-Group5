@@ -27,6 +27,7 @@
                         </div>
                     </div>
                     <h:panelGroup id="panel">
+                        <h:form>
                         <p:outputLabel value="Boktitel" />
                         <p:inputText disabled="true" value="#{publishListingBackingBean.title}" />
                         <p:outputLabel value="Författare" />
@@ -43,14 +44,15 @@
                         </div>
 
                         <div class="p-field p-col-12 p-md-3">
-                            <p:selectOneMenu id="cond" value="Condition">
+                            <p:selectOneMenu id="cond" value="#{publishListingBackingBean.conditionName}">
                                 <f:selectItems value="#{publishListingBackingBean.conditions}"/>
                             </p:selectOneMenu>
                         </div>
                         <div class="p-field p-col-12 p-md-3">
                             <p:commandButton value="Publish Listing" 
-                                             action="#{publishListingControler.publish}"/>
+                                             action="#{publishListingController.publish}"/>
                         </div>
+                        </h:form>
                     </h:panelGroup>
                 </div>
 
