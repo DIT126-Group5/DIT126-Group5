@@ -29,18 +29,22 @@ public class BrowseBackingBean implements Serializable {
 
     @Inject
     private ListingDAO listingDAO;
-    
+
     @Inject
     private BookDAO bookDAO;
 
     public List<Listing> getListings() {
-        return listingDAO.findAll();
+        return listingDAO.sortListingsByDate("newest");
     }
-    
+
+    public List<Listing> getListings(String order) {
+        return listingDAO.sortListingsByDate(order);
+    }
+
     public Listing getListing(Long id) {
         return listingDAO.find(id);
     }
-    
+
     public String getAuthorsAsString(String isbn) {
         List<Author> authors = bookDAO.findByISBN(isbn).getAuthors();
         StringBuilder sb = new StringBuilder();

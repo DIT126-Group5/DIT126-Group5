@@ -3,6 +3,7 @@ package com.group05.booksofbliss.view;
 import java.io.Serializable;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import lombok.Data;
 
@@ -24,6 +25,7 @@ public class RegisterBackingBean implements Serializable {
     private String phonenumber;
 
     @NotBlank
+    @Email
     private String email;
 
     @NotBlank
