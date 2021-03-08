@@ -50,7 +50,7 @@ public class IsbnApi {
                     .getString("title");
             return title;
         } else {
-            return "ISBN not good";
+            return "Invalid ISBN";
         }
 
     }

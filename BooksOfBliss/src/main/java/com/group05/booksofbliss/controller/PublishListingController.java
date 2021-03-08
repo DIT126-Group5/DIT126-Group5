@@ -1,6 +1,5 @@
 package com.group05.booksofbliss.controller;
 
-import com.group05.booksofbliss.model.dao.ConditionDAO;
 import com.group05.booksofbliss.model.entity.Account;
 import com.group05.booksofbliss.model.entity.Author;
 import com.group05.booksofbliss.model.entity.Book;
@@ -20,7 +19,6 @@ import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.money.MonetaryAmount;
 import lombok.Data;
 import org.javamoney.moneta.Money;
 
@@ -40,12 +38,12 @@ public class PublishListingController implements Serializable {
     
     public void searchIsbn() throws IOException, InterruptedException {
         String isbn = publishListingBackingBean.getIsbn();
-        System.out.println("ISBN: " + isbn);
         publishListingBackingBean.setTitle(IsbnApi.getTitle(isbn));
         publishListingBackingBean.setAuthors(IsbnApi.getAuthors(isbn));
         publishListingBackingBean.setImageUrl(IsbnApi.getImageUrl(isbn));
         publishListingBackingBean.setCategories(IsbnApi.getBookCategories(isbn));
         publishListingBackingBean.setPublishDate(IsbnApi.getPublishDate(isbn));
+        publishListingBackingBean.setHasIsbn(true);
     }
     public void publish() {
         //Variables for creating listing and book objects
@@ -71,12 +69,9 @@ public class PublishListingController implements Serializable {
         Date date = new Date();
         BigDecimal price = publishListingBackingBean.getPrice();
         String description = publishListingBackingBean.getDescription();
-        //String conditionName = publishListingBackingBean.getConditionName();
         Condition condition = new Condition(publishListingBackingBean.getConditionName());
         Account acc = auth.getAccount();
-        System.out.println("inloggad användare: " + auth.getAccount());
         Listing listing = new Listing(date, Money.of(price, "SEK"), description, condition, acc, book);
-        System.out.println("Innan publishListing");
         publishService.publishListing(listing);
     }
 }

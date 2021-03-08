@@ -35,10 +35,8 @@ public class PublishService implements Serializable {
     }
     private void insertBook(Book book) {
         if (bookDAO.find(book.getIsbn()) == null){
-            System.out.println("Innan bookDAO.create");
             bookDAO.create(book);  
         }
-        
     }
     private void insertCategory(Category category) {
         if (categoryDAO.find(category.getName()) == null){
@@ -58,7 +56,6 @@ public class PublishService implements Serializable {
             insertCategory(category);
         });
         insertBook(book);
-        System.out.println("Innan listingDAO.create");
         System.out.println(listing);
         listingDAO.create(listing);
     }

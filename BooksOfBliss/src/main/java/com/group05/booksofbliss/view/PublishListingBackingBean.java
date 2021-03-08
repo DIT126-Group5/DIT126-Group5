@@ -30,6 +30,7 @@ public class PublishListingBackingBean implements Serializable {
     private List<String> categories;
     private int publishDate;
     private String conditionName;
+    private boolean hasIsbn = false;
 
     @PostConstruct
     public void init() {

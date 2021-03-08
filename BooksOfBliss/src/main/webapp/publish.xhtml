@@ -26,7 +26,7 @@
 
                         </div>
                     </div>
-                    <h:panelGroup id="panel">
+                    <h:panelGroup id="panel" rendered="#{publishListingBackingBean.hasIsbn}">
                         <h:form>
                         <p:outputLabel value="Boktitel" />
                         <p:inputText disabled="true" value="#{publishListingBackingBean.title}" />
