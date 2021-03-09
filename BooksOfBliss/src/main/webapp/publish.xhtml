@@ -10,30 +10,53 @@
         <ui:composition template="WEB-INF/template/common.xhtml">
             <ui:define name="title">Skapa annons</ui:define>
             <ui:define name="content">
-
                 <div class="container">
-                    <div class="ui-fluid p-formgrid p-grid">
-                        <div class="p-field p-col-12 p-md-6">
-                            <p:outputLabel for="isbn" value="Skriv in ISBN" />
-                            <p:inputText id="isbn" />
-                        </div>
-                        <div class="p-field p-col-12 p-md-6">
-                            <p:outputLabel for="price" value="Pris" />
-                            <p:inputText id="price" />
-                        </div>
+                    <div class="col-7 pt-2 pb-4 shadow bg-white rounded mt-5">
+                        <p:outputLabel value="Vad vill du sälja?" />
+                        <div class="col-7 pt-2 pb-4 shadow bg-white rounded">
+                            <div class="ui-fluid p-formgrid p-grid">
+                                <div class="p-field p-col-12 p-md-6">
+                                    <h:form>
+                                        <p:outputLabel for="isbn" value="Skriv in bokens ISBN-nummer" />
+                                        <p:inputText id="isbn" value="#{publishListingBackingBean.isbn}"/>
+                                        <p:commandButton value="Sök" action="#{publishListingController.searchIsbn}" update="panel" />
+                                    </h:form>
+                                </div>
+                            </div>
 
-                        <div class="p-field p-col-12 p-md-6">
-                            <p:inputTextarea value="Beskrivning av produkt (valfri)" id="desc" />
                         </div>
+                    </div>
+                    <div class="col-7 pt-2 pb-4 shadow bg-white rounded">
+                        <div class="ui-fluid p-formgrid p-grid">
+                            <h:panelGroup id="panel">
+                                <h:form>
+                                    <p:outputLabel value="Boktitel" />
+                                    <p:inputText disabled="true" required="true" value="#{publishListingBackingBean.title}" />
+                                    <p:outputLabel value="Författare" />
+                                    <p:inputText disabled="true" required="true" value="#{publishListingBackingBean.authors}" />
 
-                        <div class="p-field p-col-12 p-md-3">
-                            <p:selectOneMenu id="cond" value="Condition">
-                                <f:selectItems value="#{publishListingBackingBean.conditions}"/>
-                            </p:selectOneMenu>
-                        </div>
-                        <div class="p-field p-col-12 p-md-3">
-                            <p:commandButton value="Publish Listing"
-                                             action="#{publishListingController.publish(price,desc,cond)}"/>
+                                    <div class="p-field p-col-12 p-md-6">
+                                        <p:outputLabel for="price" value="Skriv in ditt pris" />
+                                        <p:inputNumber id="price" minValue="0" required="true" value="#{publishListingBackingBean.price}"/>
+                                    </div>
+
+                                    <div class="p-field p-col-12 p-md-6">
+                                        <p:outputLabel value="Annonsbeskrivning (max 250 karaktärer)"/>
+                                        <p:inputTextarea value="#{publishListingBackingBean.description}" id="desc" maxlength="250" />
+                                    </div>
+
+                                    <div class="p-field p-col-12 p-md-3">
+                                        <p:outputLabel value="Välj bokens skick" />
+                                        <p:selectOneMenu id="cond" required="true" value="#{publishListingBackingBean.conditionName}">
+                                            <f:selectItems value="#{publishListingBackingBean.conditions}"/>
+                                        </p:selectOneMenu>
+                                    </div>
+                                    <div class="p-field p-col-12 p-md-3">
+                                        <p:commandButton value="Publish Listing"
+                                                         action="#{publishListingController.publish}"/>
+                                    </div>
+                                </h:form>
+                            </h:panelGroup>
                         </div>
                     </div>
                 </div>
