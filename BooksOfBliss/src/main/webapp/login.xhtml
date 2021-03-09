@@ -16,21 +16,26 @@ and open the template in the editor.
             <ui:define name="title">Logga in</ui:define>
             <ui:define name="content">
 
-                <div class="container">
+                <div class="container" style="max-width: 500px">
                     <h:form>
-                        <div  class="centerDiv" style="width: 400px">
-                            <p:panel>
-                                <f:facet name="header">Logga in</f:facet>
-                                <h:panelGrid columns="2">
-                                    Användarnamn:
-                                    <h:inputText id="loginUsername" value="#{loginBackingBean.username}" label="loginUsername"/>
-                                    Lösenord:
-                                    <h:inputSecret id="loginPassword" value="#{loginBackingBean.password}" label="loginPassword"/>
-
-                                </h:panelGrid>
-                                <h:commandButton value="Logga in" action="#{loginController.login()}"/>
-                                <h:button value="Registrera dig" outcome="register.xhtml"/>
-                            </p:panel>
+                        <div  class="mt-5 py-5 pb-4 shadow bg-white rounded">
+                            <h5 class="text-center mb-3">Logga in</h5>
+                            <div class="form-group row px-5">
+                                <h:outputLabel class="col-sm-3 col-form-label" for="username" value="Användarnamn"/>
+                                <div class="col-sm-9">
+                                    <h:inputText class="form-control" id="loginUsername" value="#{loginBackingBean.username}" label="loginUsername"/>
+                                </div>
+                            </div>
+                            <div class="form-group row px-5">
+                                <h:outputLabel class="col-sm-3 col-form-label" for="password" value="Lösenord"/>
+                                <div class="col-sm-9">
+                                    <h:inputText class="form-control" id="loginPassword" value="#{loginBackingBean.password}" label="loginPassword"/>
+                                </div>
+                            </div>
+                            <div class="text-center d-flex justify-content-between mx-auto" style="max-width: 300px">
+                            <h:commandButton action="#{loginController.login()}" value="Logga in" class="btn btn-primary mt-5"/>
+                            <h:button value="Registrera dig" outcome="register.xhtml" class="btn btn-secondary mt-5"/>
+                            </div>
                         </div>
                     </h:form>
                 </div>
