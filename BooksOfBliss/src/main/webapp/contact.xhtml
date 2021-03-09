@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <h:body>
+        <ui:composition template="WEB-INF/template/common.xhtml">
+            <ui:define name="title">Kontakta oss</ui:define>
+            <ui:define name="content">
+
+
+                <div class="container">
+                    <h:form>
+                        <div class="mt-5 py-5 pb-4 shadow bg-white rounded">
+                            <h5 class="text-center">Kontakta oss</h5>
+                            <div class="form-group">
+                                <h:outputLabel class="col-sm-3 col-form-label" value="Ditt namn"/>
+                                <h:inputText class="form-control" id="name" value="#{registerBackingBean.firstname} #{registerBackingBean.lastname}"/>
+                            </div>
+
+                            <div class="form-group">
+                                <h:outputLabel class="col-sm-3 col-form-label" value="Din mailadress"/>
+                                <h:inputText class="form-control" id="mail" value="#{registerBackingBean.email}"/>
+                            </div>
+
+                            <div class="form-group" styleClass="navStyle">
+                                <h:outputLabel class="col-sm-3"  value="Ditt meddelande"/>
+                                <h:inputText class="form-control" style="height:200px;" id="message"/>
+                            </div>
+
+                            <!-- fix this -->
+                            <h:commandButton title="clickSearch" value="Skicka meddelande" action="browse"/>
+
+                        </div>
+
+                    </h:form>
+                </div>
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
