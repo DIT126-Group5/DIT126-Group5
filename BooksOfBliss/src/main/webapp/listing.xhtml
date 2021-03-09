@@ -18,7 +18,10 @@
                         <div class="col-7 pt-2 pb-4 shadow bg-white rounded">
                             <h5>#{listingBackingBean.listing.book.title} (#{listingBackingBean.listing.book.publicationYear})</h5>
                             <div class="row">
-                                <img src="#{listingBackingBean.listing.book.imageUrl}" alt="Book cover" style="height: 10rem" class="col col-auto" />
+                                <picture>
+                                    <source srcset="#{listingBackingBean.listing.book.imageUrl}" />
+                                    <h:graphicImage name="assets/images/missing_cover.jpg" alt="Bokomslag" style="height: 10rem" class="col col-auto" />
+                                </picture>
                                 <div class="col d-flex flex-column">
                                     <small class="text-muted">
                                         Författare:
