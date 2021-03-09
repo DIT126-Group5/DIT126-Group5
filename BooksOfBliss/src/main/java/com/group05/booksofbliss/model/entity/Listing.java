@@ -62,7 +62,15 @@ public class Listing implements Serializable {
     @OneToOne(mappedBy = "listing")
     private Purchase purchase;
 
-
+    public void setPrice(MonetaryAmount price){
+        if (price.isNegative()) {
+            throw new IllegalArgumentException("The price must be 0 or higher.");
+        }
+        else{
+            this.price = price;
+        }
+    }
+ 
     // Special handling of hashCode and equals for entity with generated primary key.
     @Override
     public int hashCode() {
