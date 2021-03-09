@@ -19,7 +19,7 @@ public class PublishListingBackingBean implements Serializable {
 
     @Inject
     private ConditionDAO conditionDAO;
-    
+
     private List<String> conditions;
     private BigDecimal price;
     private String isbn;
@@ -30,7 +30,6 @@ public class PublishListingBackingBean implements Serializable {
     private List<String> categories;
     private int publishDate;
     private String conditionName;
-    private boolean hasIsbn = false;
 
     @PostConstruct
     public void init() {

@@ -26,34 +26,39 @@
 
                         </div>
                     </div>
-                    <h:panelGroup id="panel" rendered="#{publishListingBackingBean.hasIsbn}">
-                        <h:form>
-                        <p:outputLabel value="Boktitel" />
-                        <p:inputText disabled="true" value="#{publishListingBackingBean.title}" />
-                        <p:outputLabel value="Författare" />
-                        <p:inputText disabled="true" value="#{publishListingBackingBean.authors}" />
+                    <div class="col-7 pt-2 pb-4 shadow bg-white rounded">
+                        <div class="ui-fluid p-formgrid p-grid">
+                            <h:panelGroup id="panel">
+                                <h:form>
+                                    <p:outputLabel value="Boktitel" />
+                                    <p:inputText disabled="true" required="true" value="#{publishListingBackingBean.title}" />
+                                    <p:outputLabel value="Författare" />
+                                    <p:inputText disabled="true" required="true" value="#{publishListingBackingBean.authors}" />
 
-                        <div class="p-field p-col-12 p-md-6">
-                            <p:outputLabel for="price" value="Skriv in ditt pris" />
-                            <p:inputText id="price" value="#{publishListingBackingBean.price}"/>
-                        </div>
+                                    <div class="p-field p-col-12 p-md-6">
+                                        <p:outputLabel for="price" value="Skriv in ditt pris" />
+                                        <p:inputNumber id="price" minValue="0" required="true" value="#{publishListingBackingBean.price}"/>
+                                    </div>
 
-                        <div class="p-field p-col-12 p-md-6">
-                            <p:outputLabel value="Annonsbeskrivning (valfri)"/>
-                            <p:inputTextarea value="#{publishListingBackingBean.description}" id="desc" />
-                        </div>
+                                    <div class="p-field p-col-12 p-md-6">
+                                        <p:outputLabel value="Annonsbeskrivning (max 250 karaktärer)"/>
+                                        <p:inputTextarea value="#{publishListingBackingBean.description}" id="desc" maxlength="250" />
+                                    </div>
 
-                        <div class="p-field p-col-12 p-md-3">
-                            <p:selectOneMenu id="cond" value="#{publishListingBackingBean.conditionName}">
-                                <f:selectItems value="#{publishListingBackingBean.conditions}"/>
-                            </p:selectOneMenu>
+                                    <div class="p-field p-col-12 p-md-3">
+                                        <p:outputLabel value="Välj bokens skick" />
+                                        <p:selectOneMenu id="cond" required="true" value="#{publishListingBackingBean.conditionName}">
+                                            <f:selectItems value="#{publishListingBackingBean.conditions}"/>
+                                        </p:selectOneMenu>
+                                    </div>
+                                    <div class="p-field p-col-12 p-md-3">
+                                        <p:commandButton value="Publish Listing"
+                                                         action="#{publishListingController.publish}"/>
+                                    </div>
+                                </h:form>
+                            </h:panelGroup>
                         </div>
-                        <div class="p-field p-col-12 p-md-3">
-                            <p:commandButton value="Publish Listing" 
-                                             action="#{publishListingController.publish}"/>
-                        </div>
-                        </h:form>
-                    </h:panelGroup>
+                    </div>
                 </div>
 
             </ui:define>

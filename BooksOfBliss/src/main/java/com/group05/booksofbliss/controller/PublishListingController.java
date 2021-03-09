@@ -21,6 +21,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import lombok.Data;
 import org.javamoney.moneta.Money;
+import org.primefaces.shaded.json.JSONObject;
 
 @Data
 @RequestScoped
@@ -29,22 +30,23 @@ public class PublishListingController implements Serializable {
 
     @Inject
     private PublishListingBackingBean publishListingBackingBean;
-    
+
     @Inject
     private PublishService publishService;
-    
+
     @Inject
     private Auth auth;
-    
+
     public void searchIsbn() throws IOException, InterruptedException {
         String isbn = publishListingBackingBean.getIsbn();
-        publishListingBackingBean.setTitle(IsbnApi.getTitle(isbn));
-        publishListingBackingBean.setAuthors(IsbnApi.getAuthors(isbn));
-        publishListingBackingBean.setImageUrl(IsbnApi.getImageUrl(isbn));
-        publishListingBackingBean.setCategories(IsbnApi.getBookCategories(isbn));
-        publishListingBackingBean.setPublishDate(IsbnApi.getPublishDate(isbn));
-        publishListingBackingBean.setHasIsbn(true);
+        JSONObject jo = IsbnApi.getIsbnFromApi(isbn);
+        publishListingBackingBean.setTitle(IsbnApi.getTitle(jo));
+        publishListingBackingBean.setAuthors(IsbnApi.getAuthors(jo));
+        publishListingBackingBean.setImageUrl(IsbnApi.getImageUrl(jo));
+        publishListingBackingBean.setCategories(IsbnApi.getBookCategories(jo));
+        publishListingBackingBean.setPublishDate(IsbnApi.getPublishDate(jo));
     }
+
     public void publish() {
         //Variables for creating listing and book objects
         String isbn = publishListingBackingBean.getIsbn();
@@ -59,12 +61,12 @@ public class PublishListingController implements Serializable {
         publishListingBackingBean.getCategories().forEach(category -> {
             categories.add(new Category(category));
         });
-        
+
         //Create book object
         Book book = new Book(isbn, title, publishYear, imageUrl);
         book.setAuthors(authors);
         book.setCategories(categories);
-        
+
         //Create listing object
         Date date = new Date();
         BigDecimal price = publishListingBackingBean.getPrice();

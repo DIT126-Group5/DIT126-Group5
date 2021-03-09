@@ -16,7 +16,7 @@ import org.primefaces.shaded.json.JSONObject;
 
 public class IsbnApi {
 
-    private static JSONObject getIsbnFromApi(String isbn) throws IOException, InterruptedException {
+    public static JSONObject getIsbnFromApi(String isbn) throws IOException, InterruptedException {
         String isbnUrl = "https://www.googleapis.com/books/v1/volumes?q=isbn:" + isbn;
 
         try {
@@ -41,8 +41,8 @@ public class IsbnApi {
         return null;
     }
 
-    public static String getTitle(String isbn) throws IOException, InterruptedException {
-        JSONObject jo = getIsbnFromApi(isbn);
+    public static String getTitle(JSONObject jo) {
+        //JSONObject jo = getIsbnFromApi(isbn);
         if (jo != null) {
             String title = jo.getJSONArray("items")
                     .getJSONObject(0)
@@ -55,8 +55,8 @@ public class IsbnApi {
 
     }
 
-    public static List<String> getAuthors(String isbn) throws IOException, InterruptedException {
-        JSONObject jo = getIsbnFromApi(isbn);
+    public static List<String> getAuthors(JSONObject jo) {
+        //JSONObject jo = getIsbnFromApi(isbn);
         JSONArray jsonAuthors = jo.getJSONArray("items")
                 .getJSONObject(0)
                 .getJSONObject("volumeInfo")
@@ -69,8 +69,8 @@ public class IsbnApi {
         return authors;
     }
 
-    public static String getImageUrl(String isbn) throws IOException, InterruptedException {
-        JSONObject jo = getIsbnFromApi(isbn);
+    public static String getImageUrl(JSONObject jo) {
+        //JSONObject jo = getIsbnFromApi(isbn);
         String imgLink = jo.getJSONArray("items")
                 .getJSONObject(0)
                 .getJSONObject("volumeInfo")
@@ -79,8 +79,8 @@ public class IsbnApi {
         return imgLink;
     }
 
-    public static List<String> getBookCategories(String isbn) throws IOException, InterruptedException {
-        JSONObject jo = getIsbnFromApi(isbn);
+    public static List<String> getBookCategories(JSONObject jo) {
+        //JSONObject jo = getIsbnFromApi(isbn);
         JSONArray jsonCategories = jo.getJSONArray("items")
                 .getJSONObject(0)
                 .getJSONObject("volumeInfo")
@@ -93,8 +93,8 @@ public class IsbnApi {
         System.out.println("Categories: " + categories);
         return categories;
     }
-    public static int getPublishDate(String isbn) throws IOException, InterruptedException {
-        JSONObject jo = getIsbnFromApi(isbn);
+    public static int getPublishDate(JSONObject jo) {
+        //JSONObject jo = getIsbnFromApi(isbn);
         String publishDate = jo.getJSONArray("items")
                 .getJSONObject(0)
                 .getJSONObject("volumeInfo")
