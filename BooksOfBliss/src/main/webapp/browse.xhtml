@@ -19,14 +19,16 @@
                 <div class="container">
                     <ul class="list-group">
                         <b:repeat value="#{browseBackingBean.listings}"
-                                  var="listing"
-                                  rendered="true">
-                            <div class="card mb-3 shadow-sm" style="max-height: 270px; overflow: hidden;">
-                                <div class="row no-gutters">
-                                    <div class="col-md-4">
-                                        <img src="#{listing.book.imageUrl}" style="width: 100%; object-fit: contain" alt="Bokomslag" />
+                                  var="listing">
+                            <div class="card mb-3 shadow-sm">
+                                <div class="row no-gutters align-items-stretch" style="height: 15rem">
+                                    <div class="col-4 mh-100">
+                                        <picture>
+                                            <source srcset="#{listing.book.imageUrl}" />
+                                            <h:graphicImage name="assets/images/missing_cover.jpg" alt="Bokomslag" class="w-100 h-100" style="object-fit: contain"  />
+                                        </picture>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-8 mh-100">
                                         <div class="card-body">
                                             <h5 class="card-title">#{listing.book.title}</h5>
                                         </div>
