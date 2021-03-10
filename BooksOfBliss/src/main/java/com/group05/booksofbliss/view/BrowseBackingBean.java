@@ -38,14 +38,10 @@ public class BrowseBackingBean implements Serializable {
 
     public List<Listing> getListings() {
         if (searchQuery == null) {
-            return listingDAO.sortListingsByDate("newest");
+            return listingDAO.getBuyableListingsSortedByDate();
         } else {
             return listingDAO.search(searchQuery);
         }
-    }
-
-    public List<Listing> getListings(String order) {
-        return listingDAO.sortListingsByDate(order);
     }
 
     public Listing getListing(Long id) {

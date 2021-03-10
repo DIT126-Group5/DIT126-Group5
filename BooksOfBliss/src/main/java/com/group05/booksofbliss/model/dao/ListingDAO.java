@@ -35,9 +35,7 @@ public class ListingDAO extends AbstractDAO<Listing, Long> {
                 .collect(Collectors.toList());
     }
 
-    public List<Listing> sortListingsByDate(String order) {
-        List<Listing> listings = findAll();
-
+    public List<Listing> sortListingsByDate(List<Listing> listings) {
         Collections.sort(listings, new Comparator<Listing>() {
             public int compare(Listing l1, Listing l2) {
                 return -l1.getDateTime().compareTo(l2.getDateTime());
@@ -45,4 +43,24 @@ public class ListingDAO extends AbstractDAO<Listing, Long> {
         });
         return listings;
     }
+
+    public List<Listing> getBuyableListings() {
+        List<Listing> listings = findAll();
+        List<Listing> result = new ArrayList<>();
+
+        for (Listing listing : listings) {
+            if (listing.getPurchase() == null) {
+                result.add(listing);
+            }
+        }
+
+        return result;
+    }
+
+    public List<Listing> getBuyableListingsSortedByDate() {
+         List<Listing> listings = getBuyableListings();
+         sortListingsByDate(listings);
+         return listings;
+    }
+
 }

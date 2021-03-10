@@ -24,7 +24,10 @@
                                 <div class="col-7 pt-2 pb-4 shadow bg-white rounded">
                                     <h5>Du är på väg att köpa</h5>
                                     <div class="row">
-                                        <img src="#{checkoutBackingBean.listing.book.imageUrl}" alt="Bokomslag" style="height: 10rem" class="col col-auto" />
+                                        <picture>
+                                            <source srcset="#{checkoutBackingBean.listing.book.imageUrl}" />
+                                            <h:graphicImage name="assets/images/missing_cover.jpg" alt="Bokomslag" style="height: 10rem" class="col col-auto" />
+                                        </picture>
                                         <div class="col d-flex flex-column">
                                             <div><strong>#{checkoutBackingBean.listing.book.title} (#{checkoutBackingBean.listing.book.publicationYear})</strong></div>
                                             <small class="text-muted">
