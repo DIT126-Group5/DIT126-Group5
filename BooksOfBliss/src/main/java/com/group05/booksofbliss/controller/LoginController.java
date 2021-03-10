@@ -45,7 +45,7 @@ public class LoginController {
                         .credential(credential));
 
         if (authenticationStatus.equals(SUCCESS)) {
-            return "browse";
+            return "browse?faces-redirect=true";
         } else if (authenticationStatus.equals(SEND_CONTINUE)) {
             facesContext.responseComplete();
         } else if (authenticationStatus.equals(SEND_FAILURE)) {
