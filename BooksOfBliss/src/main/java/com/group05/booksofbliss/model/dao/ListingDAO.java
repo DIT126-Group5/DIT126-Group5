@@ -26,12 +26,12 @@ public class ListingDAO extends AbstractDAO<Listing, Long> {
     //Worst search method ever
     public List<Listing> search(String searchInput) {
         final String search = searchInput.toLowerCase();
-        List<Listing> listings = findAll();
-        
-         return listings.stream().filter(listing -> 
-                listing.getBook().getTitle().toLowerCase().contains(search) ||
-                listing.getBook().getIsbn().toLowerCase().contains(search) ||
-                listing.getBook().getAuthors().stream().map(Author::getName)
+        List<Listing> listings = getBuyableListingsSortedByDate();
+
+        return listings.stream().filter(listing
+                -> listing.getBook().getTitle().toLowerCase().contains(search)
+                || listing.getBook().getIsbn().toLowerCase().contains(search)
+                || listing.getBook().getAuthors().stream().map(Author::getName)
                         .anyMatch(author -> author.toLowerCase().contains(search)))
                 .collect(Collectors.toList());
     }
@@ -59,9 +59,9 @@ public class ListingDAO extends AbstractDAO<Listing, Long> {
     }
 
     public List<Listing> getBuyableListingsSortedByDate() {
-         List<Listing> listings = getBuyableListings();
-         sortListingsByDate(listings);
-         return listings;
+        List<Listing> listings = getBuyableListings();
+        sortListingsByDate(listings);
+        return listings;
     }
 
 }
