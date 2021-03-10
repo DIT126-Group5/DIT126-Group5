@@ -19,6 +19,22 @@ body {
     align-items: center;
 }
 
+.ui-menuitem-text {
+    margin-left: 15px !important;
+    margin-right: 15px !important;
+}
+
+.ui-submenu-link {
+    margin-left: 15px !important;
+    margin-right: 15px !important;
+    width: auto !important;
+}
+
+.ui-submenu-link > .ui-menuitem-text {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
 .ui-submenu-link.ui-state-hover {
     background: none !important;
 }
@@ -60,16 +76,16 @@ body {
     height: fit-content !important;
     margin-top: 10px;
     margin-left: 20px;
-    padding-right: 15px !important;
-    padding-left: 10px !important;
+    padding-right: 0px !important;
+    padding-left: 0px !important;
     padding-top: 10px !important;
     padding-bottom: 10px !important;
 }
 
 .myPagesStyle {
     background-color: #D3D3D3 !important;
-    padding-right: 15px !important;
-    padding-left: 10px !important;
+    padding-right: 0px !important;
+    padding-left: 0px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
 }
