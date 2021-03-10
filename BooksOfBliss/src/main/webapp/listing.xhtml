@@ -54,7 +54,9 @@
                                 <h:link outcome="checkout"
                                         value="Gå vidare till köp"
                                         class="btn btn-secondary"
-                                        rendered="#{auth.account != null and listingBackingBean.listing.purchase == null}">
+                                        rendered="#{auth.account != null
+                                                    and listingBackingBean.listing.purchase == null
+                                                    and listingBackingBean.listing.publishedBy != auth.account}">
                                     <o:pathParam value="#{listingBackingBean.listing.id}" />
                                 </h:link>
                                 <h6 class="text-danger" jsf:rendered="#{listingBackingBean.listing.purchase != null}">
