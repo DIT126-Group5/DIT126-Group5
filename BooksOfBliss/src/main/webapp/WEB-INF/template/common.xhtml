@@ -25,7 +25,7 @@
             <div class="container">
                 <h:form>
                     <p:menubar>
-                        <p:menuitem style="background:#FFFFFF;" outcome="browse">
+                        <p:menuitem outcome="browse" class="header-logo-menuitem">
                             <h:graphicImage name="assets/images/bob_logo.png" class="header-logo" />
                         </p:menuitem>
                         <p:menuitem value="Search Form" styleClass="inputStyle">
@@ -36,15 +36,14 @@
 
                         </p:menuitem>
 
-                        <p:menuitem value="Sök" outcome="search" styleClass="searchButton">
-                        </p:menuitem>
+                        <p:menuitem value="Sök" outcome="search" styleClass="navButton ml-0" />
 
-                        <p:menuitem value="Bläddra" outcome="browse" styleClass="navStyle"/>                
-                        <p:menuitem value="Sälj en bok" outcome="publish" styleClass="navStyle"/>
-                        <p:menuitem value="Logga in" outcome="login" styleClass="navStyle" rendered="#{auth.account == null}" />                  
-                        <p:menuitem value="Registrera dig" outcome="register" styleClass="navStyle" rendered="#{auth.account == null}" />
+                        <p:menuitem value="Bläddra" outcome="browse" styleClass="navButton"/>
+                        <p:menuitem value="Sälj en bok" outcome="publish" styleClass="navButton"/>
+                        <p:menuitem value="Logga in" outcome="login" styleClass="navButton" rendered="#{auth.account == null}" />
+                        <p:menuitem value="Registrera dig" outcome="register" styleClass="navButton" rendered="#{auth.account == null}" />
 
-                        <p:submenu label="Mina sidor" styleClass="myPagesStyle" rendered="#{auth.account != null}">
+                        <p:submenu label="Mina sidor" styleClass="navButton myPagesStyle ml-auto" rendered="#{auth.account != null}">
                             <p:menuitem value="Inställningar" outcome="settings.xhtml"/>
                             <p:menuitem value="Köp kredit" outcome="buy_credits" />
                             <p:menuitem value="Kontakt" outcome="contact" />
