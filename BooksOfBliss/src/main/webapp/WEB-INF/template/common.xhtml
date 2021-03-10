@@ -4,7 +4,8 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:o="http://omnifaces.org/ui" >
 
     <h:head>
         <title>Books of Bliss</title>
@@ -17,26 +18,37 @@
 
         <!-- Custom scripts -->
         <h:outputScript name="js/main.js" />
+        <script>
+            function relocateOnSearch() {
+                window.location.href = '<o:url viewId="/browse.xhtml" />?q=' + document.getElementById('menuform:searchtext').value;
+            }
+        </script>
     </h:head>
 
 
     <h:body>
         <nav>
             <div class="container">
-                <h:form>
+                <h:form id="menuform">
+
                     <p:menubar>
                         <p:menuitem outcome="browse" class="header-logo-menuitem">
                             <h:graphicImage name="assets/images/bob_logo.png" class="header-logo" />
                         </p:menuitem>
                         <p:menuitem value="Search Form" styleClass="inputStyle">
-                            <p:inputText value="Not yet implemented" placeholder="Sök efter titel, författare eller ISBN" id="searchtext"
-                                         required="true" label="Text 1" styleClass="placeholderStyle">
-                                <f:validateLength minimum="2"/>
+
+                            <p:inputText placeholder="Sök efter titel, författare eller ISBN" id="searchtext"
+                                         required="true" label="Text 1" styleClass="placeholderStyle" >
+                                <f:validateLength minimum="3"/>
+
                             </p:inputText>
 
                         </p:menuitem>
 
-                        <p:menuitem value="Sök" outcome="search" styleClass="navButton ml-0" />
+
+                        <p:menuitem value="Sök" onclick="relocateOnSearch()" styleClass="searchButton">
+                        </p:menuitem>
+
 
                         <p:menuitem value="Bläddra" outcome="browse" styleClass="navButton"/>
                         <p:menuitem value="Sälj en bok" outcome="publish" styleClass="navButton"/>
@@ -59,7 +71,7 @@
         </main>
 
         <div class="loggedInFooter">
-            Logged in as: "#{auth.account}"
+            Logged in as: "#{auth.account.username}"
         </div>
     </h:body>
 </html>

@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.primefaces.shaded.json.JSONArray;
+import org.primefaces.shaded.json.JSONException;
 import org.primefaces.shaded.json.JSONObject;
 
 public class IsbnApi {
@@ -29,7 +30,7 @@ public class IsbnApi {
                     .send(request, HttpResponse.BodyHandlers.ofString());
 
             JSONObject jo = new JSONObject(response.body());
-            if (jo.getInt("totalItems")==0) {
+            if (jo.getInt("totalItems") == 0) {
                 return null;
             } else {
                 return new JSONObject(response.body());
@@ -42,7 +43,6 @@ public class IsbnApi {
     }
 
     public static String getTitle(JSONObject jo) {
-        //JSONObject jo = getIsbnFromApi(isbn);
         if (jo != null) {
             String title = jo.getJSONArray("items")
                     .getJSONObject(0)
@@ -56,51 +56,63 @@ public class IsbnApi {
     }
 
     public static List<String> getAuthors(JSONObject jo) {
-        //JSONObject jo = getIsbnFromApi(isbn);
-        JSONArray jsonAuthors = jo.getJSONArray("items")
-                .getJSONObject(0)
-                .getJSONObject("volumeInfo")
-                .getJSONArray("authors");
-        List<String> authors = new ArrayList();
+        try {
+            JSONArray jsonAuthors = jo.getJSONArray("items")
+                    .getJSONObject(0)
+                    .getJSONObject("volumeInfo")
+                    .getJSONArray("authors");
+            List<String> authors = new ArrayList();
 
-        for (Object author : jsonAuthors) {
-            authors.add(author.toString());
+            for (Object author : jsonAuthors) {
+                authors.add(author.toString());
+            }
+            return authors;
+        } catch (JSONException e) {
+            return null;
         }
-        return authors;
     }
 
     public static String getImageUrl(JSONObject jo) {
-        //JSONObject jo = getIsbnFromApi(isbn);
-        String imgLink = jo.getJSONArray("items")
-                .getJSONObject(0)
-                .getJSONObject("volumeInfo")
-                .getJSONObject("imageLinks")
-                .getString("thumbnail");
-        return imgLink;
+        try {
+            String imgLink = jo.getJSONArray("items")
+                    .getJSONObject(0)
+                    .getJSONObject("volumeInfo")
+                    .getJSONObject("imageLinks")
+                    .getString("thumbnail");
+            return imgLink;
+        } catch (JSONException e) {
+            return null;
+        }
     }
 
     public static List<String> getBookCategories(JSONObject jo) {
-        //JSONObject jo = getIsbnFromApi(isbn);
-        JSONArray jsonCategories = jo.getJSONArray("items")
-                .getJSONObject(0)
-                .getJSONObject("volumeInfo")
-                .getJSONArray("categories");
-       
-        List<String> categories = new ArrayList();
-        for (Object category : jsonCategories){
-            categories.add(category.toString());
+        try {
+            JSONArray jsonCategories = jo.getJSONArray("items")
+                    .getJSONObject(0)
+                    .getJSONObject("volumeInfo")
+                    .getJSONArray("categories");
+
+            List<String> categories = new ArrayList();
+            for (Object category : jsonCategories) {
+                categories.add(category.toString());
+            }
+            System.out.println("Categories: " + categories);
+            return categories;
+
+        } catch (JSONException e) {
+            return null;
         }
-        System.out.println("Categories: " + categories);
-        return categories;
+
     }
+
     public static int getPublishDate(JSONObject jo) {
         //JSONObject jo = getIsbnFromApi(isbn);
         String publishDate = jo.getJSONArray("items")
                 .getJSONObject(0)
                 .getJSONObject("volumeInfo")
                 .getString("publishedDate");
-        
-        publishDate = publishDate.substring(0,4);
+
+        publishDate = publishDate.substring(0, 4);
         return Integer.parseInt(publishDate);
     }
 }

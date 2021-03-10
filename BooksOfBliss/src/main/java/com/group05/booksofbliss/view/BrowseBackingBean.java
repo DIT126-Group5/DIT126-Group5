@@ -33,8 +33,15 @@ public class BrowseBackingBean implements Serializable {
     @Inject
     private BookDAO bookDAO;
 
+    @Param(name = "q")
+    private String searchQuery;
+
     public List<Listing> getListings() {
-        return listingDAO.getBuyableListingsSortedByDate();
+        if (searchQuery == null) {
+            return listingDAO.getBuyableListingsSortedByDate();
+        } else {
+            return listingDAO.search(searchQuery);
+        }
     }
 
     public Listing getListing(Long id) {
