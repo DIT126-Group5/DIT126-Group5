@@ -164,10 +164,11 @@ nav {
     background-color: #FFFFFF !important;
 }
 
-img:hover {
+.header-logo:hover {
     animation: shake 0.5s;
     height: 75px;
     width: 75px;
+    background: none !important;
 }
 
 @keyframes shake {
