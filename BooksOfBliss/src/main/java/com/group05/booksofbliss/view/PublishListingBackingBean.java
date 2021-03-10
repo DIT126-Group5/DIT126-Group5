@@ -22,9 +22,7 @@ public class PublishListingBackingBean implements Serializable {
     private ConditionDAO conditionDAO;
 
     private List<String> conditions;
-    @NotBlank(message="Du måste fylla i ett pris")
     private BigDecimal price;
-    @NotBlank(message="Du måste fylla i ett ISBN")
     private String isbn;
     private String description;
     private String title;
