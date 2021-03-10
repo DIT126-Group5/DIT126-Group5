@@ -11,14 +11,14 @@ and open the template in the editor.
       xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">>
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
     <h:body>
         <ui:composition template="WEB-INF/template/common.xhtml">
             <ui:define name="title">Logga in</ui:define>
             <ui:define name="content">
 
-                <div class="container" style="max-width: 500px">
+                <div class="container" style="max-width: 600px">
                     <h:form>
                         <div  class="mt-5 py-5 pb-4 shadow bg-white rounded">
                             <h5 class="text-center mb-3">Logga in</h5>
@@ -34,6 +34,7 @@ and open the template in the editor.
                                     <h:inputText class="form-control" id="loginPassword" value="#{loginBackingBean.password}" label="loginPassword" pt:type="password"/>
                                 </div>
                             </div>
+                            <h:messages class="text-danger" />
                             <div class="text-center d-flex justify-content-between mx-auto" style="max-width: 300px">
                                 <h:commandButton action="#{loginController.login()}" value="Logga in" class="btn btn-primary mt-5"/>
                                 <h:button value="Registrera dig" outcome="register.xhtml" class="btn btn-secondary mt-5"/>

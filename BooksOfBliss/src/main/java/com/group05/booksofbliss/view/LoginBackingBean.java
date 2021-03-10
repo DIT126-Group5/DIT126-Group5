@@ -11,10 +11,10 @@ import lombok.Data;
 @ViewScoped
 public class LoginBackingBean implements Serializable {
 
-    @NotBlank
+    @NotBlank(message = "Användarnamn är inte ifyllt")
     private String username;
 
-    @NotBlank
+    @NotBlank(message = "Lösenord är inte ifyllt")
     private String password;
 
 }

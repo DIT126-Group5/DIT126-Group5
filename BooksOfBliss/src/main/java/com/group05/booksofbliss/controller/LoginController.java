@@ -50,7 +50,7 @@ public class LoginController {
             facesContext.responseComplete();
         } else if (authenticationStatus.equals(SEND_FAILURE)) {
             facesContext.addMessage(null,
-                    new FacesMessage(SEVERITY_ERROR, "Authentication failed", null));
+                    new FacesMessage(SEVERITY_ERROR, "Inloggning misslyckades!", null));
         }
         return null;
     }
