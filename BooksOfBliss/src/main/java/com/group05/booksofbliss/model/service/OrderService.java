@@ -21,6 +21,11 @@ public class OrderService implements Serializable {
 
     @Transactional
     public void orderListing(Listing listing, Account buyer, Address deliveryAddress) {
+        if (listing.getPublishedBy().equals(buyer)) {
+            //You can't buy your own listing
+            throw new IllegalArgumentException("Buying your own listing is not allowed");
+        }
+
         bankService.performTransaction(buyer, listing.getPublishedBy(), listing.getPrice());
         purchaseDAO.create(new Purchase(listing, buyer, new Date(), deliveryAddress));
     }
