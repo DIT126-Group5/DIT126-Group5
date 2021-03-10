@@ -32,6 +32,14 @@
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
+        <from-view-id>/checkout.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/browse.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
         <from-view-id>/checkout_success.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>back_home</from-outcome>
@@ -70,4 +78,5 @@
             <redirect/>
         </navigation-case>
     </navigation-rule>
+    
 </faces-config>

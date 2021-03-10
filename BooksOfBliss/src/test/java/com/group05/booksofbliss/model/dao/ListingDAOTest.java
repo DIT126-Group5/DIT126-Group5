@@ -103,6 +103,7 @@ public class ListingDAOTest {
         listingID = listing.getId();
         listingID2 = listing2.getId();
         listingID3 = listing3.getId();
+        
     }
 
     @After

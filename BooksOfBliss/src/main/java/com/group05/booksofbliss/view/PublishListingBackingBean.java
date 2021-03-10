@@ -10,6 +10,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
@@ -21,7 +22,9 @@ public class PublishListingBackingBean implements Serializable {
     private ConditionDAO conditionDAO;
 
     private List<String> conditions;
+    @NotBlank(message="Du måste fylla i ett pris")
     private BigDecimal price;
+    @NotBlank(message="Du måste fylla i ett ISBN")
     private String isbn;
     private String description;
     private String title;

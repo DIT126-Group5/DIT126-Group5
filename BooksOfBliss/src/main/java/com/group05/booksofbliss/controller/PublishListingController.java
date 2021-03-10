@@ -40,9 +40,19 @@ public class PublishListingController implements Serializable {
     public void searchIsbn() throws IOException, InterruptedException {
         String isbn = publishListingBackingBean.getIsbn();
         JSONObject jo = IsbnApi.getIsbnFromApi(isbn);
+
         publishListingBackingBean.setTitle(IsbnApi.getTitle(jo));
-        publishListingBackingBean.setAuthors(IsbnApi.getAuthors(jo));
-        publishListingBackingBean.setImageUrl(IsbnApi.getImageUrl(jo));
+        if (IsbnApi.getAuthors(jo) == null) {
+            System.out.println("AUTHORS NUUUUUUUUULLL");
+        } else {
+            publishListingBackingBean.setAuthors(IsbnApi.getAuthors(jo));
+        }
+        if (IsbnApi.getImageUrl(jo) == null) {
+            System.out.println("NULLLLLLLLLLLL");
+            publishListingBackingBean.setImageUrl("");
+        } else {
+            publishListingBackingBean.setImageUrl(IsbnApi.getImageUrl(jo));
+        }
         publishListingBackingBean.setCategories(IsbnApi.getBookCategories(jo));
         publishListingBackingBean.setPublishDate(IsbnApi.getPublishDate(jo));
     }
