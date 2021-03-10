@@ -11,22 +11,24 @@
             <ui:define name="title">Skapa annons</ui:define>
             <ui:define name="content">
                 <div class="container">
-                    <div class="center pt-2 pb-4 shadow bg-white rounded mt-5">
-                        <p:outputLabel value="Vad vill du sälja?" />
+                    <div class="px-5 py-5 shadow bg-white rounded">
+                        <h4>Vad vill du sälja?</h4>
 
-                        <div class="p-field p-col-12 p-md-6">
+                        <div class="p-field p-col-12 p-md-6 mt-4">
                             <h:form>
                                 <p:outputLabel for="isbn" value="Skriv in bokens ISBN-nummer" />
-                                <p:inputText id="isbn" value="#{publishListingBackingBean.isbn}"/>
-                                <p:commandButton value="Sök" action="#{publishListingController.searchIsbn}" update="panel" />
+                                <p:inputText id="isbn" value="#{publishListingBackingBean.isbn}"
+                                             class="ml-3" />
+                                <h:commandButton value="Sök" action="#{publishListingController.searchIsbn}"
+                                                 class="btn btn-secondary ml-3" />
                             </h:form>
 
 
                         </div>
                     </div>
-                    <div class="col-7 mt-5 pt-2 pb-4 shadow bg-white rounded">
+                    <div class="mt-5 px-3 py-4 shadow bg-white rounded">
                         <div class="ui-fluid p-formgrid p-grid">
-                            <h:panelGroup id="panel">
+                            <h:panelGroup>
                                 <h:form>
                                     <p:outputLabel value="Boktitel" />
                                     <p:inputText disabled="true" required="true" value="#{publishListingBackingBean.title}" />
@@ -49,9 +51,10 @@
                                             <f:selectItems value="#{publishListingBackingBean.conditions}"/>
                                         </p:selectOneMenu>
                                     </div>
-                                    <div class="p-field p-col-12 p-md-3">
-                                        <p:commandButton value="Publish Listing"
-                                                         action="#{publishListingController.publish}"/>
+                                    <div class="p-field p-col-12 p-md-3 text-center">
+                                        <h:commandButton value="Publish Listing"
+                                                         action="#{publishListingController.publish}"
+                                                         class="w-auto btn btn-primary" />
                                     </div>
                                 </h:form>
                             </h:panelGroup>
