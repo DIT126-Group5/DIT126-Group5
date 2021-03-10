@@ -18,6 +18,11 @@
 
                 <div class="container">
                     <ul class="list-group">
+
+                        <div class="py-5 pb-4 shadow text-center" jsf:rendered="#{browseBackingBean.listings.size() == 0}">
+                            <h2>Inga annonser kunde hittas...</h2>
+                        </div>
+
                         <b:repeat value="#{browseBackingBean.listings}"
                                   var="listing">
                             <div class="card mb-3 shadow-sm">
