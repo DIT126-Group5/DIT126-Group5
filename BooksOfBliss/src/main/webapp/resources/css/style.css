@@ -43,43 +43,39 @@ body {
     background: none !important;
 }
 
-.searchStyle {
-    padding: 0px;
-    height: 25px;
-    width: 300px;
-}
-
-.inputStyle {
-    background: #FFFFFF !important;
-    background-color: #F0F0F0 !important;
-    border: 2px #EBECF1 !important;
-    border-radius: 30px !important;
-    margin-top: 10px !important;
-    margin-left: 5px !important;
-}
-
-.placeholderStyle {
-    font-size: 20px !important;
-    background: #FFFFFF !important;
-    background-color: #F0F0F0 !important;
-    border: 2px #EBECF1 !important;
-    border-radius: 30px !important;
-    width: 350px;
-}
-
-.navButton {
+.navItem {
     background: #AED6F1 !important;
     background-color: #AED6F1 !important;
     border: 2px solid #EBECF1 !important;
     border-radius: 30px !important;
     width: fit-content !important;
     height: fit-content !important;
-    margin-top: 10px;
     margin-left: 20px;
     padding-right: 0px !important;
     padding-left: 0px !important;
     padding-top: 10px !important;
     padding-bottom: 10px !important;
+}
+
+.navbar-search {
+    background-color: #F0F0F0 !important;
+    border: 2px #EBECF1 !important;
+    border-radius: 30px !important;
+    margin-left: 5px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.navbar-search > .ui-menuitem-text {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.navbar-search-input {
+    background: none !important;
+    border: none !important;
+    border-radius: 30px !important;
+    width: 350px;
 }
 
 .myPagesStyle {
