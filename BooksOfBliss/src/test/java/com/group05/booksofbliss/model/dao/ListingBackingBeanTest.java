@@ -7,7 +7,6 @@ import com.group05.booksofbliss.model.entity.Category;
 import com.group05.booksofbliss.model.entity.Condition;
 import com.group05.booksofbliss.model.entity.Listing;
 import com.group05.booksofbliss.model.entity.attribute.Address;
-import com.group05.booksofbliss.view.BrowseBackingBean;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -19,7 +18,6 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -109,11 +107,13 @@ public class ListingBackingBeanTest {
 
     @Test
     public void getListingsTest() {
+        /* TODO: This is testing BrowseBackingBean when the test file is for ListingBackingBean
         BrowseBackingBean bbb = new BrowseBackingBean();
         bbb.setBookDAO(bookDAO);
         bbb.setListingDAO(listingDAO);
 
         Assert.assertNotEquals(listingID, null);
         Assert.assertEquals(bbb.getListing(listingID), listing);
+         */
     }
 }
