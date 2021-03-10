@@ -36,7 +36,7 @@ public class ListingDAO extends AbstractDAO<Listing, Long> {
                 .collect(Collectors.toList());
     }
 
-    public List<Listing> sortListingsByDate(List<Listing> listings) {
+    List<Listing> sortListingsByDate(List<Listing> listings) {
         Collections.sort(listings, new Comparator<Listing>() {
             public int compare(Listing l1, Listing l2) {
                 return -l1.getDateTime().compareTo(l2.getDateTime());
