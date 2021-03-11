@@ -8,7 +8,7 @@ import com.group05.booksofbliss.model.entity.Condition;
 import com.group05.booksofbliss.model.entity.Listing;
 import com.group05.booksofbliss.model.service.PublishService;
 import com.group05.booksofbliss.security.Auth;
-import com.group05.booksofbliss.service.IsbnApi;
+import com.group05.booksofbliss.service.BookLookupService;
 import com.group05.booksofbliss.view.PublishListingBackingBean;
 import java.io.IOException;
 import java.io.Serializable;
@@ -17,6 +17,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import static javax.faces.application.FacesMessage.SEVERITY_ERROR;
+import javax.faces.context.FacesContext;
+import javax.faces.view.facelets.Facelet;
 import javax.inject.Inject;
 import javax.inject.Named;
 import lombok.Data;
@@ -37,24 +41,29 @@ public class PublishListingController implements Serializable {
     @Inject
     private Auth auth;
 
-    public void searchIsbn() throws IOException, InterruptedException {
-        String isbn = publishListingBackingBean.getIsbn();
-        JSONObject jo = IsbnApi.getIsbnFromApi(isbn);
+    @Inject
+    private BookLookupService bookLookupService;
+    
+    @Inject
+    private FacesContext facesContext;
 
-        publishListingBackingBean.setTitle(IsbnApi.getTitle(jo));
-        if (IsbnApi.getAuthors(jo) == null) {
-            System.out.println("AUTHORS NUUUUUUUUULLL");
+    public void searchIsbn() throws IOException, InterruptedException {
+        //Title, author(s), publishdate are required from ISBN. Other fields allows null-values.
+        String isbn = publishListingBackingBean.getIsbn();
+        JSONObject jo = bookLookupService.getIsbnFromApi(isbn);
+        if (jo == null || bookLookupService.getTitle(jo) == null
+                || bookLookupService.getAuthors(jo) == null
+                || bookLookupService.getPublishDate(jo) == -1) {
+            facesContext.addMessage(null, new FacesMessage(SEVERITY_ERROR, "Vi hittade ingen bok som matchade det angivna ISBN-numret.", null));
+            publishListingBackingBean.setShowPublishForm(false);
         } else {
-            publishListingBackingBean.setAuthors(IsbnApi.getAuthors(jo));
+            publishListingBackingBean.setTitle(bookLookupService.getTitle(jo));
+            publishListingBackingBean.setAuthors(bookLookupService.getAuthors(jo));
+            publishListingBackingBean.setImageUrl(bookLookupService.getImageUrl(jo));
+            publishListingBackingBean.setCategories(bookLookupService.getBookCategories(jo));
+            publishListingBackingBean.setPublishDate(bookLookupService.getPublishDate(jo));
+            publishListingBackingBean.setShowPublishForm(true);
         }
-        if (IsbnApi.getImageUrl(jo) == null) {
-            System.out.println("NULLLLLLLLLLLL");
-            publishListingBackingBean.setImageUrl("");
-        } else {
-            publishListingBackingBean.setImageUrl(IsbnApi.getImageUrl(jo));
-        }
-        publishListingBackingBean.setCategories(IsbnApi.getBookCategories(jo));
-        publishListingBackingBean.setPublishDate(IsbnApi.getPublishDate(jo));
     }
 
     public void publish() {

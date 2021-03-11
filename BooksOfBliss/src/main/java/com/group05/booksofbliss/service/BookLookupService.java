@@ -1,6 +1,5 @@
 package com.group05.booksofbliss.service;
 
-import com.group05.booksofbliss.view.PublishListingBackingBean;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -11,13 +10,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.enterprise.context.ApplicationScoped;
 import org.primefaces.shaded.json.JSONArray;
 import org.primefaces.shaded.json.JSONException;
 import org.primefaces.shaded.json.JSONObject;
 
-public class IsbnApi {
+@ApplicationScoped
+public class BookLookupService {
 
-    public static JSONObject getIsbnFromApi(String isbn) throws IOException, InterruptedException {
+
+    public JSONObject getIsbnFromApi(String isbn) throws IOException, InterruptedException {
         String isbnUrl = "https://www.googleapis.com/books/v1/volumes?q=isbn:" + isbn;
 
         try {
@@ -37,25 +39,25 @@ public class IsbnApi {
             }
 
         } catch (URISyntaxException ex) {
-            Logger.getLogger(PublishListingBackingBean.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
 
-    public static String getTitle(JSONObject jo) {
-        if (jo != null) {
+    public String getTitle(JSONObject jo) {
+        try {
             String title = jo.getJSONArray("items")
                     .getJSONObject(0)
                     .getJSONObject("volumeInfo")
                     .getString("title");
             return title;
-        } else {
-            return "Invalid ISBN";
+        } catch (JSONException e) {
+            return null;
         }
 
     }
 
-    public static List<String> getAuthors(JSONObject jo) {
+    public List<String> getAuthors(JSONObject jo) {
         try {
             JSONArray jsonAuthors = jo.getJSONArray("items")
                     .getJSONObject(0)
@@ -72,7 +74,7 @@ public class IsbnApi {
         }
     }
 
-    public static String getImageUrl(JSONObject jo) {
+    public String getImageUrl(JSONObject jo) {
         try {
             String imgLink = jo.getJSONArray("items")
                     .getJSONObject(0)
@@ -85,7 +87,7 @@ public class IsbnApi {
         }
     }
 
-    public static List<String> getBookCategories(JSONObject jo) {
+    public List<String> getBookCategories(JSONObject jo) {
         try {
             JSONArray jsonCategories = jo.getJSONArray("items")
                     .getJSONObject(0)
@@ -105,14 +107,18 @@ public class IsbnApi {
 
     }
 
-    public static int getPublishDate(JSONObject jo) {
-        //JSONObject jo = getIsbnFromApi(isbn);
-        String publishDate = jo.getJSONArray("items")
+    public int getPublishDate(JSONObject jo) {
+        try {
+        String publishYear = jo.getJSONArray("items")
                 .getJSONObject(0)
                 .getJSONObject("volumeInfo")
                 .getString("publishedDate");
 
-        publishDate = publishDate.substring(0, 4);
-        return Integer.parseInt(publishDate);
+        publishYear = publishYear.substring(0, 4);
+        return Integer.parseInt(publishYear);
+        }
+        catch(JSONException e){
+            return -1;
+        }
     }
 }
