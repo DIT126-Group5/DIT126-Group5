@@ -29,10 +29,11 @@ public class ListingDAO extends AbstractDAO<Listing, Long> {
         List<Listing> listings = findAll();
         
          return listings.stream().filter(listing -> 
-                listing.getBook().getTitle().toLowerCase().contains(search) ||
+                listing.getPurchase()==null &&
+                (listing.getBook().getTitle().toLowerCase().contains(search) ||
                 listing.getBook().getIsbn().toLowerCase().contains(search) ||
                 listing.getBook().getAuthors().stream().map(Author::getName)
-                        .anyMatch(author -> author.toLowerCase().contains(search)))
+                        .anyMatch(author -> author.toLowerCase().contains(search))))
                 .collect(Collectors.toList());
     }
 
