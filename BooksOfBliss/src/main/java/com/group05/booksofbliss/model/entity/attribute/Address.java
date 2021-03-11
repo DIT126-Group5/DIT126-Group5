@@ -14,12 +14,12 @@ import lombok.RequiredArgsConstructor;
 public class Address {
 
     @NonNull
-    @NotBlank
+    @NotBlank(message = "Gatans namn får inte vara tomt")
     private String street;
     @NonNull
-    @NotBlank
+    @NotBlank(message = "Postnumret får inte vara tomt")
     private String postalCode;
     @NonNull
-    @NotBlank
+    @NotBlank(message = "Stadens namn får inte vara tomt")
     private String city;
 }

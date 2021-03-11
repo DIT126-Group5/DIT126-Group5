@@ -33,28 +33,28 @@ public class Account implements Serializable {
     @NotNull
     @EqualsAndHashCode.Include
     @ToString.Include
-    @Size(min = 5, message = "Username must have at least 5 characters")
+    @Size(min = 5, message = "Användarnamnet måste innehålla minst 5 karaktärer")
     private String username;
 
     @NonNull
-    @NotBlank
+    @NotBlank(message = "Förnamn får inte vara tomt")
     @ToString.Include
     private String firstname;
 
     @NonNull
-    @NotBlank
+    @NotBlank(message = "Efternamn får inte vara tomt")
     @ToString.Include
     private String lastname;
 
     @NonNull
-    @NotBlank
+    @NotBlank(message = "Mobilnummer får inte vara tomt")
     @ToString.Include
     private String phonenumber;
 
     @NonNull
-    @NotBlank
+    @NotBlank(message = "E-post får inte vara tom")
     @ToString.Include
-    @Email(message = "Please provide a valid e-mail")
+    @Email(message = "E-post är inte giltig")
     private String email;
 
     @NonNull

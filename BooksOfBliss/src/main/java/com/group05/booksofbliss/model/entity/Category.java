@@ -7,7 +7,6 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -25,12 +24,11 @@ public class Category implements Serializable {
 
     @Id
     @NonNull
-    @NotNull
-    @NotBlank
+    @NotBlank(message = "Kategorins namn får inte vara tomt")
     @EqualsAndHashCode.Include
     @ToString.Include
     private String name;
 
-    @ManyToMany(mappedBy = "categories", fetch=FetchType.EAGER)
+    @ManyToMany(mappedBy = "categories", fetch = FetchType.EAGER)
     private List<Book> books;
 }

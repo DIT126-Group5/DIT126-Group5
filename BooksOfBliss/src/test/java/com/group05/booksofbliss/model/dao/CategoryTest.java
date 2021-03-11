@@ -1,5 +1,6 @@
 package com.group05.booksofbliss.model.dao;
 
+import com.group05.booksofbliss.Deployments;
 import com.group05.booksofbliss.model.entity.Author;
 import com.group05.booksofbliss.model.entity.Book;
 import com.group05.booksofbliss.model.entity.Category;
@@ -10,8 +11,6 @@ import javax.inject.Inject;
 import javax.transaction.UserTransaction;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.After;
 import org.junit.Assert;
@@ -24,10 +23,7 @@ public class CategoryTest {
 
     @Deployment
     public static WebArchive createDeployment() {
-        return ShrinkWrap.create(WebArchive.class)
-                .addPackages(true, "com.group05.booksofbliss")
-                .addAsResource("META-INF/persistence.xml")
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+        return Deployments.defaultArchive();
     }
 
     @Inject

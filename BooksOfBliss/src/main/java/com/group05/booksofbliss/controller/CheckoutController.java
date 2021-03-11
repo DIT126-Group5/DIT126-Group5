@@ -1,6 +1,5 @@
 package com.group05.booksofbliss.controller;
 
-import com.group05.booksofbliss.model.entity.Listing;
 import com.group05.booksofbliss.model.entity.attribute.Address;
 import com.group05.booksofbliss.model.service.OrderService;
 import com.group05.booksofbliss.security.Auth;
@@ -28,12 +27,6 @@ public class CheckoutController implements Serializable {
         if (checkoutBackingBean.getListing() == null || auth.getAccount() == null) {
             return null;
         }
-        if (checkoutBackingBean.getListing().getPublishedBy().getUsername()
-                .equals(auth.getAccount().getUsername())){
-            //You can't buy your own listing
-            return "failure";
-        }
- 
 
         orderService.orderListing(checkoutBackingBean.getListing(),
                 auth.getAccount(),

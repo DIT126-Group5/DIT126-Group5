@@ -12,7 +12,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -40,6 +39,7 @@ public class Listing implements Serializable {
     private MonetaryAmount price;
 
     @NonNull
+    @NotNull
     private String description;
 
     @NonNull
@@ -63,15 +63,14 @@ public class Listing implements Serializable {
     @OneToOne(mappedBy = "listing")
     private Purchase purchase;
 
-    public void setPrice(MonetaryAmount price){
+    public void setPrice(MonetaryAmount price) {
         if (price.isNegative()) {
             throw new IllegalArgumentException("The price must be 0 or higher.");
-        }
-        else{
+        } else {
             this.price = price;
         }
     }
- 
+
     // Special handling of hashCode and equals for entity with generated primary key.
     @Override
     public int hashCode() {

@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -27,13 +28,13 @@ public class Book implements Serializable {
 
     @Id
     @NonNull
-    @NotNull
+    @NotBlank(message = "Bokens ISBN-nummer får inte vara tomt")
     @EqualsAndHashCode.Include
     @ToString.Include
     private String isbn;
 
     @NonNull
-    @NotNull
+    @NotBlank(message = "Bokens titel får inte vara tom")
     @ToString.Include
     private String title;
 
@@ -45,7 +46,7 @@ public class Book implements Serializable {
     @NonNull
     @NotNull
     @ToString.Include
-    @Column(length=10000)
+    @Column(length = 10000)
     private String imageUrl;
 
     @ToString.Include

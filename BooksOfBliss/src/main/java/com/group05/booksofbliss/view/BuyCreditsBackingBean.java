@@ -13,6 +13,6 @@ import lombok.Data;
 public class BuyCreditsBackingBean implements Serializable {
 
     @DecimalMin(value = "0.0", inclusive = false,
-            message = "Insättningsbeloppet måste vara en krona eller mer")
+            message = "Insättningsbeloppet måste vara minst en krona")
     private BigDecimal amount = BigDecimal.ZERO;
 }

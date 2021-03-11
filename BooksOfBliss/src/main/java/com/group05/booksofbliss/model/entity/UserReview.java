@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -44,8 +46,7 @@ public class UserReview implements Serializable {
 
     @NonNull
     @NotNull
+    @Min(0)
+    @Max(5)
     private int rating;
-
-    //Kanske inte rätt sätt att modellera detta på
-    //Gav förslag på ISA-relation
 }
