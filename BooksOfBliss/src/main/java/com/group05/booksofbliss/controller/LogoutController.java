@@ -4,9 +4,7 @@ import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import lombok.Data;
 
-@Data
 @Named("logoutController")
 @RequestScoped
 public class LogoutController implements Serializable {

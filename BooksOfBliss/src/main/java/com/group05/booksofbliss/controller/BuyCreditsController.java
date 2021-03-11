@@ -7,10 +7,8 @@ import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import lombok.Data;
 import org.javamoney.moneta.Money;
 
-@Data
 @Named("buyCreditsController")
 @RequestScoped
 public class BuyCreditsController implements Serializable {

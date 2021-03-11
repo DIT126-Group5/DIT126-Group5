@@ -4,31 +4,27 @@ import com.group05.booksofbliss.model.dao.AccountDAO;
 import com.group05.booksofbliss.model.service.AccountService;
 import com.group05.booksofbliss.view.SettingsBackingBean;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.annotation.FacesConfig;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.security.enterprise.identitystore.Pbkdf2PasswordHash;
-import lombok.Data;
 
-@FacesConfig
-@Data
 @Named("settingsController")
 @RequestScoped
 public class SettingsController {
 
     @Inject
-    SettingsBackingBean settingsBackingBean;
+    private SettingsBackingBean settingsBackingBean;
 
     @Inject
-    AccountService accountService;
+    private AccountService accountService;
 
     @Inject
-    AccountDAO accountDAO;
+    private AccountDAO accountDAO;
 
     @Inject
     private Pbkdf2PasswordHash passwordHash;
 
-    public void updateAccount() {
+    private void updateAccount() {
         accountDAO.update(settingsBackingBean.getAccount());
     }
 
@@ -45,7 +41,7 @@ public class SettingsController {
         //else Error: "wrong password"
     }
 
-    public void setNewPassword() {
+    private void setNewPassword() {
         accountService.setPassword(settingsBackingBean.getNewPassword(), settingsBackingBean.getAccount());
     }
 }

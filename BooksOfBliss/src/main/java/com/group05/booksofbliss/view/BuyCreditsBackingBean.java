@@ -5,9 +5,11 @@ import java.math.BigDecimal;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.validation.constraints.DecimalMin;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Named("buyCreditsBackingBean")
 @ViewScoped
 public class BuyCreditsBackingBean implements Serializable {

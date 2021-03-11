@@ -8,11 +8,9 @@ import java.util.List;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import lombok.Data;
 import org.omnifaces.cdi.Param;
 
-@Data
-@Named(value = "browseBackingBean")
+@Named("browseBackingBean")
 @ViewScoped
 public class BrowseBackingBean implements Serializable {
 

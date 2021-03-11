@@ -20,14 +20,11 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import static javax.faces.application.FacesMessage.SEVERITY_ERROR;
 import javax.faces.context.FacesContext;
-import javax.faces.view.facelets.Facelet;
 import javax.inject.Inject;
 import javax.inject.Named;
-import lombok.Data;
 import org.javamoney.moneta.Money;
 import org.primefaces.shaded.json.JSONObject;
 
-@Data
 @RequestScoped
 @Named
 public class PublishListingController implements Serializable {
@@ -43,7 +40,7 @@ public class PublishListingController implements Serializable {
 
     @Inject
     private BookLookupService bookLookupService;
-    
+
     @Inject
     private FacesContext facesContext;
 

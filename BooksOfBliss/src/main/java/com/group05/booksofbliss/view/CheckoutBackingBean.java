@@ -6,14 +6,18 @@ import java.io.Serializable;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.validation.constraints.NotBlank;
-import lombok.Data;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 import org.omnifaces.cdi.Param;
 
-@Data
+@Getter
+@Setter
 @Named("checkoutBackingBean")
 @ViewScoped
 public class CheckoutBackingBean implements Serializable {
 
+    @Setter(AccessLevel.NONE)
     @Param(pathIndex = 0, converter = "#{listingConverter}", validatorClasses = {OpenListingValidator.class})
     private Listing listing;
 

@@ -8,9 +8,7 @@ import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import lombok.Data;
 
-@Data
 @Named("checkoutController")
 @RequestScoped
 public class CheckoutController implements Serializable {

@@ -3,7 +3,6 @@ package com.group05.booksofbliss.controller;
 import com.group05.booksofbliss.view.LoginBackingBean;
 import java.io.IOException;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.annotation.FacesConfig;
 import javax.faces.application.FacesMessage;
 import static javax.faces.application.FacesMessage.SEVERITY_ERROR;
 import javax.faces.context.FacesContext;
@@ -19,10 +18,7 @@ import javax.security.enterprise.credential.Credential;
 import javax.security.enterprise.credential.UsernamePasswordCredential;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import lombok.Data;
 
-@FacesConfig
-@Data
 @Named("loginController")
 @RequestScoped
 public class LoginController {
@@ -34,7 +30,7 @@ public class LoginController {
     private FacesContext facesContext;
 
     @Inject
-    LoginBackingBean loginBackingBean;
+    private LoginBackingBean loginBackingBean;
 
     public String login() throws IOException {
         Credential credential = new UsernamePasswordCredential(loginBackingBean.getUsername(), loginBackingBean.getPassword());

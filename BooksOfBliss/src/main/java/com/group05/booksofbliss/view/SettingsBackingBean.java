@@ -8,16 +8,22 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.validation.constraints.NotBlank;
-import lombok.Data;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Named("settingsBackingBean")
 @ViewScoped
 public class SettingsBackingBean implements Serializable {
 
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
     @Inject
     private Auth auth;
 
+    @Setter(AccessLevel.NONE)
     private Account account;
 
     @NotBlank

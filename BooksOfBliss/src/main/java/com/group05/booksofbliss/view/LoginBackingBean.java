@@ -4,9 +4,11 @@ import java.io.Serializable;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.validation.constraints.NotBlank;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Named("loginBackingBean")
 @ViewScoped
 public class LoginBackingBean implements Serializable {

@@ -6,26 +6,22 @@ import com.group05.booksofbliss.model.entity.attribute.Address;
 import com.group05.booksofbliss.model.service.AccountService;
 import com.group05.booksofbliss.view.RegisterBackingBean;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.annotation.FacesConfig;
 import javax.inject.Inject;
 import javax.inject.Named;
-import lombok.Data;
 import org.javamoney.moneta.Money;
 
-@FacesConfig
-@Data
 @Named("registerController")
 @RequestScoped
 public class RegisterController {
 
     @Inject
-    RegisterBackingBean registerBackingBean;
+    private RegisterBackingBean registerBackingBean;
 
     @Inject
-    AccountDAO accountDAO;
+    private AccountDAO accountDAO;
 
     @Inject
-    AccountService accountService;
+    private AccountService accountService;
 
     public void createAccount() {
         Account acc = new Account(registerBackingBean.getUsername(),
