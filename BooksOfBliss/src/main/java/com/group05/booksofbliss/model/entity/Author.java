@@ -29,5 +29,5 @@ public class Author implements Serializable {
     private String name;
 
     @ManyToMany(mappedBy = "authors")
-    private List<Book> book;
+    private List<Book> books;
 }

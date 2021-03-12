@@ -3,7 +3,6 @@ package com.group05.booksofbliss.model.entity;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotBlank;
@@ -29,6 +28,6 @@ public class Category implements Serializable {
     @ToString.Include
     private String name;
 
-    @ManyToMany(mappedBy = "categories", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "categories")
     private List<Book> books;
 }
