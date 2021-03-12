@@ -97,11 +97,10 @@ public class PublishListingController implements Serializable {
         Account acc = auth.getAccount();
         Listing listing = new Listing(date, Money.of(price, "SEK"), description, condition, acc, book);
         publishService.publishListing(listing);
-        try {
-            externalContext.redirect("/BooksOfBliss/listing/"+listing.getId());
-        } catch (IOException ex) {
-            Logger.getLogger(PublishListingController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        //Redirects user to the published listing.
+        externalContext.redirect(externalContext.getRequestContextPath() + "/listing/"+listing.getId());
+        
+           
         
     }
 }
