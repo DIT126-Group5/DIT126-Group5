@@ -21,7 +21,7 @@ and open the template in the editor.
                 <div class="container">
 
                     <div class="mt-5 py-5 pb-4 shadow bg-white rounded">
-                        <h:form>
+                        <h:form binding="#{settingsForm}">
                             <h5 class="text-center mb-3">Dina uppgifter</h5>
 
                             <div class="form-group row px-5">
@@ -79,13 +79,13 @@ and open the template in the editor.
                                     <h:inputText class="form-control" id="setCity" value="#{settingsBackingBean.account.address.city}"/>
                                 </div>
                             </div>
-                            <h:commandButton action="#{settingsController.updateAccount()}" value="Spara Uppgifter" class="btn btn-primary d-block mx-auto mt-5 mb-3"/>
-                            <h:messages id="messages" />
+                            <h:commandButton action="#{settingsController.updateAccount}" value="Spara Uppgifter" class="btn btn-primary d-block mx-auto mt-5 mb-3"/>
+                            <h:messages id="messages" rendered="#{settingsForm.submitted}"/>
                         </h:form>
                     </div>
 
                     <div class="mt-5 py-5 pb-4 shadow bg-white rounded mb-5">
-                        <h:form>
+                        <h:form binding="#{passwordForm}">
                             <h5 class="text-center mb-3">Ändra lösenord</h5>
 
                             <div class="form-group row px-5">
@@ -111,7 +111,7 @@ and open the template in the editor.
                             </div>
 
                             <h:commandButton action="#{settingsController.changePassword}" value="Ändra lösenord" class="btn btn-primary d-block mx-auto mt-5"/>
-                            <h:messages id="messages" />
+                            <h:messages id="messages" rendered="#{passwordForm.submitted}"/>
                         </h:form>
                     </div>
                 </div>

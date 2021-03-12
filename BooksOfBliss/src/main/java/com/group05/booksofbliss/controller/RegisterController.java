@@ -28,18 +28,23 @@ public class RegisterController {
     private AccountService accountService;
 
     public void createAccount() {
-        Account acc = new Account(registerBackingBean.getUsername(),
-                registerBackingBean.getFirstname(),
-                registerBackingBean.getLastname(),
-                registerBackingBean.getPhonenumber(),
-                registerBackingBean.getEmail(),
-                registerBackingBean.getPassword(),
-                new Address(registerBackingBean.getStreet(), registerBackingBean.getPostalcode(), registerBackingBean.getCity()),
-                Money.of(0, "SEK")
-        );
-        accountService.setPassword(registerBackingBean.getPassword(), acc);
-        accountDAO.create(acc);
-        FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Du har skapat ett konto!", null);
-        facesContext.addMessage(null, facesMessage);
+        try {
+            Account acc = new Account(registerBackingBean.getUsername(),
+                    registerBackingBean.getFirstname(),
+                    registerBackingBean.getLastname(),
+                    registerBackingBean.getPhonenumber(),
+                    registerBackingBean.getEmail(),
+                    registerBackingBean.getPassword(),
+                    new Address(registerBackingBean.getStreet(), registerBackingBean.getPostalcode(), registerBackingBean.getCity()),
+                    Money.of(0, "SEK")
+            );
+            accountService.setPassword(registerBackingBean.getPassword(), acc);
+            accountDAO.create(acc);
+            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Du har skapat ett konto!", null);
+            facesContext.addMessage(null, facesMessage);
+        } catch (Exception e) {
+            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Lösenordet du har angett är inte giltig.", null);
+            facesContext.addMessage(null, facesMessage);
+        }
     }
 }
