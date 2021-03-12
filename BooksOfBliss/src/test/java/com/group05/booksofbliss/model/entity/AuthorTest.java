@@ -11,7 +11,7 @@ import javax.validation.ValidatorFactory;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-public class BookValidationTest {
+public class AuthorTest {
 
     private static ValidatorFactory validatorFactory;
     private static Validator validator;
@@ -28,19 +28,19 @@ public class BookValidationTest {
     }
 
     @Test
-    public void BlankTitleOrISBNShouldCauseViolation() {
-        Book book = new Book("", "", 1996, "");
+    public void BlankNameShouldCauseViolation() {
+        Author author = new Author("");
         
-        Set<ConstraintViolation<Book>> violations = validator.validate(book);
+        Set<ConstraintViolation<Author>> violations = validator.validate(author);
 
-        assertTrue(violations.size() == 2);
+        assertTrue(violations.size() == 1);
     }
     
         @Test
-    public void NonBlankTitleOrISBNShouldNotCauseViolation() {
-        Book book = new Book("34124124124", "Title", 1996, "");
+    public void NonBlankNameShouldNotCauseViolation() {
+        Author author = new Author("Jonas");
 
-        Set<ConstraintViolation<Book>> violations = validator.validate(book);
+        Set<ConstraintViolation<Author>> violations = validator.validate(author);
         
         assertTrue(violations.isEmpty());
     }

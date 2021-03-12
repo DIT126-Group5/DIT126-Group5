@@ -11,7 +11,7 @@ import javax.validation.ValidatorFactory;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-public class AuthorValidationTest {
+public class CategoryTest {
 
     private static ValidatorFactory validatorFactory;
     private static Validator validator;
@@ -28,21 +28,21 @@ public class AuthorValidationTest {
     }
 
     @Test
-    public void BlankNameShouldCauseViolation() {
-        Author author = new Author("");
-        
-        Set<ConstraintViolation<Author>> violations = validator.validate(author);
+    public void shouldHaveNoViolationsIfNonBlank() {
+        Category category = new Category("Mathematics");
 
-        assertTrue(violations.size() == 1);
+        Set<ConstraintViolation<Category>> violations = validator.validate(category);
+
+        assertTrue(violations.isEmpty());
     }
     
         @Test
-    public void NonBlankNameShouldNotCauseViolation() {
-        Author author = new Author("Jonas");
+    public void shouldHaveViolationsIfBlank() {
+        Category category = new Category("");
 
-        Set<ConstraintViolation<Author>> violations = validator.validate(author);
+        Set<ConstraintViolation<Category>> violations = validator.validate(category);
         
-        assertTrue(violations.isEmpty());
+        assertTrue(violations.size() == 1);
     }
 
 }
