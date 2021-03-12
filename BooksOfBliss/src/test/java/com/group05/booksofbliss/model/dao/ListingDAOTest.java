@@ -7,6 +7,7 @@ import com.group05.booksofbliss.model.entity.Book;
 import com.group05.booksofbliss.model.entity.Category;
 import com.group05.booksofbliss.model.entity.Condition;
 import com.group05.booksofbliss.model.entity.Listing;
+import com.group05.booksofbliss.model.entity.Purchase;
 import com.group05.booksofbliss.model.entity.attribute.Address;
 import java.util.ArrayList;
 import java.util.Date;
@@ -48,25 +49,38 @@ public class ListingDAOTest {
     @Inject
     private AccountDAO accountDAO;
 
+    @Inject
+    private PurchaseDAO purchaseDAO;
+
     Account acc;
+    Account acc2;
     Category category;
     List<Category> categories;
     Author author;
     Author author2;
+    Author author3;
     List<Author> authors;
+    List<Author> authors2;
     Book book;
+    Book book2;
     Condition condition;
     Listing listing;
     Listing listing2;
     Listing listing3;
+    Listing listing4;
+    Listing purchasedListing;
     Long listingID;
     Long listingID2;
     Long listingID3;
+    Purchase purchase;
 
     @Before
     public void init() {
         acc = new Account("username", "firstname", "lastname", "0777777777", "namn@mail.se", "password", new Address("Street", "45163", "City"), Money.of(50, "SEK"));
+        acc2 = new Account("username2", "firstname2", "lastname2", "0777777772", "namn2@mail.se", "password", new Address("Street", "45163", "City"), Money.of(50, "SEK"));
+
         accountDAO.create(acc);
+        accountDAO.create(acc2);
 
         category = new Category("Hållbarhet");
         categoryDAO.create(category);
@@ -75,16 +89,24 @@ public class ListingDAOTest {
 
         author = new Author("Håkan Gulliksson");
         author2 = new Author("Ulf Holmgren");
+        author3 = new Author("Jane Austen");
         authorDAO.create(author);
         authorDAO.create(author2);
+        authorDAO.create(author3);
 
         authors = new ArrayList<Author>();
+        authors2 = new ArrayList<Author>();
         authors.add(author);
         authors.add(author2);
+        authors2.add(author3);
         book = new Book("9789144151458", "Hållbar utveckling", 2021, "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.adlibris.com%2Fse%2Fbok%2Fhallbar-utveckling---livskvalitet-beteende-och-teknik-9789144151458&psig=AOvVaw0m1oxt_x4E6gVfR-KKcUMB&ust=1614764579235000&source=images&cd=vfe&ved=0CA0QjhxqFwoTCJjEkvuoke8CFQAAAAAdAAAAABAJ");
+        book2 = new Book("1524861758", "Pride and Prejudice", 2021, "");
+
         book.setAuthors(authors);
         book.setCategories(categories);
+        book2.setAuthors(authors2);
         bookDAO.create(book);
+        bookDAO.create(book2);
 
         condition = new Condition("Nyskick");
         conditionDAO.create(condition);
@@ -92,10 +114,21 @@ public class ListingDAOTest {
         listing = new Listing(new Date(1615127000000L), Money.of(50, "SEK"), "description", condition, acc, book);
         listing2 = new Listing(new Date(1615126000000L), Money.of(50, "SEK"), "description", condition, acc, book);
         listing3 = new Listing(new Date(1615125000000L), Money.of(50, "SEK"), "description", condition, acc, book);
+        listing4 = new Listing(new Date(1615124000000L), Money.of(50, "SEK"), "description", condition, acc, book2);
+        purchasedListing = new Listing(new Date(1615123000000L), Money.of(10, "SEK"), "description", condition, acc, book);
 
-        listingDAO.create(listing3);
+        purchase = new Purchase(purchasedListing, acc2, new Date(1615129000000L), new Address("Rannvägen", "12345", "Goteborg"));
+
         listingDAO.create(listing);
         listingDAO.create(listing2);
+        listingDAO.create(listing3);
+        listingDAO.create(listing4);
+        listingDAO.create(purchasedListing);
+
+        purchaseDAO.create(purchase);
+        purchasedListing.setPurchase(purchase);
+        listingDAO.update(purchasedListing);
+
         listingID = listing.getId();
         listingID2 = listing2.getId();
         listingID3 = listing3.getId();
@@ -104,15 +137,21 @@ public class ListingDAOTest {
 
     @After
     public void clean() {
+        purchaseDAO.remove(purchase);
         listingDAO.remove(listing);
         listingDAO.remove(listing2);
         listingDAO.remove(listing3);
+        listingDAO.remove(listing4);
+        listingDAO.remove(purchasedListing);
         bookDAO.remove(book);
+        bookDAO.remove(book2);
         conditionDAO.remove(condition);
         categoryDAO.remove(category);
         authorDAO.remove(author);
         authorDAO.remove(author2);
+        authorDAO.remove(author3);
         accountDAO.remove(acc);
+        accountDAO.remove(acc2);
     }
 
     @Test
@@ -121,8 +160,68 @@ public class ListingDAOTest {
         listings.add(listing);
         listings.add(listing2);
         listings.add(listing3);
+        listings.add(listing4);
         List<Listing> sorted = listingDAO.sortListingsByDate(listings);
 
         Assert.assertArrayEquals(listings.toArray(), sorted.toArray());
+    }
+
+    @Test
+    public void searchListingByAuthorTest() {
+        List<Listing> listings = new ArrayList();
+        listings.add(listing4);
+        List<Listing> searchedListings = listingDAO.search("austen");
+
+        Assert.assertArrayEquals(listings.toArray(), searchedListings.toArray());
+
+    }
+
+    @Test
+    public void searchByIsbn() {
+        List<Listing> listings = new ArrayList();
+        listings.add(listing);
+        listings.add(listing2);
+        listings.add(listing3);
+        List<Listing> searchedListings = listingDAO.search("9789144151458");
+
+        Assert.assertArrayEquals(listings.toArray(), searchedListings.toArray());
+
+    }
+
+    @Test
+    public void emptySearchReturnsAllListingsNotPurchased() {
+        List<Listing> listings = new ArrayList();
+        listings.add(listing);
+        listings.add(listing2);
+        listings.add(listing3);
+        listings.add(listing4);
+        List<Listing> searchedListings = listingDAO.search("");
+
+        Assert.assertArrayEquals(listings.toArray(), searchedListings.toArray());
+
+    }
+
+    @Test
+    public void getBuyableListingsReturnNoPurchased() {
+        List<Listing> listings = new ArrayList();
+        listings.add(listing);
+        listings.add(listing2);
+        listings.add(listing3);
+        listings.add(listing4);
+        List<Listing> searchedListings = listingDAO.getBuyableListings();
+
+        Assert.assertArrayEquals(listings.toArray(), searchedListings.toArray());
+    }
+
+    @Test
+    public void getSortedBuyableReturnNoPurchased() {
+        List<Listing> listings = new ArrayList();
+        listings.add(listing);
+        listings.add(listing2);
+        listings.add(listing3);
+        listings.add(listing4);
+        List<Listing> searchedListings = listingDAO.getBuyableListingsSortedByDate();
+
+        Assert.assertArrayEquals(listings.toArray(), searchedListings.toArray());
     }
 }

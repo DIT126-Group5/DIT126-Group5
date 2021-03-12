@@ -16,9 +16,12 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import static javax.faces.application.FacesMessage.SEVERITY_ERROR;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -43,6 +46,9 @@ public class PublishListingController implements Serializable {
 
     @Inject
     private FacesContext facesContext;
+    
+    @Inject
+    private ExternalContext externalContext;
 
     public void searchIsbn() throws IOException, InterruptedException {
         //Title, author(s), publishdate are required from ISBN. Other fields allows null-values.
@@ -63,7 +69,7 @@ public class PublishListingController implements Serializable {
         }
     }
 
-    public void publish() {
+    public void publish() throws IOException {
         //Variables for creating listing and book objects
         String isbn = publishListingBackingBean.getIsbn();
         String title = publishListingBackingBean.getTitle();
@@ -91,5 +97,10 @@ public class PublishListingController implements Serializable {
         Account acc = auth.getAccount();
         Listing listing = new Listing(date, Money.of(price, "SEK"), description, condition, acc, book);
         publishService.publishListing(listing);
+        //Redirects user to the published listing.
+        externalContext.redirect(externalContext.getRequestContextPath() + "/listing/"+listing.getId());
+        
+           
+        
     }
 }
