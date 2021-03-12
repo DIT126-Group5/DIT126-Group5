@@ -5,7 +5,9 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 
 @Getter
@@ -15,28 +17,32 @@ import lombok.Setter;
 public class RegisterBackingBean implements Serializable {
 
     @NotBlank
+    @Size(min = 5, message = "Användarnamnet måste innehålla minst 5 karaktärer")
     private String username;
 
-    @NotBlank
+    @NotBlank(message = "Förnamn får inte vara tomt")
     private String firstname;
 
-    @NotBlank
+    @NotBlank(message = "Efternamn får inte vara tomt")
     private String lastname;
 
-    @NotBlank
+    @NotBlank(message = "Mobilnummer får inte vara tomt")
     private String phonenumber;
 
-    @NotBlank
-    @Email
+    @NotBlank(message = "E-post får inte vara tom")
+    @Email(message = "E-post är inte giltig")
     private String email;
 
-    @NotBlank
+    @NonNull
+    @NotBlank(message = "Gatans namn får inte vara tomt")
     private String street;
 
-    @NotBlank
+    @NonNull
+    @NotBlank(message = "Postnumret får inte vara tomt")
     private String postalcode;
 
-    @NotBlank
+    @NonNull
+    @NotBlank(message = "Stadens namn får inte vara tomt")
     private String city;
 
     @NotBlank
