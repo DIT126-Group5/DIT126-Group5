@@ -42,7 +42,7 @@ public class AuthorDAOTest {
 
     @Test
     public void checkThatFindByNameWorksCorrectly() {
-        Assert.assertEquals(author, authorDAO.findByName(author.getName()));
-        Assert.assertEquals(author2, authorDAO.findByName(author2.getName()));
+        Assert.assertEquals(author, authorDAO.find(author.getName()));
+        Assert.assertEquals(author2, authorDAO.find(author2.getName()));
     }
 }

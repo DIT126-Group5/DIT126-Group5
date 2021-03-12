@@ -81,14 +81,7 @@ public class BookDAOTest {
 
     @Test
     public void checkThatFindByISBNWorksCorrectly() {
-        Assert.assertEquals(book, bookDAO.findByISBN(book.getIsbn()));
-        Assert.assertEquals(book2, bookDAO.findByISBN(book2.getIsbn()));
-    }
-
-    @Test
-    public void checkThatFindBooksMatchingTitleWorksCorrectly() {
-        List<Book> books = new ArrayList<Book>();
-        books.add(book);
-        Assert.assertArrayEquals(books.toArray(), bookDAO.findBooksMatchingTitle(book.getTitle()).toArray());
+        Assert.assertEquals(book, bookDAO.find(book.getIsbn()));
+        Assert.assertEquals(book2, bookDAO.find(book2.getIsbn()));
     }
 }

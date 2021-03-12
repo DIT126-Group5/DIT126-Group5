@@ -16,8 +16,4 @@ public class AccountDAO extends AbstractDAO<Account, String> {
     public AccountDAO() {
         super(Account.class);
     }
-
-    public Account findByUsername(String username) {
-        return find(username);
-    }
 }

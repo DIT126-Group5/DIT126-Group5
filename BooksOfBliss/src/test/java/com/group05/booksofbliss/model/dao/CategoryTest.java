@@ -95,7 +95,7 @@ public class CategoryTest {
 
     @Test
     public void checkThatFindByNameWorksCorrectly() {
-        Assert.assertEquals(category, categoryDAO.findByName(category.getName()));
-        Assert.assertEquals(category2, categoryDAO.findByName(category2.getName()));
+        Assert.assertEquals(category, categoryDAO.find(category.getName()));
+        Assert.assertEquals(category2, categoryDAO.find(category2.getName()));
     }
 }
