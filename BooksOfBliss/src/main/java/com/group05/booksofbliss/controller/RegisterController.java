@@ -1,4 +1,3 @@
-package com.group05.booksofbliss.controller;
 
 import com.group05.booksofbliss.model.dao.AccountDAO;
 import com.group05.booksofbliss.model.entity.Account;
@@ -6,6 +5,8 @@ import com.group05.booksofbliss.model.entity.attribute.Address;
 import com.group05.booksofbliss.model.service.AccountService;
 import com.group05.booksofbliss.view.RegisterBackingBean;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.javamoney.moneta.Money;
@@ -19,6 +20,9 @@ public class RegisterController {
 
     @Inject
     private AccountDAO accountDAO;
+
+    @Inject
+    private FacesContext facesContext;
 
     @Inject
     private AccountService accountService;
@@ -35,6 +39,7 @@ public class RegisterController {
         );
         accountService.setPassword(registerBackingBean.getPassword(), acc);
         accountDAO.create(acc);
+        FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Du har skapat ett konto!", null);
+        facesContext.addMessage(null, facesMessage);
     }
-
 }
