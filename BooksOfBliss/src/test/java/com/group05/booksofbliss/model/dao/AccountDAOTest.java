@@ -41,7 +41,7 @@ public class AccountDAOTest {
     @Test
     public void checkThatFindUsersMatchingNameMatchesCorrectly() {
         Assert.assertEquals(accountDAO
-                .findByUsername(account.getUsername()).getUsername(),
+                .find(account.getUsername()).getUsername(),
                 account.getUsername());
     }
 }

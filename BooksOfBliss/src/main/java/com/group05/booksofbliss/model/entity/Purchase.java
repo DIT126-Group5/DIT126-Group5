@@ -16,14 +16,12 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import lombok.ToString;
 
 @Entity
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@ToString(onlyExplicitlyIncluded = true)
 public class Purchase implements Serializable {
 
     @Id
@@ -36,24 +34,17 @@ public class Purchase implements Serializable {
 
     @NonNull
     @NotNull
-    @EqualsAndHashCode.Include
-    @ToString.Include
     @OneToOne(optional = false)
     @JoinColumn(name = "account")
     private Account account;
 
     @NonNull
     @NotNull
-    @ToString.Include
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateTime;
-    //kan vara värt att uppgrade till en senare version av eclipselink för att
-    //ha tillgång till LocalDateTime. v 2.7 och uppåt av eclipselink
-    //kan skriva över i POM:en
 
     @NonNull
     @NotNull
-    @ToString.Include
     @Embedded
     private Address deliveryAddress;
 

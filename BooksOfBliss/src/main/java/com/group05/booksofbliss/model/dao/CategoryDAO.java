@@ -1,8 +1,6 @@
 package com.group05.booksofbliss.model.dao;
 
-import com.group05.booksofbliss.model.entity.Book;
 import com.group05.booksofbliss.model.entity.Category;
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,9 +15,5 @@ public class CategoryDAO extends AbstractDAO<Category, String> {
 
     public CategoryDAO() {
         super(Category.class);
-    }
-
-    public Category findByName(String name) {
-        return find(name);
     }
 }

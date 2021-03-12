@@ -17,6 +17,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Data
@@ -60,6 +61,7 @@ public class Listing implements Serializable {
     @ManyToOne
     private Book book;
 
+    @ToString.Exclude
     @OneToOne(mappedBy = "listing")
     private Purchase purchase;
 
@@ -82,10 +84,7 @@ public class Listing implements Serializable {
         if (this == obj) {
             return true;
         }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
+        if (!(obj instanceof Listing)) {
             return false;
         }
         Listing other = (Listing) obj;

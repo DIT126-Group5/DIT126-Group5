@@ -50,6 +50,7 @@
             <url-pattern>/checkout/*</url-pattern>
             <url-pattern>/checkout_success</url-pattern>
             <url-pattern>/publish</url-pattern>
+            <url-pattern>/settings</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>member</role-name>
