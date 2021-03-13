@@ -29,18 +29,18 @@ public class ConditionTest {
 
     @Test
     public void BlankTitleOrISBNShouldCauseViolation() {
-        Book book = new Book("", "", 1996, "");
+        Condition condition = new Condition("");
         
-        Set<ConstraintViolation<Book>> violations = validator.validate(book);
+        Set<ConstraintViolation<Condition>> violations = validator.validate(condition);
 
-        assertTrue(violations.size() == 2);
+        assertTrue(violations.size() == 1);
     }
     
         @Test
     public void NonBlankTitleOrISBNShouldNotCauseViolation() {
-        Book book = new Book("34124124124", "Title", 1996, "");
+        Condition condition = new Condition("Bra");
 
-        Set<ConstraintViolation<Book>> violations = validator.validate(book);
+        Set<ConstraintViolation<Condition>> violations = validator.validate(condition);
         
         assertTrue(violations.isEmpty());
     }
