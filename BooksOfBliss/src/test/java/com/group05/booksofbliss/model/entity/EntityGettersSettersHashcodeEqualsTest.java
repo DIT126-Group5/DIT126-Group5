@@ -8,8 +8,8 @@ import java.util.Date;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
-import javax.annotation.Nonnull;
 import javax.money.MonetaryAmount;
+import lombok.NonNull;
 import nl.jqno.equalsverifier.ConfiguredEqualsVerifier;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.Warning;
@@ -119,7 +119,7 @@ public class EntityGettersSettersHashcodeEqualsTest {
                 .verify();*/
         setupEqualsVerifier()
                 .forClass(Purchase.class)
-                .withIgnoredAnnotations(Nonnull.class)
+                .withIgnoredAnnotations(NonNull.class)
                 .suppress(Warning.SURROGATE_KEY, Warning.REFERENCE_EQUALITY, Warning.STRICT_HASHCODE)
                 .verify();
 

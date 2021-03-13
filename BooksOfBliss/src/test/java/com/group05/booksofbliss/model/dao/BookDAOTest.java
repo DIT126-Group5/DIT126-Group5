@@ -33,14 +33,14 @@ public class BookDAOTest {
     @Inject
     private CategoryDAO categoryDAO;
 
-    Category category;
-    List<Category> categories;
-    Author author;
-    Author author2;
-    List<Author> authors;
-    List<Author> authors2;
-    Book book;
-    Book book2;
+    private Category category;
+    private List<Category> categories;
+    private Author author;
+    private Author author2;
+    private List<Author> authors;
+    private List<Author> authors2;
+    private Book book;
+    private Book book2;
 
     @Before
     public void init() {

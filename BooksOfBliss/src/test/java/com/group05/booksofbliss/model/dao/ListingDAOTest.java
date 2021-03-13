@@ -52,27 +52,27 @@ public class ListingDAOTest {
     @Inject
     private PurchaseDAO purchaseDAO;
 
-    Account acc;
-    Account acc2;
-    Category category;
-    List<Category> categories;
-    Author author;
-    Author author2;
-    Author author3;
-    List<Author> authors;
-    List<Author> authors2;
-    Book book;
-    Book book2;
-    Condition condition;
-    Listing listing;
-    Listing listing2;
-    Listing listing3;
-    Listing listing4;
-    Listing purchasedListing;
-    Long listingID;
-    Long listingID2;
-    Long listingID3;
-    Purchase purchase;
+    private Account acc;
+    private Account acc2;
+    private Category category;
+    private List<Category> categories;
+    private Author author;
+    private Author author2;
+    private Author author3;
+    private List<Author> authors;
+    private List<Author> authors2;
+    private Book book;
+    private Book book2;
+    private Condition condition;
+    private Listing listing;
+    private Listing listing2;
+    private Listing listing3;
+    private Listing listing4;
+    private Listing purchasedListing;
+    private Long listingID;
+    private Long listingID2;
+    private Long listingID3;
+    private Purchase purchase;
 
     @Before
     public void init() {

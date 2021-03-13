@@ -23,8 +23,8 @@ public class AuthorDAOTest {
     @Inject
     private AuthorDAO authorDAO;
 
-    Author author;
-    Author author2;
+    private Author author;
+    private Author author2;
 
     @Before
     public void init() {
