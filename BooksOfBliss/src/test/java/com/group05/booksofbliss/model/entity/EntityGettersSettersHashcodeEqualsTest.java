@@ -65,7 +65,7 @@ public class EntityGettersSettersHashcodeEqualsTest {
                 .overrideFactory("listings", ArrayList::new)
                 .overrideFactory("purchases", ArrayList::new)
                 .overrideFactory("username",
-                        () -> RandomStringUtils.randomAlphabetic(10))
+                        () -> RandomStringUtils.randomAlphabetic(10).toLowerCase())
                 .build());
 
         tester.addCustomConfiguration(Author.class, new ConfigurationBuilder()
