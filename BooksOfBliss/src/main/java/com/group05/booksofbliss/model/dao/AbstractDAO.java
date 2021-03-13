@@ -2,10 +2,7 @@ package com.group05.booksofbliss.model.dao;
 
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -15,22 +12,22 @@ public abstract class AbstractDAO<T, P> {
 
     protected abstract EntityManager getEntityManager();
 
-    //Insert
+    // Insert
     public void create(T entity) {
         getEntityManager().persist(entity);
     }
 
-    //Update
+    // Update
     public void update(T entity) {
         getEntityManager().merge(entity);
     }
 
-    //Delete
+    // Delete
     public void remove(T entity) {
         getEntityManager().remove(getEntityManager().merge(entity));
     }
 
-    //Find by primary key
+    // Find by primary key
     public T find(P primaryKey) {
         return getEntityManager().find(entityType, primaryKey);
     }
@@ -39,15 +36,5 @@ public abstract class AbstractDAO<T, P> {
         final CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityType));
         return getEntityManager().createQuery(cq).getResultList();
-    }
-
-    public long count() {
-        //queryDSL
-        final CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
-        final CriteriaQuery cq = builder.createQuery();
-        final Root<T> rt = cq.from(entityType);
-        cq.select(builder.count(rt));
-        final Query q = getEntityManager().createQuery(cq);
-        return ((Long) q.getSingleResult());
     }
 }
