@@ -8,7 +8,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.security.enterprise.identitystore.Pbkdf2PasswordHash;
 
 @Named("settingsController")
 @RequestScoped
@@ -26,9 +25,6 @@ public class SettingsController {
     @Inject
     private FacesContext facesContext;
 
-    @Inject
-    private Pbkdf2PasswordHash passwordHash;
-
     public void updateAccount() {
         try {
             accountDAO.update(settingsBackingBean.getAccount());
@@ -40,13 +36,9 @@ public class SettingsController {
 
     public void changePassword() {
         //Check if password is the same as for the account in the database?
-        System.out.println("changePassword");
         if (accountService.verifyPassword(settingsBackingBean.getPassword(), settingsBackingBean.getAccount())) {
-            System.out.println("beforeSetPassword");
             setNewPassword();
-            System.out.println("beforeUpdateAccount" + settingsBackingBean.getAccount());
             updateAccount();
-            System.out.println("afterUpdateAccount" + settingsBackingBean.getAccount());
         } else {
             FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Lösenordet du har angett är inte korrekt.", null);
             facesContext.addMessage(null, facesMessage);

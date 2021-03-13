@@ -1,6 +1,5 @@
 package com.group05.booksofbliss.view;
 
-import com.group05.booksofbliss.model.dao.BookDAO;
 import com.group05.booksofbliss.model.dao.ListingDAO;
 import com.group05.booksofbliss.model.entity.Listing;
 import java.io.Serializable;
@@ -16,9 +15,6 @@ public class BrowseBackingBean implements Serializable {
 
     @Inject
     private ListingDAO listingDAO;
-
-    @Inject
-    private BookDAO bookDAO;
 
     @Param(name = "q")
     private String searchQuery;

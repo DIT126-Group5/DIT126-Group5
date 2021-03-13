@@ -56,7 +56,6 @@ public class PublishService implements Serializable {
             insertCategory(category);
         });
         insertBook(book);
-        System.out.println(listing);
         listingDAO.create(listing);
     }
 }
