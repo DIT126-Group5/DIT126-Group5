@@ -44,8 +44,7 @@ public class EntityGettersSettersHashcodeEqualsTest {
         entityClasses = ClassPath.from(EntityGettersSettersHashcodeEqualsTest.class.getClassLoader())
                 .getTopLevelClassesRecursive(entityPackage)
                 .stream()
-                .filter(c -> !c.getSimpleName().startsWith("Q")
-                && !c.getSimpleName().contains("Test"))
+                .filter(c -> !c.getSimpleName().contains("Test"))
                 .map(ClassPath.ClassInfo::load)
                 .collect(Collectors.toSet());
     }

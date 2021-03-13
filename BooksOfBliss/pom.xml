@@ -110,20 +110,6 @@
             <type>pom</type>
         </dependency>
 
-        <!-- QueryDSL -->
-        <dependency>
-            <groupId>com.querydsl</groupId>
-            <artifactId>querydsl-apt</artifactId>
-            <version>${querydsl.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.querydsl</groupId>
-            <artifactId>querydsl-jpa</artifactId>
-            <version>${querydsl.version}</version>
-        </dependency>
-
         <!-- Logging -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -257,7 +243,6 @@
                 <version>0.8.6</version>
                 <configuration>
                     <excludes>
-                        <exclude>**/Q*.class</exclude>
                     </excludes>
                 </configuration>
                 <executions>

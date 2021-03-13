@@ -1,6 +1,5 @@
 package com.group05.booksofbliss.model.dao;
 
-import com.querydsl.jpa.impl.JPAQueryFactory;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -15,10 +14,6 @@ public abstract class AbstractDAO<T, P> {
     protected final Class<T> entityType;
 
     protected abstract EntityManager getEntityManager();
-
-    protected JPAQueryFactory getQueryFactory() {
-        return (new JPAQueryFactory(getEntityManager()));
-    }
 
     //Insert
     public void create(T entity) {
