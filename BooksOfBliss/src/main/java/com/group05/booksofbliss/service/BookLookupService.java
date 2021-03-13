@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.ApplicationScoped;
+import lombok.Value;
 import org.primefaces.shaded.json.JSONArray;
 import org.primefaces.shaded.json.JSONException;
 import org.primefaces.shaded.json.JSONObject;
@@ -18,8 +19,23 @@ import org.primefaces.shaded.json.JSONObject;
 @ApplicationScoped
 public class BookLookupService {
 
+    @Value
+    public static class LookupResult {
 
-    public JSONObject getIsbnFromApi(String isbn) throws IOException, InterruptedException {
+        private final String title;
+        private final List<String> authors;
+        private final String imageUrl;
+        private final List<String> categories;
+        private final int publishYear;
+
+        public boolean isValid() {
+            return getTitle() != null
+                    && getAuthors() != null
+                    && getPublishYear() != -1;
+        }
+    }
+
+    public LookupResult lookupByIsbn(String isbn) throws IOException, InterruptedException {
         String isbnUrl = "https://www.googleapis.com/books/v1/volumes?q=isbn:" + isbn;
 
         try {
@@ -34,9 +50,15 @@ public class BookLookupService {
             JSONObject jo = new JSONObject(response.body());
             if (jo.getInt("totalItems") == 0) {
                 return null;
-            } else {
-                return new JSONObject(response.body());
             }
+
+            return new LookupResult(
+                    getTitle(jo),
+                    getAuthors(jo),
+                    getImageUrl(jo),
+                    getBookCategories(jo),
+                    getPublishDate(jo)
+            );
 
         } catch (URISyntaxException ex) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
@@ -44,7 +66,7 @@ public class BookLookupService {
         return null;
     }
 
-    public String getTitle(JSONObject jo) {
+    private String getTitle(JSONObject jo) {
         try {
             String title = jo.getJSONArray("items")
                     .getJSONObject(0)
@@ -57,7 +79,7 @@ public class BookLookupService {
 
     }
 
-    public List<String> getAuthors(JSONObject jo) {
+    private List<String> getAuthors(JSONObject jo) {
         try {
             JSONArray jsonAuthors = jo.getJSONArray("items")
                     .getJSONObject(0)
@@ -74,7 +96,7 @@ public class BookLookupService {
         }
     }
 
-    public String getImageUrl(JSONObject jo) {
+    private String getImageUrl(JSONObject jo) {
         try {
             String imgLink = jo.getJSONArray("items")
                     .getJSONObject(0)
@@ -87,7 +109,7 @@ public class BookLookupService {
         }
     }
 
-    public List<String> getBookCategories(JSONObject jo) {
+    private List<String> getBookCategories(JSONObject jo) {
         try {
             JSONArray jsonCategories = jo.getJSONArray("items")
                     .getJSONObject(0)
@@ -98,7 +120,7 @@ public class BookLookupService {
             for (Object category : jsonCategories) {
                 categories.add(category.toString());
             }
-            System.out.println("Categories: " + categories);
+
             return categories;
 
         } catch (JSONException e) {
@@ -107,17 +129,16 @@ public class BookLookupService {
 
     }
 
-    public int getPublishDate(JSONObject jo) {
+    private int getPublishDate(JSONObject jo) {
         try {
-        String publishYear = jo.getJSONArray("items")
-                .getJSONObject(0)
-                .getJSONObject("volumeInfo")
-                .getString("publishedDate");
+            String publishYear = jo.getJSONArray("items")
+                    .getJSONObject(0)
+                    .getJSONObject("volumeInfo")
+                    .getString("publishedDate");
 
-        publishYear = publishYear.substring(0, 4);
-        return Integer.parseInt(publishYear);
-        }
-        catch(JSONException e){
+            publishYear = publishYear.substring(0, 4);
+            return Integer.parseInt(publishYear);
+        } catch (JSONException e) {
             return -1;
         }
     }

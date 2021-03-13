@@ -16,8 +16,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import static javax.faces.application.FacesMessage.SEVERITY_ERROR;
@@ -26,7 +24,6 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.javamoney.moneta.Money;
-import org.primefaces.shaded.json.JSONObject;
 
 @RequestScoped
 @Named
@@ -46,25 +43,23 @@ public class PublishListingController implements Serializable {
 
     @Inject
     private FacesContext facesContext;
-    
+
     @Inject
     private ExternalContext externalContext;
 
     public void searchIsbn() throws IOException, InterruptedException {
         //Title, author(s), publishdate are required from ISBN. Other fields allows null-values.
         String isbn = publishListingBackingBean.getIsbn();
-        JSONObject jo = bookLookupService.getIsbnFromApi(isbn);
-        if (jo == null || bookLookupService.getTitle(jo) == null
-                || bookLookupService.getAuthors(jo) == null
-                || bookLookupService.getPublishDate(jo) == -1) {
+        BookLookupService.LookupResult result = bookLookupService.lookupByIsbn(isbn);
+        if (result == null || !result.isValid()) {
             facesContext.addMessage(null, new FacesMessage(SEVERITY_ERROR, "Vi hittade ingen bok som matchade det angivna ISBN-numret.", null));
             publishListingBackingBean.setShowPublishForm(false);
         } else {
-            publishListingBackingBean.setTitle(bookLookupService.getTitle(jo));
-            publishListingBackingBean.setAuthors(bookLookupService.getAuthors(jo));
-            publishListingBackingBean.setImageUrl(bookLookupService.getImageUrl(jo));
-            publishListingBackingBean.setCategories(bookLookupService.getBookCategories(jo));
-            publishListingBackingBean.setPublishDate(bookLookupService.getPublishDate(jo));
+            publishListingBackingBean.setTitle(result.getTitle());
+            publishListingBackingBean.setAuthors(result.getAuthors());
+            publishListingBackingBean.setImageUrl(result.getImageUrl());
+            publishListingBackingBean.setCategories(result.getCategories());
+            publishListingBackingBean.setPublishDate(result.getPublishYear());
             publishListingBackingBean.setShowPublishForm(true);
         }
     }
@@ -98,9 +93,7 @@ public class PublishListingController implements Serializable {
         Listing listing = new Listing(date, Money.of(price, "SEK"), description, condition, acc, book);
         publishService.publishListing(listing);
         //Redirects user to the published listing.
-        externalContext.redirect(externalContext.getRequestContextPath() + "/listing/"+listing.getId());
-        
-           
-        
+        externalContext.redirect(externalContext.getRequestContextPath() + "/listing/" + listing.getId());
+
     }
 }
