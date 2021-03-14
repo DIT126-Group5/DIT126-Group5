@@ -46,7 +46,7 @@ public class UserReview implements Serializable {
 
     @NonNull
     @NotNull
-    @Min(0)
+    @Min(1)
     @Max(5)
     private int rating;
 }
