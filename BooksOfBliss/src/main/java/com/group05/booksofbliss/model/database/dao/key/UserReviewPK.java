@@ -1,22 +1,26 @@
 package com.group05.booksofbliss.model.database.dao.key;
 
 import java.io.Serializable;
+import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.Value;
 
-@Value
+@Embeddable
+@Getter
+@EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
-public final class UserReviewPK implements Serializable {
+public class UserReviewPK implements Serializable {
 
     @NonNull
     @NotNull
-    private final String reviewer;
+    private String reviewer;
 
     @NonNull
     @NotNull
-    private final String reviewee;
+    private String reviewee;
 }
