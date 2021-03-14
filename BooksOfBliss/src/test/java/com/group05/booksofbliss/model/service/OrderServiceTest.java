@@ -1,6 +1,13 @@
-package com.group05.booksofbliss.model.dao;
+package com.group05.booksofbliss.model.service;
 
 import com.group05.booksofbliss.Deployments;
+import com.group05.booksofbliss.model.dao.AccountDAO;
+import com.group05.booksofbliss.model.dao.AuthorDAO;
+import com.group05.booksofbliss.model.dao.BookDAO;
+import com.group05.booksofbliss.model.dao.CategoryDAO;
+import com.group05.booksofbliss.model.dao.ConditionDAO;
+import com.group05.booksofbliss.model.dao.ListingDAO;
+import com.group05.booksofbliss.model.dao.PurchaseDAO;
 import com.group05.booksofbliss.model.entity.Account;
 import com.group05.booksofbliss.model.entity.Author;
 import com.group05.booksofbliss.model.entity.Book;
