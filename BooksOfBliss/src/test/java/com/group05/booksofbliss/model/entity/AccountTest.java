@@ -95,6 +95,8 @@ public class AccountTest {
         Set<ConstraintViolation<Account>> violations = validator.validate(badUsernameAccount);
         //then:
         assertEquals(violations.size(), 1);
+        assertFalse(account.isValidUsername("ThisUsernameIsWaaaaaaayTooLongToBeUsed"));
+        assertFalse(account.isValidUsername("ONLYCAPS"));
     }
 
     @Test
@@ -131,7 +133,7 @@ public class AccountTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void addToBalanceTest_whenNegativeAmount_throwsIllegalArgumentException() {
-        account.withdrawFromBalance(Money.of(-500, "SEK"));
+        account.addToBalance(Money.of(-500, "SEK"));
     }
 
     @Test
