@@ -48,4 +48,8 @@ public class ListingTest {
         listing.setBook(null);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void setPrice_givenNegativeAmount_throwsIllegalArgumentException() {
+        listing.setPrice(Money.of(-1, "SEK"));
+    }
 }

@@ -87,6 +87,9 @@ public class Account implements Serializable {
     private List<Purchase> purchases;
 
     public void setUsername(String username) {
+        if (username == null) {
+            throw new NullPointerException("Username may not be null");
+        }
         if (!isValidUsername(username)) {
             throw new IllegalArgumentException("The username you have written is invalid.");
         }
@@ -116,7 +119,6 @@ public class Account implements Serializable {
     public boolean isValidPassword(String password) {
         if (!(10 <= password.length())
                 || !(password.length() <= 100)
-                || !password.matches(".*[~!@#$%^*-_=+[{]}/;:,.?].*")
                 || !password.matches(".*[0-9].*")
                 || !password.matches(".*[a-z].*")
                 || !password.matches(".*[A-Z].*")) {
