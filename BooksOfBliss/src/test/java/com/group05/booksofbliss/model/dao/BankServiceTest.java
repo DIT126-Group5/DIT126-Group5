@@ -1,7 +1,6 @@
 package com.group05.booksofbliss.model.dao;
 
 import com.group05.booksofbliss.Deployments;
-import com.group05.booksofbliss.model.dao.AccountDAO;
 import com.group05.booksofbliss.model.entity.Account;
 import com.group05.booksofbliss.model.entity.attribute.Address;
 import com.group05.booksofbliss.model.service.BankService;
