@@ -36,6 +36,11 @@
                                                 </ui:repeat></small>
                                             <small class="text-muted">ISBN: #{checkoutBackingBean.listing.book.isbn}</small>
                                             <small class="text-muted">Skick: #{checkoutBackingBean.listing.condition.name}</small>
+                                            <small class="text-muted">Kategorier:
+                                                <ui:repeat value="#{checkoutBackingBean.listing.book.categories}" var="category" varStatus="loop">
+                                                    #{category.name}#{not loop.last ? ', ' : ''}
+                                                </ui:repeat>
+                                            </small>
                                         </div>
                                     </div>
 

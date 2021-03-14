@@ -31,7 +31,7 @@
                                     </small>
                                     <small class="text-muted">ISBN: #{listingBackingBean.listing.book.isbn}</small>
                                     <small class="text-muted">Skick: #{listingBackingBean.listing.condition.name}</small>
-                                    <small class="text-muted"> Kategorier:
+                                    <small class="text-muted">Kategorier:
                                         <ui:repeat value="#{listingBackingBean.listing.book.categories}" var="category" varStatus="loop">
                                             #{category.name}#{not loop.last ? ', ' : ''}
                                         </ui:repeat>
