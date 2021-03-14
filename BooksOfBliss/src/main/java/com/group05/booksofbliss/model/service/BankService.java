@@ -19,13 +19,14 @@ public class BankService implements Serializable {
         // Sender has enough money
         if (from.getBalance().isLessThan(amount)) {
             throw new IllegalStateException("Sender does not have enough money to perform transaction");
+        } else {
+            from.withdrawFromBalance(amount);
+            to.addToBalance(amount);
+
+            accountDAO.update(from);
+            accountDAO.update(to);
         }
 
-        from.withdrawFromBalance(amount);
-        to.addToBalance(amount);
-
-        accountDAO.update(from);
-        accountDAO.update(to);
     }
 
     public void buyCredits(Account account, MonetaryAmount amount) {
