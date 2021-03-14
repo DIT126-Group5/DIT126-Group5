@@ -15,6 +15,11 @@ public class AccountTest {
     }
 
     @Test(expected = NullPointerException.class)
+    public void setUsername_givenNull_throwsNPE() {
+        account.setUsername(null);
+    }
+
+    @Test(expected = NullPointerException.class)
     public void setFirstname_givenNull_throwsNPE() {
         account.setFirstname(null);
     }

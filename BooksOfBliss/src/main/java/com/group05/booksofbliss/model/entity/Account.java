@@ -87,6 +87,9 @@ public class Account implements Serializable {
     private List<Purchase> purchases;
 
     public void setUsername(String username) {
+        if (username == null) {
+            throw new NullPointerException("Username may not be null");
+        }
         if (!isValidUsername(username)) {
             throw new IllegalArgumentException("The username you have written is invalid.");
         }
