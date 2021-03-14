@@ -183,11 +183,3 @@ body {
 .contentStyle {
     margin-top: 3rem;
 }
-
-/* ---------- DEBUG ---------- */
-
-.loggedInFooter {
-    position:fixed;
-    bottom:0;
-    right:0;
-}
