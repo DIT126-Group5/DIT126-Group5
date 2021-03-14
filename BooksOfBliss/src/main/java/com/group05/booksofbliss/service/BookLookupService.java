@@ -11,7 +11,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.ApplicationScoped;
-import lombok.Value;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import org.primefaces.shaded.json.JSONArray;
 import org.primefaces.shaded.json.JSONException;
 import org.primefaces.shaded.json.JSONObject;
@@ -19,8 +21,10 @@ import org.primefaces.shaded.json.JSONObject;
 @ApplicationScoped
 public class BookLookupService {
 
-    @Value
-    public static class LookupResult {
+    @Getter
+    @AllArgsConstructor
+    @EqualsAndHashCode
+    public static final class LookupResult {
 
         private final String title;
         private final List<String> authors;
