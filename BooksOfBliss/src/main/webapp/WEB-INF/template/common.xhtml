@@ -17,7 +17,6 @@
         <h:outputStylesheet name="css/style.css" />
 
         <!-- Custom scripts -->
-        <h:outputScript name="js/main.js" />
         <script>
             function relocateOnSearch() {
                 window.location.href = '<o:url viewId="/browse.xhtml" />?q=' + document.getElementById('searchtext').value;
@@ -51,7 +50,6 @@
                         <p:submenu label="Mina sidor" styleClass="navItem myPagesStyle ml-auto" rendered="#{auth.account != null}">
                             <p:menuitem value="Inställningar" outcome="settings.xhtml"/>
                             <p:menuitem value="Köp kredit" outcome="buy_credits" />
-                            <p:menuitem value="Kontakt" outcome="contact" />
                             <p:menuitem value="Logga ut" action="#{logoutController.logout()}"/>
                         </p:submenu>
                     </p:menubar>
@@ -62,9 +60,5 @@
         <main class="contentStyle">
             <ui:insert name="content" />
         </main>
-
-        <div class="loggedInFooter">
-            Logged in as: "#{auth.account.username}"
-        </div>
     </h:body>
 </html>
