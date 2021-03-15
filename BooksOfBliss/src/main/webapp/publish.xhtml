@@ -26,47 +26,47 @@
                                                          class="btn btn-secondary" />
                                     </div>
                                     <h:messages style="color:red"/>
+                                </div>
                             </h:form>
+
+
                         </div>
-
-
                     </div>
-                </div>
-                <div id="publishForm" class="mt-5 px-3 py-4 shadow bg-white rounded" 
-                     jsf:rendered="#{publishListingBackingBean.showPublishForm}" >
-                    <div class="ui-fluid p-formgrid p-grid">
-                        <h:panelGroup>
-                            <h:form>
-                                <p:outputLabel value="Boktitel" />
-                                <p:inputText disabled="true" required="true" value="#{publishListingBackingBean.title}" />
-                                <p:outputLabel value="Författare" />
-                                <p:inputText disabled="true" required="true" value="#{publishListingBackingBean.authors}" />
+                    <div id="publishForm" class="mt-5 px-3 py-4 shadow bg-white rounded" 
+                         jsf:rendered="#{publishListingBackingBean.showPublishForm}" >
+                        <div class="ui-fluid p-formgrid p-grid">
+                            <h:panelGroup>
+                                <h:form>
+                                    <p:outputLabel value="Boktitel" />
+                                    <p:inputText disabled="true" required="true" value="#{publishListingBackingBean.title}" />
+                                    <p:outputLabel value="Författare" />
+                                    <p:inputText disabled="true" required="true" value="#{publishListingBackingBean.authors}" />
 
-                                <div class="p-field p-col-12 p-md-6">
-                                    <p:outputLabel for="price" value="Skriv in ditt pris" />
-                                    <p:inputNumber id="price" minValue="0" required="true" value="#{publishListingBackingBean.price}"/>
-                                </div>
+                                    <div class="p-field p-col-12 p-md-6">
+                                        <p:outputLabel for="price" value="Skriv in ditt pris" />
+                                        <p:inputNumber id="price" minValue="0" required="true" value="#{publishListingBackingBean.price}"/>
+                                    </div>
 
-                                <div class="p-field p-col-12 p-md-6">
-                                    <p:outputLabel value="Annonsbeskrivning (max 250 karaktärer)"/>
-                                    <p:inputTextarea value="#{publishListingBackingBean.description}" id="desc" maxlength="250" />
-                                </div>
+                                    <div class="p-field p-col-12 p-md-6">
+                                        <p:outputLabel value="Annonsbeskrivning (max 250 karaktärer)"/>
+                                        <p:inputTextarea value="#{publishListingBackingBean.description}" id="desc" maxlength="250" />
+                                    </div>
 
-                                <div class="p-field p-col-12 p-md-3">
-                                    <p:outputLabel value="Välj bokens skick" />
-                                    <p:selectOneMenu id="cond" required="true" value="#{publishListingBackingBean.conditionName}">
-                                        <f:selectItems value="#{publishListingBackingBean.conditions}"/>
-                                    </p:selectOneMenu>
-                                </div>
-                                <div class="p-field p-col-12 p-md-3 text-center">
-                                    <h:commandButton value="Publish Listing"
-                                                     action="#{publishListingController.publish}"
-                                                     class="w-auto btn btn-primary" />
-                                </div>
-                            </h:form>
-                        </h:panelGroup>
+                                    <div class="p-field p-col-12 p-md-3">
+                                        <p:outputLabel value="Välj bokens skick" />
+                                        <p:selectOneMenu id="cond" required="true" value="#{publishListingBackingBean.conditionName}">
+                                            <f:selectItems value="#{publishListingBackingBean.conditions}"/>
+                                        </p:selectOneMenu>
+                                    </div>
+                                    <div class="p-field p-col-12 p-md-3 text-center">
+                                        <h:commandButton value="Publish Listing"
+                                                         action="#{publishListingController.publish}"
+                                                         class="w-auto btn btn-primary" />
+                                    </div>
+                                </h:form>
+                            </h:panelGroup>
+                        </div>
                     </div>
-                </div>
                 </div>
 
             </ui:define>
