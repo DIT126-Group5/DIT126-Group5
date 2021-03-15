@@ -22,12 +22,12 @@
                                     <h:inputText id="isbn" pt:required="true" value="#{publishListingBackingBean.isbn}"
                                                  class="col-7 pl-3 form-control" pt:pattern="^(?:ISBN(?:-1[03])?:? )?(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$|97[89][0-9]{10}$|(?=(?:[0-9]+[- ]){4})[- 0-9]{17}$)(?:97[89][- ]?)?[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X]$"/>
                                     <div class="col-1 pl-3">
-                                         <h:commandButton value="Sök"  action="#{publishListingController.searchIsbn}"
-                                         class="btn btn-secondary" />
-                                </div>
-                                <h:messages style="color:red"/>
+                                        <h:commandButton value="Sök"  action="#{publishListingController.searchIsbn}"
+                                                         class="btn btn-secondary" />
+                                    </div>
+                                    <h:messages style="color:red"/>
+                            </h:form>
                         </div>
-                        </h:form>
 
 
                     </div>
