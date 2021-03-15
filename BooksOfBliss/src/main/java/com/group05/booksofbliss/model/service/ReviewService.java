@@ -18,13 +18,16 @@ public class ReviewService implements Serializable {
 
     @Transactional
     public void reviewPurchase(Purchase purchase, String comment, int rating) {
+        if (rating < 1 || rating > 5){
+            throw new IllegalArgumentException("Rating måste vara mellan 1-5.");
+        }
         Account reviewer = purchase.getAccount();
         Account reviewee = purchase.getListing().getPublishedBy();
 
         UserReview previousReview = userReviewDAO.find(new UserReviewPK(reviewer.getUsername(), reviewee.getUsername()));
         if (previousReview != null) {  // If reviewer has previously reviewed reviewee, update with new comment and rating
             previousReview.setRating(rating);
-            previousReview.setComment(previousReview.getComment() + '\n' + comment);
+            previousReview.setComment(comment);
             userReviewDAO.update(previousReview);
         } else {
             userReviewDAO.create(new UserReview(reviewer, reviewee, comment, rating));
