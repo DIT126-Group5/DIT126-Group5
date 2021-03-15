@@ -132,8 +132,6 @@ public class UserReviewDAOTest {
         listingDAO.create(purchasedListing);
 
         purchaseDAO.create(purchase);
-        purchasedListing.setPurchase(purchase);
-        listingDAO.update(purchasedListing);
 
         listingID = listing.getId();
         listingID2 = listing2.getId();
