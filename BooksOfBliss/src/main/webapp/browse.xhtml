@@ -7,8 +7,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:b="http://butterfaces.org/components"
-      xmlns:o="http://omnifaces.org/ui">
-
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:p="http://primefaces.org/ui">
 
     <h:body>
 
@@ -22,7 +22,14 @@
                         <div class="py-5 pb-4 shadow text-center" jsf:rendered="#{browseBackingBean.listings.size() == 0}">
                             <h2>Inga annonser kunde hittas...</h2>
                         </div>
-
+                        <h:form>
+                            <p:menubar>
+                                <p:submenu label="Sortera" styleClass="navItem myPagesStyle ml-auto">
+                                    <p:menuitem value="Pris" action="#{browseBackingBean.setPriceSort()}" ajax="false"/>
+                                    <p:menuitem value="Datum" action="#{browseBackingBean.setDateSort()}" ajax="false"/>
+                                </p:submenu>
+                            </p:menubar>
+                        </h:form>
                         <b:repeat value="#{browseBackingBean.listings}"
                                   var="listing">
                             <div class="card mb-3 shadow-sm">
@@ -45,6 +52,7 @@
                                                 </ui:repeat>
                                             </li>
                                             <li class="list-group-item">Pris: #{listing.price}</li>
+                                            <li class="list-group-item">Pris: #{listing.dateTime}</li>
                                             <li class="list-group-item">Skick: #{listing.condition.name}</li>
                                         </ul>
                                     </div>
