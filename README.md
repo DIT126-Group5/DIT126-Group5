@@ -1,6 +1,10 @@
 # Book of Bliss
+
 ### Description
 This is an application that is made for everyone that wants to sell their course literature and wants to earn that extra money or for those who wants to buy cheaper course literature and do not care if they has been used or not.
+
+Here is a report with more detailed information:
+[Final Report](https://github.com/DIT126-Group5/DIT126-Group5/blob/main/documentation/final_report/Final_Report.pdf)
 
 # Team members
 **Usernames  - Real name**
@@ -30,7 +34,3 @@ This is an application that is made for everyone that wants to sell their course
 - At the start there will be no listings available so you need to register an account and publish to sell a book.
 - You can use this ISBN: "9780134092669" as a example test to get a book to sell.
 - Then you have to make another account in order to buy the book because the same account can not buy its own book.
-
-
-
-
