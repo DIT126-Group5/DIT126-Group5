@@ -1,7 +1,7 @@
 # Book of Bliss
 
 ### Description
-This is an application that is made for everyone that wants to sell their course literature and wants to earn that extra money or for those who wants to buy cheaper course literature and do not care if they has been used or not.
+Books of Bliss is a platform where users can buy and/or sell books and course literature. When a user puts up a book for sale, it needs to specify a price and a condition of the book. Other users can then proceed to buy this listing, provided that they have enough credits in their account balance.
 
 Here is a report with more detailed information:
 [Final Report](https://github.com/DIT126-Group5/DIT126-Group5/blob/main/documentation/final_report/Final_Report.pdf)
