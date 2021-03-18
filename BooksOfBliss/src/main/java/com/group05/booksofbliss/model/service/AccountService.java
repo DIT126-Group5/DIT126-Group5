@@ -13,7 +13,7 @@ public class AccountService {
 
     public void setPassword(String password, Account account) {
         if (!account.isValidPassword(password)) {
-            throw new IllegalArgumentException("The password you have written is invalid.");
+            throw new IllegalArgumentException("Lösenordet måste innehålla minst en versal, en siffra och vara minst 10 tecken.");
         }
         account.setPassword(passwordHash.generate(password.toCharArray()));
     }

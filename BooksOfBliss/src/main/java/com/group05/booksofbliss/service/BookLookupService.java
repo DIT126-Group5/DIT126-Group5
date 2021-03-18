@@ -109,7 +109,7 @@ public class BookLookupService {
                     .getString("thumbnail");
             return imgLink;
         } catch (JSONException e) {
-            return null;
+            return "";
         }
     }
 
