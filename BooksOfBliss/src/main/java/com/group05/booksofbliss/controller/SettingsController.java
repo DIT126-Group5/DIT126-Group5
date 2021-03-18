@@ -40,7 +40,7 @@ public class SettingsController {
             setNewPassword();
             updateAccount();
         } else {
-            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Lösenordet du har angett är inte korrekt.", null);
+            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Det nuvarande lösenordet du har angett är inte korrekt.", null);
             facesContext.addMessage(null, facesMessage);
         }
     }
@@ -51,7 +51,7 @@ public class SettingsController {
             FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Lösenordet har nu ändrats!", null);
             facesContext.addMessage(null, facesMessage);
         } catch (Exception e) {
-            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Lösenordet du har angett är inte giltig.", null);
+            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Det nya lösenordet måste innehålla minst en versal, en siffra och vara minst 10 tecken.", null);
             facesContext.addMessage(null, facesMessage);
         }
     }

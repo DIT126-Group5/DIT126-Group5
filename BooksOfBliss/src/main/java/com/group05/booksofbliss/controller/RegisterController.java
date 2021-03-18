@@ -48,7 +48,7 @@ public class RegisterController {
                 FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Du har skapat ett konto!", null);
                 facesContext.addMessage(null, facesMessage);
             } catch (Exception e) {
-                FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_WARN, "Lösenordet du har angett är inte giltig.", null);
+                FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_WARN, "Lösenordet måste innehålla minst en versal, gemen, samt siffra och vara minst 10 tecken.", null);
                 facesContext.addMessage(null, facesMessage);
             }
         }
